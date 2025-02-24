@@ -1,5 +1,5 @@
 /*｡☆✼★━━━━━━ATENÇÃO━━━━━━━━━━★✼
-💜⃤𝙀𝙐 𝙎𝘼𝙉𝘿𝙍𝙊 𝘽𝙊𝙏 𝙉𝘼𝙊 𝙋𝙀𝙍𝙈𝙄𝙏𝙊 𝙍𝙀𝙑𝙀𝙉𝘿𝙀𝙍 𝙊𝙐 𝙍𝙀𝙋𝘼𝙎𝙎𝘼𝙍 𝙀𝙎𝙎𝘼 𝙑𝙀𝙍𝙎𝘼𝙊.💜⃤
+     oie
 ｡☆✼★━━━━━━ATENÇÃO━━━━━━━━━━★✼*/
 
 const { 'default': makeWASocket,downloadContentFromMessage, fetchLatestBaileysVersion, useMultiFileAuthState, makeInMemoryStore, DisconnectReason, WAGroupMetadata, relayWAMessage, MediaPathMap, mentionedJid, processTime, MediaType, Browser, MessageType, Presence, Mimetype, Browsers, delay, MessageRetryMap } = require('@whiskeysockets/baileys');

@@ -1,5 +1,5 @@
 exports.phrasesLeft = (getName, sab2, encodeURIComponent) => {
-response = [`${encodeURIComponent(getName(sab2.participants[0]))} acaba de sair do grupo!`, `${encodeURIComponent(getName(sab2.participants[0]))}`, `${encodeURIComponent(getName(sab2.participants[0]))} de sair do grupo: ${encodeURIComponent(mdata_2.subject)}`, `Nem gostava de você, eu só digo aleluia por tu ter saído :)`, `Nunca fui com a tua cara, digo glória por tu ter saído!`, `Nada pra ver aqui, ele(a) saiu por um 'acidente'...`]
+response = [`${encodeURIComponent(getName(sab2.participants[0]))} acaba de sair do grupo!`, `${encodeURIComponent(getName(sab2.participants[0]))}`, `${encodeURIComponent(getName(sab2.participants[0]))} de sair do grupo: ${encodeURIComponent(mdata_2.subject)}`, `menos um calabreso :)`, `calma ai calabreso`]
    return response[Math.floor(Math.random() * response.length)]
 }
 
@@ -19,13 +19,13 @@ exports.playResult = (data) => {
 *🌐 Id do video:* ${data.resultado[0].videoId}
 *📁 Formato:* Mp3
 *👀 Visualizações:* ${data.resultado[0].views}
-*🤖 Bot: _SANDRO-BOT_*
-*🥼 Criador: _SANDRO_*
+*🤖 Bot: realmes bot*
+*🥼 Criador: calo*
 *🖇 Link:* ${data.resultado[0].url}`
 }
 
 exports.playResult = (ytbr) => {
-  return `𝙎𝘼𝙉𝘿𝙍𝙊 𝙈𝘿 𝙈𝙀𝙇𝙃𝙊𝙍 𝘽𝙊𝙏 2024`
+  return `realmes bot`
 }
 
 exports.playVideo = (data) => {
@@ -38,8 +38,8 @@ exports.playVideo = (data) => {
 *🌐 Id do video:* ${data.resultado[0].videoId}
 *📁 Formato:* Mp3
 *👀 Visualizações:* ${data.resultado[0].views}
-*🤖 Bot: _SANDRO-BOT_*
-*🥼 Criador: _SANDRO_*
+*🤖 Bot: realmes bot*
+*🥼 Criador: calo*
 *🖇 Link:* ${data.resultado[0].url}`
 } 
 
@@ -53,8 +53,8 @@ exports.playVideo2 = (data) => {
 *🌐 Id do video:* ${data.resultado[0].videoId}
 *📁 Formato:* Mp3
 *👀 Visualizações:* ${data.resultado[0].views}
-*🤖 Bot: _SANDRO-BOT_*
-*🥼 Criador: _SANDRO_*
+*🤖 Bot: realmes bot*
+*🥼 Criador: calo*
 *🖇 Link:* ${data.resultado[0].url}`
 } 
 
@@ -68,8 +68,8 @@ exports.playDocumentResult = (data) => {
 *🌐 Id do video:* ${data.resultado[0].videoId}
 *📁 Formato:* Mp3
 *👀 Visualizações:* ${data.resultado[0].views}
-*🤖 Bot: _SANDRO-BOT_*
-*🥼 Criador: _SANDRO_*
+*🤖 Bot: realmes bot*
+*🥼 Criador: calo*
 *🖇 Link:* ${data.resultado[0].url}`
 }
 
@@ -83,8 +83,8 @@ exports.shazamResult = (data) => {
 *🌐 Id do video:* ${data.resultado[0].videoId}
 *📁 Formato:* Mp3
 *👀 Visualizações:* ${data.resultado[0].views}
-*🤖 Bot:_SANDRO-BOT_*
-*🥼 Criador: _SANDRO_*
+*🤖 Bot:realmes bot*
+*🥼 Criador: calo*
 *🖇 Link:* ${data.resultado[0].url}`
 } 
 

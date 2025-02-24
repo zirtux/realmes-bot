@@ -21,7 +21,6 @@ return`╭━━⪩ 愛 INFO BOT | USER 愛 ⪨━━
 │${prefix}menulink
 │${prefix}Downloads
 │${prefix}Menucity
-│${prefix}Menu18
 │${prefix}Infodono
 │${prefix}dono
 │${prefix}Menusemprefixo

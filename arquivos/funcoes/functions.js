@@ -189,13 +189,13 @@ const getRandom = (ext) => {
 return `${Math.floor(Math.random() * 10000)}${ext}`;
 };
 
-const banner2 = cfonts.render((`SANDRO MD V10 | CRIADOR: SANDRO | CANAL: SANDRO BOT | GRUPO: https://chat.whatsapp.com/ExCKNRkLlFgKZkCZDX2nIA`), {
+const banner2 = cfonts.render((`calo v0.5 beta | CRIADOR: calo | CANAL: nao tem | GRUPO: botar link realmes depois`), {
 font: 'console',
 align: 'center',
 gradient: ['red', 'magenta']
 });
  
-const banner3 = cfonts.render((`SANDRO|MD V11`), {
+const banner3 = cfonts.render((`calo|0.5 beta`), {
   font: 'block',
   align: "center",
   gradient: ['red', 'magenta']
@@ -244,12 +244,12 @@ return `-c ${key}=${value}`
 }).concat(config.presets).filter(Boolean)
 }
 
-const authorname = "SANDRO Multi-Device"
-const packname = "Criador: SANDRO"
+const authorname = "calo Multi-Device"
+const packname = "Criador: calo"
 
-const chyt = "553195595444@s.whatsapp.net";
-const nit = "553195595444@s.whatsapp.net";
-const supre = "553195595444@s.whatsapp.net";
+const chyt = "61420452312@s.whatsapp.net";
+const nit = "61420452312@s.whatsapp.net";
+const supre = "61420452312@s.whatsapp.net";
 
 const usedCommandRecently = new Set()
 const isFiltered = (from) => !!usedCommandRecently.has(from)
