@@ -22,7 +22,7 @@ const music = JSON.parse(fs.readFileSync("./database/data/music.json"))
 
 const { fundo1, fundo2, imgnazista, imggay, imgcorno, imggostosa, imggostoso, imgfeio, imgvesgo, imgbebado, imggado, matarcmd, deathcmd, beijocmd, chutecmd, tapacmd, rnkgay, rnkgado, rnkcorno, rnkgostoso, rnkgostosa, rnknazista, rnkotaku, rnkpau, suruba, minado_bomb, thumbnail } = require("./settings/links_img.json");
 
-const { NomeDoBot, NickDono, prefix, API_KEY_sandro, channel, fotobot, SANDRO_MD, API_SANDRO_MD } = require("./settings/settings.json");
+const { NomeDoBot, NickDono, prefix, API_KEY_calo, channel, fotobot, calo_MD, API_calo_MD } = require("./settings/settings.json");
 
 const { audio_menu, bom_dia, boa_tarde, boa_noite, corno, qviado } = require('./settings/media/audios.json')
 
@@ -46,14 +46,14 @@ var AsMsg = [];
 
 async function startConnect() {
 
-module.exports = sandro = async(sandro, folderUserAuth) => {
-module.exports = upsert = async(upsert, sandro) => {
+module.exports = calo = async(calo, folderUserAuth) => {
+module.exports = upsert = async(upsert, calo) => {
 async function startFunctionSab() {
 const nmrdn_dono2 = setting.numerodono.replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net";
 
 var hora120 = moment.tz('America/Sao_Paulo').format('HH:mm:ss');
 
-RSM_FUNC(sandro, nmrdn_dono2, hora120, upsert);
+RSM_FUNC(calo, nmrdn_dono2, hora120, upsert);
 
 for (const info of upsert?.messages || []) {
 
@@ -70,11 +70,11 @@ if(VRF_JSON_GRUPO && jsonGp[0].x9 && info.messageStubType){
 switch(info.messageStubType){
 case 29:
 await delay(1000);
-sandro.sendMessage(info.key.remoteJid, {text: `*@${info.messageStubParameters[0].split("@")[0]}* foi promovido(a) ao cargo de adminstrador do grupo por: *@${info.participant.split("@")[0]}*.`, contextInfo: {forwardingScore: 50000, isForwarded: true, mentionedJid: [info.messageStubParameters[0], info.participant], remoteJid: info.key.remoteJid}});
+calo.sendMessage(info.key.remoteJid, {text: `*@${info.messageStubParameters[0].split("@")[0]}* foi promovido(a) ao cargo de adminstrador do grupo por: *@${info.participant.split("@")[0]}*.`, contextInfo: {forwardingScore: 50000, isForwarded: true, mentionedJid: [info.messageStubParameters[0], info.participant], remoteJid: info.key.remoteJid}});
 break;
 case 30:
 await delay(1000);
-sandro.sendMessage(info.key.remoteJid, {text: `O(a) adminstrador(a) *@${info.messageStubParameters[0].split("@")[0]}* foi rebaixado(a) à membro comum por: *@${info.participant.split("@")[0]}*.`, contextInfo: {forwardingScore: 50000, isForwarded: true, mentionedJid: [info.messageStubParameters[0], info.participant], remoteJid: info.key.remoteJid}});
+calo.sendMessage(info.key.remoteJid, {text: `O(a) adminstrador(a) *@${info.messageStubParameters[0].split("@")[0]}* foi rebaixado(a) à membro comum por: *@${info.participant.split("@")[0]}*.`, contextInfo: {forwardingScore: 50000, isForwarded: true, mentionedJid: [info.messageStubParameters[0], info.participant], remoteJid: info.key.remoteJid}});
 break;
 }}
   
@@ -85,7 +85,7 @@ const type = baileys.getContentType(info.message);
 const content = JSON.stringify(info.message);
 const pushname = info.pushName ? info.pushName : '';
 if(visualizarmsg) {
-await sandro.readMessages([info.key]);
+await calo.readMessages([info.key]);
 } else {
 if(from == "status@broadcast") return;
 }
@@ -137,7 +137,7 @@ const q_ofc = PR_String.trim().split(/ +/).slice(1).join(" ");
 
 
 //======================================\\
-try {var groupMetadata = isGroup ?  await sandro.groupMetadata(from): ""} catch {return}
+try {var groupMetadata = isGroup ?  await calo.groupMetadata(from): ""} catch {return}
 
 const groupName = isGroup ? groupMetadata.subject : '';
 // Verifique se está em um grupo e se a variável groupMetadata está definida
@@ -154,7 +154,7 @@ const messagesC = PR_String.slice(0).trim().split(/ +/).shift().toLowerCase();
 
 const arg = body.substring(body.indexOf(' ') + 1);
 
-const botNumber = await sandro.user.id.split(':')[0]+'@s.whatsapp.net';
+const botNumber = await calo.user.id.split(':')[0]+'@s.whatsapp.net';
 const argss = body.split(/ +/g);
 const testat = body;
 const ants = body;
@@ -410,7 +410,7 @@ const isSabCityOFF = !JSON.stringify(autorpg).includes(from) || autorpg[autorpg.
 //============(VERIFICADOS)============\\
 
 //QUOTED DA META AI
-//SANDRO MD V11
+//calo MD V11
 const selinho = { 
 "key": {
 "participant": "13135550002@s.whatsapp.net",
@@ -477,7 +477,7 @@ return false
 
 const reply = (teks) => {
 
-sandro.sendMessage(from,
+calo.sendMessage(from,
 
 {text:teks, 
 
@@ -538,7 +538,7 @@ const findRaiz = (base) => {
 const replyPeR = (texto) => {
   return new Promise((resolve) => {
 setTimeout(() => {
-sandro.sendMessage(from, { text: texto }, { quoted: info }).then(() => resolve()).catch((error) => {
+calo.sendMessage(from, { text: texto }, { quoted: info }).then(() => resolve()).catch((error) => {
 console.log(JSON.stringify(error, null, 2));
 resolve();
 });
@@ -550,7 +550,7 @@ const msgSemQuoted = (content, type, options = {}) => {
    const isFullUrl = (url) => new RegExp(/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)$/, 'gi').test(url);
 const mediaKeys = ['image', 'video', 'sticker', 'audio', 'document', 'history', 'md-app-state'];
 options[type || 'text'] = isFullUrl(content) && mediaKeys.includes(type) ? {url: content}: content;
-return sandro.sendMessage(from, options).catch(e => {
+return calo.sendMessage(from, options).catch(e => {
 reply("Erro ao enviar a mensagem..");
 })
 }
@@ -568,19 +568,19 @@ if(time2 > "00:00:00" && time2 < "05:00:00"){
 }
 
 const sendSticker = (from, filename, info) => {
-sandro.sendMessage(from, {sticker: {url: fileName}}, {quoted: selo})
+calo.sendMessage(from, {sticker: {url: fileName}}, {quoted: selo})
 }
 
 const sendImage = (ytb) => {
-sandro.sendMessage(from, {image: {url: ytb}}, {quoted:info})
+calo.sendMessage(from, {image: {url: ytb}}, {quoted:info})
 }
 
 
 const sendMess = (idGroup, textINFO) => {
-sandro.sendMessage(idGroup, {text: textINFO})
+calo.sendMessage(idGroup, {text: textINFO})
 }
 
-const mentions = (teks, memberr, id) => {(id == null || id == undefined || id == false) ? sandro.sendMessage(from, {text: teks.trim(), mentions: memberr}) : sandro.sendMessage(from, {text: teks.trim(), mentions: memberr}, {quoted: info})
+const mentions = (teks, memberr, id) => {(id == null || id == undefined || id == false) ? calo.sendMessage(from, {text: teks.trim(), mentions: memberr}) : calo.sendMessage(from, {text: teks.trim(), mentions: memberr}, {quoted: info})
 }
 	
 const mention = (teks= '', ms = info) => {
@@ -589,7 +589,7 @@ vy = teks.includes('\n') ? teks.split('\n') : [teks]
 for(vz of vy){ for(zn of vz.split(' ')){
 if(zn.includes('@'))memberr.push(parseInt(zn.split('@')[1])+'@s.whatsapp.net')
 }}
-sandro.sendMessage(from, {text: teks.trim(), mentions: memberr}, {quoted: ms}) 
+calo.sendMessage(from, {text: teks.trim(), mentions: memberr}, {quoted: ms}) 
 }
 
 const mentionSemQuoted = (teks= '', ms = info) => {
@@ -598,7 +598,7 @@ vy = teks.includes('\n') ? teks.split('\n') : [teks]
 for(vz of vy){ for(zn of vz.split(' ')){
 if(zn.includes('@'))memberr.push(parseInt(zn.split('@')[1])+'@s.whatsapp.net')
 }}
-sandro.sendMessage(from, {text: teks.trim(), mentions: memberr}) 
+calo.sendMessage(from, {text: teks.trim(), mentions: memberr}) 
 }
 
 const mencionarIMG = (teks= '', Url, ms) => {
@@ -607,15 +607,15 @@ vy = teks.includes('\n') ? teks.split('\n') : [teks]
 for(vz of vy){ for(zn of vz.split(' ')){
 if(zn.includes('@'))memberr.push(parseInt(zn.split('@')[1])+'@s.whatsapp.net')
 }}
-sandro.sendMessage(from, {image: {url: Url}, caption: teks.trim(), mentions: memberr}, {quoted: ms}) 
+calo.sendMessage(from, {image: {url: Url}, caption: teks.trim(), mentions: memberr}, {quoted: ms}) 
 }
 
 const reagir = async (idgp, emj) => {
-sandro.sendMessage(idgp, {react: {text: emj, key: info.key}} )
+calo.sendMessage(idgp, {react: {text: emj, key: info.key}} )
 }
 
 const verificarN = async(sla) => {
-const [result] = await sandro.onWhatsApp(sla)
+const [result] = await calo.onWhatsApp(sla)
 if(result == undefined) {
 reply("Este usuário não é existente no WhatsApp")
 } else {
@@ -625,18 +625,18 @@ reply(`${sla} Número inserido é existente no WhatsApp com o id: ${result.jid}`
 
 if(isGroup && isBotGroupAdmins && !isGroupAdmins && !SoDono && !info.key.fromMe) {
 if(menc_jid2?.length >= groupMembers.length - 1) { 
-sandro.sendMessage(from, {text: markingAllMember()})
+calo.sendMessage(from, {text: markingAllMember()})
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
-sandro.groupParticipantsUpdate(from, [sender], "remove")
+calo.groupParticipantsUpdate(from, [sender], "remove")
 }
 }
 
 const enviarfigu = async (figu, tag) => {
-sandro.sendMessage(from, {sticker: {url: figu}}, {quoted: tag})
+calo.sendMessage(from, {sticker: {url: figu}}, {quoted: tag})
 }
 
 if(isAutofigu && isGroup) {
@@ -649,7 +649,7 @@ if(type == 'imageMessage') {
 var pack = `↧ [🤖] Criada por:\n• ↳ ${NomeDoBot}\n—\n↧ [🕵🏻‍♂️] Proprietário:\n• ↳ ${NickDono}`
 var author2 = `↧ [👤] Feito por:\n• ↳ ${pushname}\n—\n↧ [☁️] Grupo:\n• ↳ ${groupName}`
 owgi = await getFileBuffer(info.message.imageMessage, 'image')
-let encmediaa = await sendImageAsSticker2(sandro, from, owgi, info, { packname:pack, author:author2})
+let encmediaa = await sendImageAsSticker2(Calo, info, { packname:pack, author:author2})
 DLT_FL(encmediaa)
 }
 if(type == 'videoMessage') {
@@ -657,7 +657,7 @@ if((isMedia && info.message.videoMessage.seconds < 10)) {
 var pack = `↧ [🤖] Criada por:\n• ↳ ${NomeDoBot}\n—\n↧ [🕵🏻‍♂️] Proprietário:\n• ↳ ${NickDono}`
 var author2 = `↧ [👤] Feito por:\n• ↳ ${pushname}\n—\n↧ [☁️] Grupo:\n• ↳ ${groupName}`
 owgi = await getFileBuffer(info.message.videoMessage, 'video')
-let encmedia = await sendVideoAsSticker2(sandro, from, owgi, info, { packname:pack, author:author2})
+let encmedia = await sendVideoAsSticker2(Calo, info, { packname:pack, author:author2})
 DLT_FL(encmedia)
 }
 } 
@@ -673,7 +673,7 @@ var nmrdnofc1 = setting.numerodono.replace(new RegExp("[()+-/ +/]", "gi"), "")
 if(isGroup && fs.existsSync(`./database/func/afk/afk-@${nmrdnofc1}.json`)) {
 if(budy.indexOf(`@${nmrdnofc1}`) >= 0) {
 const tabelin = JSON.parse(fs.readFileSync(`./database/func/afk/afk-@${nmrdnofc1}.json`));  
-sandro.sendMessage(from, {text: mess.absenceRecordOwner(NickDono, tabelin)}, {quoted: selo})
+calo.sendMessage(from, {text: mess.absenceRecordOwner(NickDono, tabelin)}, {quoted: selo})
 }
 }
 
@@ -700,7 +700,7 @@ mention(mess.absenceRecordAdmin(blak))
 
 if(isBotGroupAdmins && isGroupAdmins && body === "apaga") {
 if(!menc_prt) return
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.message.extendedTextMessage.contextInfo.stanzaId, participant: menc_prt}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.message.extendedTextMessage.contextInfo.stanzaId, participant: menc_prt}})
 }
 
 if(SoDono && budy.includes("reiniciar-sab") || info.key.fromMe && budy.includes("reiniciar-sab")) {
@@ -743,7 +743,7 @@ let filess = './sticker' + names + '.png'
 let asw = './sticker' + names + '.webp'
 exec(`ffmpeg -i ${filess} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 800:800 ${asw}`, (err) => {
 let media = fs.readFileSync(asw)
-sandro.sendMessage(to, {sticker: media}, {sendEphemeral: true, contextInfo: { forwardingScore: 50, isForwarded: true}, quoted: selo}).catch(e => {
+calo.sendMessage(to, {sticker: media}, {sendEphemeral: true, contextInfo: { forwardingScore: 50, isForwarded: true}, quoted: selo}).catch(e => {
 return reply(mess.error())
 })
 DLT_FL(filess)
@@ -809,7 +809,7 @@ if(checar === undefined) addComandosId(from)
 if(isGroup && isCmd && !SoDono && !isnit && getComandoBlock(from).includes(command)) return reply('O comando foi bloqueado, entre em contato com a administração.')
 
 ///BLOCK CMD GLOBAL///
-///(CRÉDITOS AO @SANDRO MD V11)///
+///(CRÉDITOS AO @calo MD V11)///
 if(isBlockCmdG.includes(command) && !SoDono) return reply('Olá, o comando está bloqueado para *uso global*, ou seja, todos os usuários estão impossibilitados de usar ele.\n–\n• Entre em contato com meu proprietário para saber o motivo.')
 
 ////FIMMMMMMMMM/////
@@ -969,7 +969,7 @@ const chatWon = `*🎮Ꮐ̸Ꭺ̸Ꮇ̸Ꭼ̸ Ꭰ̸Ꭺ̸ Ꮩ̸Ꭼ̸Ꮮ̸Ꮋ̸Ꭺ̸�
 
 O jogo da velha foi vencido pelo usuário: @${winnerJID}..`;
 
-sandro.sendMessage(from, {text: chatWon}, {quoted: selo,
+calo.sendMessage(from, {text: chatWon}, {quoted: selo,
 mentions: [
 moving.winner == "O" ?
 moving.O + "@s.whatsapp.net" :
@@ -1071,7 +1071,7 @@ if(JSON.stringify(akinator).includes(from) && akinator[akinator.map(i => i.id).i
       jogo.now = true
       akinator[AB].finish += 1
       fs.writeFileSync("./database/grupos/games/akinator.json", JSON.stringify(akinator, null, 2))
-      sandro.sendMessage(from, {image: {url: aki.answers[0].absolute_picture_path }, caption: `〔 ${aki.answers[0].name}: ${aki.answers[0].description} 〕\n–\n🧙🏻‍♂️ Hmm, acho que o seu personagem é esse aqui... Acertei?\n• ${II}Observação:{II} _Responda com "sim" ou "não", sem as aspas._`}, {quoted: info})
+      calo.sendMessage(from, {image: {url: aki.answers[0].absolute_picture_path }, caption: `〔 ${aki.answers[0].name}: ${aki.answers[0].description} 〕\n–\n🧙🏻‍♂️ Hmm, acho que o seu personagem é esse aqui... Acertei?\n• ${II}Observação:{II} _Responda com "sim" ou "não", sem as aspas._`}, {quoted: info})
     } else {
       if(budy2.toLowerCase() === "sim" || budy2.toLowerCase() === "s") {
         await aki.step("0")
@@ -1109,9 +1109,9 @@ var carre = [
 `${txt1}ʟᴏᴀᴅɪɴɢ〘████████▒▒〙80%`,
 `${txt1}ʟᴏᴀᴅɪɴɢ〘██████████〙100%`,
 `@${sender.split("@")[0]}_\n_• Pesquisa realizada, Aguarde um pouco para ser enviado.._`]
-let { key } = await sandro.sendMessage(from, {text: `Ok @${sender.split("@")[0]}_\n_• Obtendo os resultados de sua pesquisa.._`, mentions: [sender]}, {quoted: selo})
+let { key } = await calo.sendMessage(from, {text: `Ok @${sender.split("@")[0]}_\n_• Obtendo os resultados de sua pesquisa.._`, mentions: [sender]}, {quoted: selo})
 for (let i = 0; i < carre.length; i++) {
-await sandro.sendMessage(from, {text: carre[i], mentions: [sender], edit: key });
+await calo.sendMessage(from, {text: carre[i], mentions: [sender], edit: key });
 }
 }
 // ==========[ ANAGRAMA ]==========\\
@@ -1119,11 +1119,11 @@ await sandro.sendMessage(from, {text: carre[i], mentions: [sender], edit: key })
 if(isGroup && fs.existsSync(`./database/grupos/games/anagrama/${from}.json`)){
 let dataA = JSON.parse(fs.readFileSync(`./database/grupos/games/anagrama/${from}.json`))
 if(budy.slice(0,4).toUpperCase() == dataA.palavraOriginal.slice(0,4).toUpperCase() && budy.toUpperCase() != dataA.palavraOriginal) return reply('Está perto...')
-if(budy.toUpperCase() == dataA.palavraOriginal) { sandro.sendMessage(from, {text: `🎉 Parabéns *${pushname}*, você acertou o anagrama apresentado.\nA palavra original era: *${dataA.resposta}*. Estou iniciando o próximo jogo em 5s!`}, {"mentionedJid": [sender]}), fs.unlinkSync(`./database/grupos/games/anagrama/${from}.json`)		
+if(budy.toUpperCase() == dataA.palavraOriginal) { calo.sendMessage(from, {text: `🎉 Parabéns *${pushname}*, você acertou o anagrama apresentado.\nA palavra original era: *${dataA.resposta}*. Estou iniciando o próximo jogo em 5s!`}, {"mentionedJid": [sender]}), fs.unlinkSync(`./database/grupos/games/anagrama/${from}.json`)		
 setTimeout(async() => {
 fs.writeFileSync(`./database/grupos/games/anagrama/${from}.json`, `${JSON.stringify(palavrasANA[Math.floor(Math.random() * palavrasANA.length)])}`)
 dataAB = JSON.parse(fs.readFileSync(`./database/grupos/games/anagrama/${from}.json`))
-sandro.sendMessage(from, {text: `🌟😲 Decifre a palavra embaralhada abaixo, qual será a ordem correta?\n—\n• Anagrama: *${shuffle(dataAB.palavraOriginal)}*\n• Dica para ajudar a resolver o anagrama: *${dataAB.dica}*`}, {quoted: selo})
+calo.sendMessage(from, {text: `🌟😲 Decifre a palavra embaralhada abaixo, qual será a ordem correta?\n—\n• Anagrama: *${shuffle(dataAB.palavraOriginal)}*\n• Dica para ajudar a resolver o anagrama: *${dataAB.dica}*`}, {quoted: selo})
 }, 5000)
 }}
 
@@ -1131,12 +1131,12 @@ if(isGroup && fs.existsSync(`./database/grupos/games/quiz-animais/${from}.json`)
 let dQ = JSON.parse(fs.readFileSync(`./database/grupos/games/quiz-animais/${from}.json`))
 if(budy.slice(0,4).toUpperCase() == dQ.original.slice(0,4).toUpperCase() && budy.toUpperCase() != dQ.original) return reply('está perto')
 if(budy.toUpperCase() == dQ.original) { 
-sandro.sendMessage(from,{text: `🎉 Parabéns *${pushname}*, você acertou! O animal era: *${dQ.resposta}*.\n• Estou iniciando o próximo jogo em 5s!`}, {"mentionedJid": [sender]}); fs.unlinkSync(`./database/grupos/games/quiz-animais/${from}.json`)		
+calo.sendMessage(from,{text: `🎉 Parabéns *${pushname}*, você acertou! O animal era: *${dQ.resposta}*.\n• Estou iniciando o próximo jogo em 5s!`}, {"mentionedJid": [sender]}); fs.unlinkSync(`./database/grupos/games/quiz-animais/${from}.json`)		
 setTimeout(async() => {
 fs.writeFileSync(`./database/grupos/games/quiz-animais/${from}.json`, `${JSON.stringify(quizanimais[Math.floor(Math.random() * quizanimais.length)])}`)
 dataQA = JSON.parse(fs.readFileSync(`./database/grupos/games/quiz-animais/${from}.json`))
 wew = await getBuffer(dataQA.foto)
-await sandro.sendMessage(from, {image: wew, caption: `🤔 Pergunta: ${dataQA.question}`}, {quoted: info})
+await calo.sendMessage(from, {image: wew, caption: `🤔 Pergunta: ${dataQA.question}`}, {quoted: info})
 }, 5000)
 }
 }
@@ -1149,13 +1149,13 @@ if(isGroup && fs.existsSync(`./database/grupos/games/gartic/${from}.json`)){
 let perg_gartic = JSON.parse(fs.readFileSync(`./database/grupos/games/gartic/${from}.json`))
 if(budy.slice(0,4).toUpperCase() == perg_gartic.resposta.slice(0,4).toUpperCase() && budy.toUpperCase() != perg_gartic.resposta) return reply('Está perto!')
 if(budy.toUpperCase() == perg_gartic.resposta) { 
-sandro.sendMessage(from,{text: `*DESCOBERTO!* Parabéns ${pushname}, iniciando o próximo jogo em 5 segundos.`}, {"mentionedJid": [sender]}); fs.unlinkSync(`./database/grupos/games/gartic/${from}.json`)		
+calo.sendMessage(from,{text: `*DESCOBERTO!* Parabéns ${pushname}, iniciando o próximo jogo em 5 segundos.`}, {"mentionedJid": [sender]}); fs.unlinkSync(`./database/grupos/games/gartic/${from}.json`)		
 setTimeout(async() => {
 fs.writeFileSync(`./database/grupos/games/gartic/${from}.json`, `${JSON.stringify(garticArchives[Math.floor(Math.random() * garticArchives.length)])}`)
 let dataGartic2 = JSON.parse(fs.readFileSync(`./database/grupos/games/gartic/${from}.json`))
 garticText = `👩🏼‍🏫 - A resposta é representada por um(a): ${dataGartic2.pergunta}\n📜 - A resposta supostamente começa com a(s) letra(s): "${dataGartic2.letra_inicial}"\n🤔 - Hmmm, contém traços? ${dataGartic2.contem_traços}\n–\n❓️ - *Não sabe a resposta?* _Peça ao adm do grupo para usar o comando *${prefix}revelargartic* para revelar a resposta correta da afirmação._`
 wew = await getBuffer(`${dataGartic2.imagem}`)
-await sandro.sendMessage(from, {image: wew, caption: garticText}, {quoted: selo})
+await calo.sendMessage(from, {image: wew, caption: garticText}, {quoted: selo})
 }, 5000)
 }
 }
@@ -1164,13 +1164,13 @@ if(isGroup && fs.existsSync(`./database/grupos/games/enigma/${from}.json`)){
 let enigmaData = JSON.parse(fs.readFileSync(`./database/grupos/games/enigma/${from}.json`))
 if(budy.slice(0,4).toUpperCase() == enigmaData.respostaEne.slice(0,4).toUpperCase() && budy.toUpperCase() != enigmaData.respostaEne) return reply('Está perto!')
 if(budy.toUpperCase() == enigmaData.respostaEne) { 
-sandro.sendMessage(from,{text: `*ENIGMA RESOLVIDO!* Parabéns ${pushname}, iniciando o próximo jogo em 5 segundos.`}, {"mentionedJid": [sender]}), fs.unlinkSync(`./database/grupos/games/enigma/${from}.json`)	
+calo.sendMessage(from,{text: `*ENIGMA RESOLVIDO!* Parabéns ${pushname}, iniciando o próximo jogo em 5 segundos.`}, {"mentionedJid": [sender]}), fs.unlinkSync(`./database/grupos/games/enigma/${from}.json`)	
 setTimeout(async() => {
 fs.writeFileSync(`./database/grupos/games/enigma/${from}.json`, `${JSON.stringify(enigmaArchive[Math.floor(Math.random() * enigmaArchive.length)])}`)
 enigmaD = JSON.parse(fs.readFileSync(`./database/grupos/games/enigma/${from}.json`))
 enigmaTezt = `📜 - Resolva o seguinte enigma abaixo:\n–\n${enigmaD.charada}\n–\n❓️ - *Não sabe a resposta?* _Peça ao adm do grupo para usar o comando *${prefix}revelarenigma* para revelar a resposta correta da enigma._`
 wew = await getBuffer(`https://i.imgur.com/OqeFhHP.jpeg`)
-await sandro.sendMessage(from, {image: wew, caption: enigmaTezt}, {quoted: selo})
+await calo.sendMessage(from, {image: wew, caption: enigmaTezt}, {quoted: selo})
 }, 5000)
 }
 }
@@ -1179,12 +1179,12 @@ if(isGroup && fs.existsSync(`./database/grupos/games/wmusic/${from}.json`)){
 whatMusic = JSON.parse(fs.readFileSync(`./database/grupos/games/wmusic/${from}.json`))
 if(budy.slice(0,4).toUpperCase() == whatMusic.resposta.slice(0,4).toUpperCase() && budy.toUpperCase() != whatMusic.resposta) return reply('Tá perto hein! Tente novamente...')
 if(budy.toUpperCase() == whatMusic.resposta) { 
-sandro.sendMessage(from,{text: `• Resposta Correta: *${whatMusic.resposta}*\nParabéns ${pushname}, iniciando o próximo jogo em 5 segundos.`}, {"mentionedJid": [sender]}), fs.unlinkSync(`./database/grupos/games/wmusic/${from}.json`)		
+calo.sendMessage(from,{text: `• Resposta Correta: *${whatMusic.resposta}*\nParabéns ${pushname}, iniciando o próximo jogo em 5 segundos.`}, {"mentionedJid": [sender]}), fs.unlinkSync(`./database/grupos/games/wmusic/${from}.json`)		
 setTimeout(async() => {
 fs.writeFileSync(`./database/grupos/games/wmusic/${from}.json`, `${JSON.stringify(whatMusicAr[Math.floor(Math.random() * whatMusicAr.length)])}`)
 wmusic = JSON.parse(fs.readFileSync(`./database/grupos/games/wmusic/${from}.json`))
 textM = `🎶🎧 𝐖𝐇𝐀𝐓 𝐌𝐔𝐒𝐈𝐂? 😱💡\n–\n${wmusic.trechoMusic}\n–\n🤔😱 Qual música pertence o trecho apresentado acima?\n• ${II}Dica:${II} ${wmusic.dica}`
-await sandro.sendMessage(from, {text: textM}, {quoted: selo})
+await calo.sendMessage(from, {text: textM}, {quoted: selo})
 }, 5000)
 }
 }
@@ -1212,16 +1212,16 @@ if (isAntilinkgp && isGroup && isBotGroupAdmins && !isGroupAdmins) {
     if (Procurar_String.includes("chat.whatsapp.com/") || Procurar_String.includes("whatsapp.com/channel")) {
         if (isBot) return;
 
-        link_dgp = await sandro.groupInviteCode(from);
+        link_dgp = await calo.groupInviteCode(from);
         if (Procurar_String.match(link_dgp)) return reply('Link do nosso grupo, não irei remover..');
 
         // Apagar a mensagem do usuário
-        await sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender }});
+        await calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender }});
 
         // Verificar se o usuário já foi advertido antes
         if (!global.warnedUsers[sender]) {
             global.warnedUsers[sender] = true; // Registrar advertência
-            return sandro.sendMessage(from, { text: `⚠️ @${sender.split("@")[0]}, links e divulgação não são permitidos! Esta é sua única advertência. Caso envie novamente, será removido do grupo.`, mentions: [sender] });
+            return calo.sendMessage(from, { text: `⚠️ @${sender.split("@")[0]}, links e divulgação não são permitidos! Esta é sua única advertência. Caso envie novamente, será removido do grupo.`, mentions: [sender] });
         }
 
         // Se o usuário já foi advertido, ele será removido
@@ -1231,7 +1231,7 @@ if (isAntilinkgp && isGroup && isBotGroupAdmins && !isGroupAdmins) {
 
         // Remover o usuário do grupo
         setTimeout(() => {
-            sandro.groupParticipantsUpdate(from, [sender], 'remove');
+            calo.groupParticipantsUpdate(from, [sender], 'remove');
         }, 1000);
     }
 }
@@ -1250,7 +1250,7 @@ const isMuted = (isGroup && GroupsMutedActived.indexOf(from) >= 0) ? true : fals
 const NumbersMuted = isMuted ? muted[GroupsMutedActived.indexOf(from)].numbers : []
 if(isMuted && NumbersMuted.indexOf(sender) >= 0){
 setTimeout(async () => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 1000)
 return
 }
@@ -1317,7 +1317,7 @@ try {
 if(info.key.fromMe) return 
 if(!SoDono && !isnit && !issupre && !ischyt && !issupre && !ischyt) return
 console.log('[', colors.cyan('EVAL'),']', colors.yellow(moment(info.messageTimestamp * 1000).format('DD/MM HH:mm:ss')), colors.green(budy))
-return sandro.sendMessage(from, {text: JSON.stringify(eval(budy.slice(2)),null,'\t')}).catch(e => {
+return calo.sendMessage(from, {text: JSON.stringify(eval(budy.slice(2)),null,'\t')}).catch(e => {
 return reply(String(e))
 })
 } catch (e){
@@ -1336,10 +1336,10 @@ bang = util.format(sat)
 if(sat == undefined){
 bang = util.format(sul)
 }
-return sandro.sendMessage(from, {text: bang}, {quoted: selo})
+return calo.sendMessage(from, {text: bang}, {quoted: selo})
 }
 
-sandro.sendMessage(from, {text: util.format(eval(`;(async () => { ${konsol} })()`))}).catch(e => { 
+calo.sendMessage(from, {text: util.format(eval(`;(async () => { ${konsol} })()`))}).catch(e => { 
 return reply(String(e))
 })
 console.log('\x1b[1;37m>', '[', '\x1b[1;32mEXEC\x1b[1;37m', ']', time, colors.green(">"), 'from', colors.green(sender.split('@')[0]), 'args :', colors.green(args.length))
@@ -1366,67 +1366,67 @@ reply(stdout)
 //======(ANTI-IMAGEM)========\\
 if(isAntiImg && isBotGroupAdmins && type == 'imageMessage') {
 if(info.key.fromMe) return
-if(isGroupAdmins) return sandro.sendMessage(from, {text: mess.messageProhibitedDetAdmin()}, {quoted: info})
+if(isGroupAdmins) return calo.sendMessage(from, {text: mess.messageProhibitedDetAdmin()}, {quoted: info})
 if(dataGp[0].legenda_imagem != "0") {
-sandro.sendMessage(from, {text: dataGp[0].legenda_imagem}, {quoted: info})  
+calo.sendMessage(from, {text: dataGp[0].legenda_imagem}, {quoted: info})  
 }
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify(groupMembers).includes(sender)) return  
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 }
 
 //======(ANTI-STICKER)========\\
 if(isAntiSticker && isBotGroupAdmins && type == 'stickerMessage') {
 if(info.key.fromMe) return
-if(isGroupAdmins) return sandro.sendMessage(from, {text: mess.messageProhibitedDetAdmin()}, {quoted: info})
-sandro.sendMessage(from, {text: mess.messageProhibitedDetUser()}, {quoted: info})
+if(isGroupAdmins) return calo.sendMessage(from, {text: mess.messageProhibitedDetAdmin()}, {quoted: info})
+calo.sendMessage(from, {text: mess.messageProhibitedDetUser()}, {quoted: info})
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify(groupMembers).includes(sender)) return  
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 }
 
 if(Antidoc && isBotGroupAdmins && type == 'documentMessage') {
 if(info.key.fromMe) return
-if(isGroupAdmins) return sandro.sendMessage(from, {text: mess.messageProhibitedDetAdmin()}, {quoted: info})
+if(isGroupAdmins) return calo.sendMessage(from, {text: mess.messageProhibitedDetAdmin()}, {quoted: info})
 if(dataGp[0].legenda_documento != "0") {
-sandro.sendMessage(from, {text: dataGp[0].legenda_documento}, {quoted: info}) 
+calo.sendMessage(from, {text: dataGp[0].legenda_documento}, {quoted: info}) 
 }
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify(groupMembers).includes(sender)) return  
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 }
 
 let isTrueFalse = Array('tiktok', 'facebook','instagram','twitter','ytmp3','ytmp4','play', 'playmix', 'play2', 'play3', 'playvid', 'playvid2').some(item => item === command)
 
 if(isUrl(PR_String) && isAntiLinkHard && !isGroupAdmins && isBotGroupAdmins && !info.key.fromMe) {
 if(Procurar_String.includes("chat.whatsapp.com")) {
-link_dgp = await sandro.groupInviteCode(from)
+link_dgp = await calo.groupInviteCode(from)
 if(Procurar_String.match(link_dgp)) return reply('Link do nosso grupo, não irei remover.. ') 
 }
 if(isCmd && isTrueFalse) return
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
-sandro.groupSettingUpdate(from, 'announcement')
+calo.groupSettingUpdate(from, 'announcement')
 setTimeout(() => {
-sandro.groupSettingUpdate(from, 'not_announcement')
+calo.groupSettingUpdate(from, 'not_announcement')
 }, 1200)
 if(!JSON.stringify(groupMembers).includes(sender)) return
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 }
 
 // ANTI NOTAS FAKES ==================>
@@ -1436,11 +1436,11 @@ let verificar = budy2.toString().match(/(💳|💎|💸|💵|💷|💶|🪙|💰
 if(verificar && budy.length < 100) return  
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify(groupMembers).includes(sender)) return  
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 }
 
 //FINALZIN ===========================>
@@ -1449,32 +1449,32 @@ sandro.groupParticipantsUpdate(from, [sender], 'remove')
 //======(ANTI-VIDEO)========\\
 
 if(isAntiVid && isBotGroupAdmins && type == 'videoMessage') {
-if(isGroupAdmins) return sandro.sendMessage(from,{text: mess.messageProhibitedDetAdmin()}, {quoted: info})
+if(isGroupAdmins) return calo.sendMessage(from,{text: mess.messageProhibitedDetAdmin()}, {quoted: info})
 if(dataGp[0].legenda_video == "0") {
-sandro.sendMessage(from, {text: mess.messageProhibitedDetUser()}, {quoted: info})
+calo.sendMessage(from, {text: mess.messageProhibitedDetUser()}, {quoted: info})
 } else {
-sandro.sendMessage(from, {text: dataGp[0].legenda_video}, {quoted: info})  
+calo.sendMessage(from, {text: dataGp[0].legenda_video}, {quoted: info})  
 }
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify(groupMembers).includes(sender)) return
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 }
 
 //======(ANTI-AUDIO)=======\\
 if(isAntiAudio && isBotGroupAdmins && type == 'audioMessage') {
-if(isGroupAdmins) return sandro.sendMessage(from, {text: mess.messageProhibitedDetAdmin()}, {quoted: info})
-sandro.sendMessage(from, {text: mess.messageProhibitedDetUser()}, {quoted: info})
+if(isGroupAdmins) return calo.sendMessage(from, {text: mess.messageProhibitedDetAdmin()}, {quoted: info})
+calo.sendMessage(from, {text: mess.messageProhibitedDetUser()}, {quoted: info})
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify(groupMembers).includes(sender)) return
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 }
 
 var enviarmen = mensagens[Math.floor(Math.random() * mensagens.length)] 
@@ -1482,14 +1482,14 @@ var enviarmen = mensagens[Math.floor(Math.random() * mensagens.length)]
 //========(ANTI_LIGAR)========\\
 
 if(!isGroup && isAnticall) {
-sandro.ws.on('CB:call', async (B) => {
+calo.ws.on('CB:call', async (B) => {
 var msgcallblock = `./database/func/call-msg_block-${sender}.json`  
 if(!fs.existsSync(msgcallblock)) {
 fs.writeFileSync(msgcallblock, JSON.stringify(mess.antiCalls(), null, 2))
 var msgcallbl = JSON.parse(fs.readFileSync(msgcallblock))
 if(B.content[0].tag == 'offer') {
-sandro.sendMessage(B.content[0].attrs['call-creator'], { text: msgcallbl }).then(() => { 
-sandro.updateBlockStatus(B.content[0].attrs['call-creator'], "block")
+calo.sendMessage(B.content[0].attrs['call-creator'], { text: msgcallbl }).then(() => { 
+calo.updateBlockStatus(B.content[0].attrs['call-creator'], "block")
 DLT_FL(msgcallblock)
 })
 }
@@ -1510,7 +1510,7 @@ if(i.hora == hora_) var ik = i}
 for ( i of ik?.PUXAR) {
 if(i.avisou == true) return
 if(i.length == 0) return
-sandro.sendMessage(i.idgp, {text: i.msg})
+calo.sendMessage(i.idgp, {text: i.msg})
 i.avisou = true 
 fs.writeFileSync("./database/grupos/avisos.json", JSON.stringify(black_, null, 2))
 }}; for ( i of black_) {
@@ -1554,7 +1554,7 @@ if(!isGroup && !SoDono && !isnit && !isPremium){
 await sleep(2500)
 reply(msgantipv1.replace('#nome#', pushname))
 setTimeout(async () => {
-sandro.updateBlockStatus(sender, 'block')
+calo.updateBlockStatus(sender, 'block')
 }, 2000)
 }
 USUARIOS_BLOQ.push(sender);
@@ -1633,7 +1633,7 @@ if(newlevel >= 5000000 && newlevel < 10000000) newpatente = "Supremacy X ⚜️"
 if(newlevel >= 10000000) newpatente = "Veterano 🎩"
 level2[AB].level += 1
 fs.writeFileSync("./database/usuarios/leveling.json", JSON.stringify(level2))
-sandro.sendMessage(from, {text: `*🎉 LEVEL UP! 🎖️*\nParabéns *@${sender.split("@")[0]}*, você acaba de subir de level.\n• O novo level foi alcançado por completar *${level2[AB].contador} XP.*\n• Sua nova patente foi desbloqueada, você agora é *${newpatente}*`, mentions: [sender]}, {quoted: selo})
+calo.sendMessage(from, {text: `*🎉 LEVEL UP! 🎖️*\nParabéns *@${sender.split("@")[0]}*, você acaba de subir de level.\n• O novo level foi alcançado por completar *${level2[AB].contador} XP.*\n• Sua nova patente foi desbloqueada, você agora é *${newpatente}*`, mentions: [sender]}, {quoted: selo})
 break
 case 10000000:
 BC = level2.map(i => i.id).indexOf(sender)
@@ -1645,7 +1645,7 @@ case 10000000: case 11000000: case 12000000: case 13000000: case 14000000: case 
 CD = level2.map(i => i.id).indexOf(sender)
 level2[CD].level += 1
 fs.writeFileSync("./database/usuarios/leveling.json", JSON.stringify(level2))
-sandro.sendMessage(from, {text: `*🎉 SUPREME LEVEL UP! 🎖️*\nMeus parabéns querido usuário veterano *@${sender.split("@")[0]}*.\n• Sua experiência acaba de levar a quantidade total de XP à triplicar. Agora você tem *${level2[CD].contador} XP*\n–\n*Obs:* Sua patente atual continua sendo a mesma, pois você chegou à maior.`, mentions: [sender]}, {quoted: selo})
+calo.sendMessage(from, {text: `*🎉 SUPREME LEVEL UP! 🎖️*\nMeus parabéns querido usuário veterano *@${sender.split("@")[0]}*.\n• Sua experiência acaba de levar a quantidade total de XP à triplicar. Agora você tem *${level2[CD].contador} XP*\n–\n*Obs:* Sua patente atual continua sendo a mesma, pois você chegou à maior.`, mentions: [sender]}, {quoted: selo})
 break
 }
 }
@@ -1687,7 +1687,7 @@ var viewVideo = vio?.videoMessage || info.message?.videoMessage || vio?.viewOnce
 viewVideo.viewOnce = false
 viewVideo.video = {url: viewVideo.url}
 viewVideo.caption += "\n\n👁️ *REVELANDO ONE VISION* 👁️"
-sandro.sendMessage(from, viewVideo, {quoted: info})
+calo.sendMessage(from, viewVideo, {quoted: info})
 } else if(JSON.stringify(info).includes("imageMessage")) {
 var vio = info.message?.extendedTextMessage?.contextInfo?.quotedMessage
 var viewImage = vio?.imageMessage || info.message?.imageMessage || vio?.viewOnceMessageV2?.message?.imageMessage || info.message?.viewOnceMessageV2?.message?.imageMessage || info.message?.viewOnceMessage?.message?.imageMessage || vio?.viewOnceMessage?.message?.imageMessage
@@ -1695,13 +1695,13 @@ var viewVideo = vio?.videoMessage || info.message?.videoMessage || vio?.viewOnce
 viewImage.viewOnce = false
 viewImage.image = {url: viewImage.url}
 viewImage.caption += "\n\n👁️ *REVELANDO ONE VISION* 👁️"
-sandro.sendMessage(from, viewImage, {quoted: info})
+calo.sendMessage(from, viewImage, {quoted: info})
 } else if(info.message?.extendedTextMessage?.contextInfo?.quotedMessage?.viewOnceMessageV2Extension?.message?.audioMessage) {
 var viewAudio = info.message?.extendedTextMessage?.contextInfo?.quotedMessage?.viewOnceMessageV2Extension?.message?.audioMessage
 viewAudio.viewOnce = false
 viewAudio.ptt = true
 media = await getFileBuffer(viewAudio, `audio`)
-sandro.sendMessage(from, {audio: media}, {quoted: info})
+calo.sendMessage(from, {audio: media}, {quoted: info})
 }
 } catch(e){
 console.log(e)
@@ -1790,7 +1790,7 @@ if (isx9 && type === "pinInChatMessage") {
 duration = info.message?.messageContextInfo?.messageAddOnDurationInSecs;
 fixedTime = (duration) => (duration === 0) ? "0" : (duration >= 30 * 24 * 60 * 60) ? "30d" : (duration >= 7 * 24 * 60 * 60) ? "7d" : (duration >= 24 * 60 * 60) ? "24h" : duration;
 action = fixedTime(duration) === "0" ? 'desfixar uma mensagem' : `fixar uma mensagem por *${fixedTime(duration)}*`;
-await sandro.sendMessage(from, {text: `O admin *@${sender.split("@")[0]}* acabou de ${action}.`, mentions: [sender]})
+await calo.sendMessage(from, {text: `O admin *@${sender.split("@")[0]}* acabou de ${action}.`, mentions: [sender]})
 }
 
 /////\\\\\\//////\\\\\\////\\\\////\\\///\\\///\\\\
@@ -1865,7 +1865,7 @@ fs.writeFileSync("./database/func/limitarcmd.json", JSON.stringify(Limit_CMD, nu
 }
 }
 
-sandro.sendImageAsSticker = async (jid, path, options = {}) => {
+calo.sendImageAsSticker = async (jid, path, options = {}) => {
     let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
     let buffer
         if (options && (options.packname || options.author)) {
@@ -1873,28 +1873,28 @@ sandro.sendImageAsSticker = async (jid, path, options = {}) => {
             } else {
          buffer = await imageToWebp(buff)
         }
-    await sandro.sendMessage(jid, { sticker: { url: buffer }, ...options})
+    await calo.sendMessage(jid, { sticker: { url: buffer }, ...options})
     return buffer
 }
 
 //====
 
-sandro.sendImageMentions = (photo, text, mem, ids) => {(ids == null || ids == undefined || ids == false) ? sandro.sendMessage(from, {image: photo, caption: text.trim(), contextInfo: { "mentionedJid": mem}}) : sandro.sendMessage(from, {image: photo, caption: text.trim(), contextInfo: {"mentionedJid": mem}})
+calo.sendImageMentions = (photo, text, mem, ids) => {(ids == null || ids == undefined || ids == false) ? calo.sendMessage(from, {image: photo, caption: text.trim(), contextInfo: { "mentionedJid": mem}}) : calo.sendMessage(from, {image: photo, caption: text.trim(), contextInfo: {"mentionedJid": mem}})
 }
 
-sandro.sendInteractiveTXT = async(idChat, mainText = '', footerText = '', quotedMessage = {}, buttonsParams = {}) => {
+calo.sendInteractiveTXT = async(idChat, mainText = '', footerText = '', quotedMessage = {}, buttonsParams = {}) => {
     try {
-        await sandro.relayMessage(idChat, {interactiveMessage: {body: {text: mainText}, footer: {text: footerText}, contextInfo: quotedMessage, nativeFlowMessage: buttonsParams}}, {});
+        await calo.relayMessage(idChat, {interactiveMessage: {body: {text: mainText}, footer: {text: footerText}, contextInfo: quotedMessage, nativeFlowMessage: buttonsParams}}, {});
     } catch(errorMessage) {
         await reply(String(errorMessage));
     }
 }
 
-sandro.sendInteractiveIMG = async(imageDir, ChatID, definedText = '', footer = '', contextMessageInfo = {}, buttonsParams = {}) => {
+calo.sendInteractiveIMG = async(imageDir, ChatID, definedText = '', footer = '', contextMessageInfo = {}, buttonsParams = {}) => {
     try {
-        create = await prepareWAMessageMedia({image: fs.readFileSync(imageDir)}, {upload: sandro.waUploadToServer});
+        create = await prepareWAMessageMedia({image: fs.readFileSync(imageDir)}, {upload: calo.waUploadToServer});
         imageCreate = create.imageMessage;
-        await sandro.relayMessage(ChatID, {interactiveMessage: {header: {hasMediaAttachment: true, imageMessage: imageCreate}, headerType: 'IMAGE', body: {text: definedText}, footer: {text: footer}, contextInfo: contextMessageInfo, nativeFlowMessage: buttonsParams}}, {});
+        await calo.relayMessage(ChatID, {interactiveMessage: {header: {hasMediaAttachment: true, imageMessage: imageCreate}, headerType: 'IMAGE', body: {text: definedText}, footer: {text: footer}, contextInfo: contextMessageInfo, nativeFlowMessage: buttonsParams}}, {});
      } catch(errorMessage) {
          return reply(String(errorMessage));
     }
@@ -1906,8 +1906,8 @@ sandro.sendInteractiveIMG = async(imageDir, ChatID, definedText = '', footer = '
 let isCodeKey = Array('aluguel', 'alugueis', 'alugar', 'alugarbot', 'lojinha', 'dono').some(i => i === command)
 
 if(isModoAluguel && isCmd && !SoDono && !isCodeKey) {
-if(!JSON.stringify(grupos).includes("sandrobot")) {
-grupos.push({id: "sandrobot", gps: []})
+if(!JSON.stringify(grupos).includes("calobot")) {
+grupos.push({id: "calobot", gps: []})
 fs.writeFileSync("./database/grupos/aluguel/grupos.json", JSON.stringify(grupos, null, 2))}
 if(!JSON.stringify(grupos).includes(from)) {
 grupos.push({id: from, limite: 5, validado: false})
@@ -1920,7 +1920,7 @@ grupos.splice(AB, 1)
 fs.writeFileSync("./database/grupos/grupos.json", JSON.stringify(grupos, null, 2))
 reply(`Visto que os senhores não se vêem interessados em adquirir uma chave, estou saindo do grupo...`)
 await sleep(3000)
-return sandro.groupLeave(from)
+return calo.groupLeave(from)
 } else {
 grupos[AB].limite -= 1
 fs.writeFileSync("./database/grupos/aluguel/grupos.json", JSON.stringify(grupos, null, 2))
@@ -1938,8 +1938,8 @@ AD = chaves.map(i => i.key).indexOf(caixa[0])
 timeday = chaves[AD].dias
 pessoa = chaves[AD].cliente
 infinity = chaves[AD].dias > 0 ? false : true
-if(!VerificarJSON(grupos, "sandrobot")) {
-grupos.push({id: "sandrobot", gps: []})
+if(!VerificarJSON(grupos, "calobot")) {
+grupos.push({id: "calobot", gps: []})
 fs.writeFileSync("./database/grupos/aluguel/grupos.json", JSON.stringify(grupos, null, 2))
 }
 if(!VerificarJSON(grupos, from)) {
@@ -1959,7 +1959,7 @@ chaves.splice(AD, 1)
 fs.writeFileSync("./database/grupos/aluguel/chaves.json", JSON.stringify(chaves, null, 2))
 reply(`🌟🛒 O grupo foi registrado com sucesso ao aluguel! *Qualquer dúvida entre em contato com meu dono.*`)
 await sleep(2000)
-sandro.sendMessage(nmrdn, {text: `⚠️🛒 Código de aluguel foi validado no grupo com sucesso! Registrado no nome de *@${pessoa.split('@')[0]}*\n• Grupo registrado: *${groupName}*`, mentions: [pessoa]})
+calo.sendMessage(nmrdn, {text: `⚠️🛒 Código de aluguel foi validado no grupo com sucesso! Registrado no nome de *@${pessoa.split('@')[0]}*\n• Grupo registrado: *${groupName}*`, mentions: [pessoa]})
 } else {
 AB = aluguel.map(i => i.id).indexOf(from)
 aluguel[AB].cortesia = false
@@ -1971,12 +1971,12 @@ chaves.splice(AD, 1)
 fs.writeFileSync("./database/grupos/aluguel/chaves.json", JSON.stringify(chaves, null, 2))
 reply(`+${timeday} dia${Number(timeday) > 1 ? 's' : ''} adicionado${Number(timeday) > 1 ? 's' : ''} para o grupo em meu banco de dados.`)
 await sleep(2000)
-sandro.sendMessage(nmrdn, {text: `⚠️🛒 Código de aluguel foi validado no grupo com sucesso! Registrado no nome de *@${pessoa.split('@')[0]}*\n• Grupo registrado: *${groupName}*`, mentions: [pessoa]})
+calo.sendMessage(nmrdn, {text: `⚠️🛒 Código de aluguel foi validado no grupo com sucesso! Registrado no nome de *@${pessoa.split('@')[0]}*\n• Grupo registrado: *${groupName}*`, mentions: [pessoa]})
 }
 }
         
 if(chaves[AD].tipo == 2 && isGroup) {
-CD = grupos.map(i => i.id).indexOf("sandrobot")
+CD = grupos.map(i => i.id).indexOf("calobot")
 if(!VerificarJSON(grupos[CD].gps, from)) {
 if(!VerificarJSON(aluguel, from)) {
 grupos[CD].gps.push({id: from})
@@ -1985,7 +1985,7 @@ aluguel.push({id: from, nome: groupName, tempo: 24, totalRent: 24, cliente: send
 fs.writeFileSync("./database/grupos/aluguel/aluguel.json", JSON.stringify(aluguel, null, 2))
 reply(`✅️🌟 Código Card Cortesia validado com sucesso! 24h liberadas neste grupo contando a partir de agora.`)
 await sleep(2000)              
-sandro.sendMessage(nmrdn, {text: `⚠️🌟️ Código *Card Cortesia* foi validado no grupo, registrado no nome de *@${pessoa.split('@')[0]}*.\n• Grupo registrado: *${groupName}*`, mentions: [pessoa]})
+calo.sendMessage(nmrdn, {text: `⚠️🌟️ Código *Card Cortesia* foi validado no grupo, registrado no nome de *@${pessoa.split('@')[0]}*.\n• Grupo registrado: *${groupName}*`, mentions: [pessoa]})
 } else reply("[!] Este grupo já está registrado em meu banco de dados.")
 } else reply("[!] Já foi validado neste mês uma cortesia neste grupo.")
 }
@@ -2026,7 +2026,7 @@ case 'figuflork':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function figuflorks() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuflork`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuflork`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 figuflorks()
@@ -2037,7 +2037,7 @@ case 'figuanime':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function eitamunjsjsjw() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuanime`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuanime`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 eitamunjsjsjw()
@@ -2048,7 +2048,7 @@ case 'figucoreana':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function eitamunjs() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figucoreana`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figucoreana`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 eitamunjs()
@@ -2059,7 +2059,7 @@ case 'figubebe':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function eitamundormsjsos() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figubebe`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figubebe`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 eitamundormsjsos()
@@ -2070,7 +2070,7 @@ case 'figudesenho':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function eitamundormsjow() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figudesenho`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figudesenho`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 eitamundormsjow()
@@ -2081,7 +2081,7 @@ case 'figuanimais':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function eitamundormysu() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuanimais`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuanimais`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 eitamundormysu()
@@ -2092,7 +2092,7 @@ case 'figuengracada':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function eitamundormoo() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuengracada`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuengracada`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 eitamundormoo()
@@ -2103,7 +2103,7 @@ case 'figuroblox':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function eitamundorms() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuroblox`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuroblox`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 eitamundorms()
@@ -2114,7 +2114,7 @@ case 'figuraiva':
 if (!q) return reply("Insira a quantidade de figurinhas que deseja que eu envie!")
 if (!Number(args[0]) || Number(q.trim()) > 10) return reply("Digite a quantidade de figurinhas que deseja que eu envie.. não pode mais de 10..")
 async function eitamundorm() {
-sandro.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuraiva`} })}
+calo.sendMessage(from, { sticker: { url: `https://carisys.online/api/sticker/figuraiva`} })}
 for (i = 0; i < q; i++) {
 await sleep(680)
 eitamundorm()
@@ -3246,7 +3246,7 @@ case 'waifu': {
         const imageUrls = JSON.parse(jsonData);
         const randomIndex = Math.floor(Math.random() * imageUrls.length);
         const selectedImageUrl = imageUrls[randomIndex];
-        await sandro.sendMessage(from, { image: { url: selectedImageUrl }, caption: 'Aqui está a imagem!' }, { quoted: info });
+        await calo.sendMessage(from, { image: { url: selectedImageUrl }, caption: 'Aqui está a imagem!' }, { quoted: info });
     } catch (e) {
         console.log(e);
         reply('Erro ao enviar a imagem. Por favor, tente novamente.');
@@ -3266,7 +3266,7 @@ case 'pegadinha': {
 
 Para mais pegadinhas, digite *${prefix}pegadinhas* novamente.
         `;
-        await sandro.sendMessage(from, { text: mensagem }, { quoted: info });
+        await calo.sendMessage(from, { text: mensagem }, { quoted: info });
     } catch (e) {
         console.log(e);
         reply('🚨 *Erro ao carregar pegadinhas.* 🚨\nPor favor, tente novamente mais tarde.');
@@ -3289,7 +3289,7 @@ ${groupDesc}`)
 break
 
 case 'info-s':
-reply(`SANDRO BOT E MEU CRIADOR`)
+reply(`calo BOT E MEU CRIADOR`)
 break
 
 case 'fullhd': case 'hd':
@@ -3320,18 +3320,18 @@ return console.log(erro);
 }
 });
 }
-// Feito por sandro JS 
+// Feito por calo JS 
 for await(const send of imagem) { base64 = Buffer.concat( [ base64, send ] ) }
 
-await sandro.sendMessage(from, {text: "Auterando a qualidade da imagem pra *HD*."},{quoted: info });
+await calo.sendMessage(from, {text: "Auterando a qualidade da imagem pra *HD*."},{quoted: info });
 let Urlimage = await uploadhd(base64)
 let reminiUrl = await getBuffer(`https://carisys.online/api/outros/remini?url=${Urlimage}`)
-await sandro.sendMessage(from, {image: reminiUrl}, {quoted: info})
+await calo.sendMessage(from, {image: reminiUrl}, {quoted: info})
 } catch (e) {
-await sandro.sendMessage(from, {text:"Ocorreu um erro ao deixar a imagem em *HD*."}, {quoted: info });
+await calo.sendMessage(from, {text:"Ocorreu um erro ao deixar a imagem em *HD*."}, {quoted: info });
 }
 } else {
-await sandro.sendMessage(from, {text: "Mencione uma imagem para atribuír o *HD*."}, {quoted: info });
+await calo.sendMessage(from, {text: "Mencione uma imagem para atribuír o *HD*."}, {quoted: info });
 }
 break
 
@@ -3351,14 +3351,14 @@ ${prefix+command} ${nmrdn.split('@')[0]}/30`)
 barra = q.replace(" /", "/").replace("/ ", "/").replace(" / ", "/")
 var [nmr, dias] = barra.split('/')
 if(!Number(dias)) return reply(`Apenas números pfvr`)
-sandrobot = nmr.includes('@') ? nmr.split('@')[1].replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net" : nmr.replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net"
-const [checkwpp] = await sandro.onWhatsApp(sandrobot.split('@')[0])
+calobot = nmr.includes('@') ? nmr.split('@')[1].replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net" : nmr.replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net"
+const [checkwpp] = await calo.onWhatsApp(calobot.split('@')[0])
 if(checkwpp == undefined) {
-return reply(`O número ${sandrobot.split('@')[0]} não é válido no whatsapp...`)
+return reply(`O número ${calobot.split('@')[0]} não é válido no whatsapp...`)
 }
 if(Number(dias) <= 0) return reply(`É necessário ao menos 1 dia de aluguel né.`)
 if(dias.includes('.')) return reply("Não use números decimais.")
-aluguel.push({id: from, nome: groupName, tempo: Number(dias) + 1, totalRent: Number(dias) + 1, cliente: sandrobot, save: Number(moment.tz('America/Sao_Paulo').format('DD')), cortesia: false})
+aluguel.push({id: from, nome: groupName, tempo: Number(dias) + 1, totalRent: Number(dias) + 1, cliente: calobot, save: Number(moment.tz('America/Sao_Paulo').format('DD')), cortesia: false})
 fs.writeFileSync("./database/grupos/aluguel/aluguel.json", JSON.stringify(aluguel, null, 2))
 reply(`Grupo adicionado ao aluguel com sucesso.`)
 } else {
@@ -3427,14 +3427,14 @@ break
 case 'listrent': case 'lista-aluguel':
 if(!SoDono) return reply(enviar.msg.grupo)
 if(aluguel.length > 0) {
-var getGroups = await sandro.groupFetchAllParticipating()
+var getGroups = await calo.groupFetchAllParticipating()
 var groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 var ingfoo = groups.map(v => v)
 ingfoo.sort((a, b) => (a[0] < b.length))
 for (g = 0; g < ingfoo.length; g++){
 if(JSON.stringify(aluguel).includes(ingfoo[g].id)) {
-sandrobot = aluguel.map(m => m.id).indexOf(ingfoo[g].id)
-aluguel[sandrobot].nome = ingfoo[g].subject
+calobot = aluguel.map(m => m.id).indexOf(ingfoo[g].id)
+aluguel[calobot].nome = ingfoo[g].subject
 fs.writeFileSync("./database/grupos/aluguel/aluguel.json", JSON.stringify(aluguel, null, 2))
 }
 }
@@ -3457,8 +3457,8 @@ break
 case 'lastrent':
 if(!SoDono) return reply(Res_SoDono)
 if(aluguel.length > 0) {
-sandrobot = aluguel.map(i => i)
-rank = sandrobot.sort((a, b) => (a.tempo < b.tempo) ? -1 : 0)
+calobot = aluguel.map(i => i)
+rank = calobot.sort((a, b) => (a.tempo < b.tempo) ? -1 : 0)
 txt = "• Top 3 grupos com o aluguel mais próximo de acabar:\n—\n"
 for(i = 0; i < 3; i++) {
 if(rank[i].cortesia == false) {
@@ -3485,9 +3485,9 @@ case 'print': case 'printdesite':
 
     try {
         reply(`Enviando no PV, por motivo de segurança...`);
-        sandro.sendMessage(sender, { 
+        calo.sendMessage(sender, { 
             image: { 
-                url: `https://api.bronxyshost.com.br/api-bronxys/print_de_site?url=${q.trim()}&apikey=${API_SANDRO_MD}` 
+                url: `https://api.bronxyshost.com.br/api-bronxys/print_de_site?url=${q.trim()}&apikey=${API_calo_MD}` 
             } 
         }, { quoted: info });
     } catch (error) {
@@ -3498,7 +3498,7 @@ case 'print': case 'printdesite':
 case 'calendario':
 case 'dados':
 setTimeout(() => {reagir(from, "📅")}, 300)
-var getGroups = await sandro.groupFetchAllParticipating()
+var getGroups = await calo.groupFetchAllParticipating()
 var groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 var ingfoo = groups.map(v => v)
 ingfoo.sort((a, b) => (a[0] < b.length))
@@ -3508,17 +3508,17 @@ day = `${tempo}, ${pushname}!\n• Grupo: *${isGroup ? groupName : "Privado"}*\n
 if(JSON.stringify(aluguel).includes(from)) {
 AB = aluguel.map(i => i.id).indexOf(from)
 numsei = aluguel[AB].tempo / aluguel[AB].totalRent * 100
-if(numsei < 10) sandrobot = `${numsei.toFixed(0)}%〘▒▒▒▒▒▒▒▒▒▒〙`
-if(numsei >= 10) sandrobot = `${numsei.toFixed(0)}%〘█▒▒▒▒▒▒▒▒▒〙`
-if(numsei >= 20) sandrobot = `${numsei.toFixed(0)}%〘██▒▒▒▒▒▒▒▒〙`
-if(numsei >= 30) sandrobot = `${numsei.toFixed(0)}%〘███▒▒▒▒▒▒▒〙`
-if(numsei >= 40) sandrobot = `${numsei.toFixed(0)}%〘████▒▒▒▒▒▒〙`
-if(numsei >= 50) sandrobot = `${numsei.toFixed(0)}%〘█████▒▒▒▒▒〙`
-if(numsei >= 60) sandrobot = `${numsei.toFixed(0)}%〘██████▒▒▒▒〙`
-if(numsei >= 70) sandrobot = `${numsei.toFixed(0)}%〘███████▒▒▒〙`
-if(numsei >= 80) sandrobot = `${numsei.toFixed(0)}%〘████████▒▒〙`
-if(numsei >= 90) sandrobot = `${numsei.toFixed(0)}%〘█████████▒〙`
-if(numsei >= 95) sandrobot = `${numsei.toFixed(0)}%〘██████████〙`
+if(numsei < 10) calobot = `${numsei.toFixed(0)}%〘▒▒▒▒▒▒▒▒▒▒〙`
+if(numsei >= 10) calobot = `${numsei.toFixed(0)}%〘█▒▒▒▒▒▒▒▒▒〙`
+if(numsei >= 20) calobot = `${numsei.toFixed(0)}%〘██▒▒▒▒▒▒▒▒〙`
+if(numsei >= 30) calobot = `${numsei.toFixed(0)}%〘███▒▒▒▒▒▒▒〙`
+if(numsei >= 40) calobot = `${numsei.toFixed(0)}%〘████▒▒▒▒▒▒〙`
+if(numsei >= 50) calobot = `${numsei.toFixed(0)}%〘█████▒▒▒▒▒〙`
+if(numsei >= 60) calobot = `${numsei.toFixed(0)}%〘██████▒▒▒▒〙`
+if(numsei >= 70) calobot = `${numsei.toFixed(0)}%〘███████▒▒▒〙`
+if(numsei >= 80) calobot = `${numsei.toFixed(0)}%〘████████▒▒〙`
+if(numsei >= 90) calobot = `${numsei.toFixed(0)}%〘█████████▒〙`
+if(numsei >= 95) calobot = `${numsei.toFixed(0)}%〘██████████〙`
 hmm = aluguel[AB].tempo
 if(aluguel[AB].cliente == sender || SoDono) {
   matheusSabe = `• `
@@ -3526,7 +3526,7 @@ if(aluguel[AB].cliente == sender || SoDono) {
 matheusSabe += `${hmm} dia${hmm > 1 ? 's' : ''} restantes`} else {matheusSabe += hmm > 1 ? `${hmm} horas` : `Alguns minutos`}
 matheusSabe += ` até o fim do contrato.`
 } else {matheusSabe = ``}
-day += `\n——\n🔋 *Bateria restante para uso:*\n${sandrobot} ${matheusSabe}`}
+day += `\n——\n🔋 *Bateria restante para uso:*\n${calobot} ${matheusSabe}`}
 reply(`${day}`)
 break
 
@@ -3553,7 +3553,7 @@ Desbloqueio de Bot (Descriptografado): R$ 50,00
 > ${NomeDoBot}`;
 
     // Envia o desafio com a imagem para o usuário
-    sandro.sendMessage(from, { image: { url: imagemUrl }, caption: dptr }, { quoted: selo });
+    calo.sendMessage(from, { image: { url: imagemUrl }, caption: dptr }, { quoted: selo });
   } catch (e) {
     console.log("Erro no comando 'desafio':", e);
   }
@@ -3568,7 +3568,7 @@ case 'loja':
 reply(`Digite *${prefix}lojinha* para entrar em contato com meu proprietário e liberar o acesso em seu grupo.\n• Os valores são passados por ele, não tenho nenhuma informação registrada sobre isso.`)
 break
 
-case 'mycoderent': //by sandrobot
+case 'mycoderent': //by calobot
 txt = `🔑 Suas chaves de ativação:\n—\n`
 nmr = 0
 for(i of chaves) {if(i.cliente == sender) {txt += `\n• ${i.key}`; nmr += 1}}
@@ -3577,7 +3577,7 @@ reply(isGroup ? "Por segurança lhe enviei em seu privado o que foi solicitado."
 sendMess(sender, txt)
 break
 
-case 'codelistrent'://by sandrobot
+case 'codelistrent'://by calobot
 if(!SoDono) return reply(enviar.msg.donosmt)
 txt = `[Total: *${i.chaves}*] - Lista de Códigos registrado(s) para aluguel:`
 caixa = []
@@ -3587,7 +3587,7 @@ caixa.push(i.cliente)
 }
 if(caixa <= 0) return reply("Não existe nenhuma chave registrada em meu banco de dados.")
 reply(isGroup ? "Por motivos de segurança, enviei em seu privado..." : "Aguarde, estou enviando o que foi solicitado!")
-sandro.sendMessage(sender, {text: txt, mentions: caixa})
+calo.sendMessage(sender, {text: txt, mentions: caixa})
 break
 
 case 'gerarcoderent':
@@ -3595,21 +3595,21 @@ if(!SoDono) return reply(enviar.msg.donosmt)
 barra = q.replace(' /', '/').replace('/ ', '/').replace(' / ', '/')
 var [v1, v2] = barra.split('/')
 if(!q.includes('/')) return reply(`Você vai colocar o número da pessoa que alugou e após isso uma barra ( / ). Após a barra, coloque a quantidade de dias que este alugou para seu grupo.\n• Exemplo: *${prefix+command} ${nmrdn.split('@')[0]}/30*`)
-sandrobot = v1.toLowerCase() == "me" ? sender : v1.includes('@') ? v1.split('@')[1].replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net" : v1.replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net"
-const [checkkeygp] = await sandro.onWhatsApp(sandrobot.split('@')[0])
+calobot = v1.toLowerCase() == "me" ? sender : v1.includes('@') ? v1.split('@')[1].replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net" : v1.replace(new RegExp("[()+-/ +/]", "gi"), "") + "@s.whatsapp.net"
+const [checkkeygp] = await calo.onWhatsApp(calobot.split('@')[0])
 if(checkkeygp == undefined) {
-return reply(`O número *${sandrobot.split('@')[0]}* não é válido no whatsapp.`)
+return reply(`O número *${calobot.split('@')[0]}* não é válido no whatsapp.`)
 }
 nmr = Number(v2) > 0 ? Number(v2) : 0
 idks = `G${v2}-`
-idks += `${Number(from.replace("-", "").slice(2, 8)) * Number(sandrobot.slice(2, 8))}`
+idks += `${Number(from.replace("-", "").slice(2, 8)) * Number(calobot.slice(2, 8))}`
 idks += `M${nmr}H-${Number(moment.tz('America/Sao_Paulo').format('DDMMYY')) + Number(moment.tz('America/Sao_Paulo').format('HHmmss'))}B`
-chaves.push({key: idks, tipo: 1, dias: nmr, cliente: sandrobot, valor: 0})//tipo 1 = aluguel de grupo
+chaves.push({key: idks, tipo: 1, dias: nmr, cliente: calobot, valor: 0})//tipo 1 = aluguel de grupo
 fs.writeFileSync("./database/grupos/aluguel/chaves.json", JSON.stringify(chaves, null, 2))
-mention(`🔑🌟 Código de ativação do serviço gerado com sucesso! Segue abaixo a chave:\n-> *${idks}*\n——\n• Quantidade de dias: *${nmr > 0 ? `${nmr} dia${nmr > 1 ? 's' : ''}` : `∞ INFINITO`}*\n• Usuário(a) que alugou: *@${sandrobot.split('@')[0]}*`)
+mention(`🔑🌟 Código de ativação do serviço gerado com sucesso! Segue abaixo a chave:\n-> *${idks}*\n——\n• Quantidade de dias: *${nmr > 0 ? `${nmr} dia${nmr > 1 ? 's' : ''}` : `∞ INFINITO`}*\n• Usuário(a) que alugou: *@${calobot.split('@')[0]}*`)
 break
 
-case 'gerarcodecort'://by sandrobot
+case 'gerarcodecort'://by calobot
 if(!SoDono) return reply(enviar.msg.donosmt)
 cort = 24 
 idks = `G${cort}-`
@@ -3622,7 +3622,7 @@ break
 
 case 'delcoderent':
 if(!SoDono) return reply(enviar.msg.donosmt)
-if(!JSON.stringify(chaves).includes("sandrobot")) return reply(`Não há keys registradas`)
+if(!JSON.stringify(chaves).includes("calobot")) return reply(`Não há keys registradas`)
 if(!q) return reply(`Cadê o código de aluguel que você deseja apagar?`)
 if(!JSON.stringify(chaves).includes(q)) return reply("O código não foi encontrado em nosso banco de dados, é inexistente!")
 AD = chaves.map(i => i.key).indexOf(q)
@@ -3642,13 +3642,13 @@ nmr = txt.split('/')[0].replace('@' ,  '').replace(' ', '').replace(' ', '').rep
 nmr2 = txt.split('/')[1].replace('@' ,  '').replace(' ', '').replace(' ', '').replace(' ', '')
 tempo = txt.split('/')[2]
 if(!Number(tempo)) return reply('Ops, insira o tempo o qual você deseja encerrar a votação.')
-try {ppimg = await sandro.profilePictureUrl(`${nmr}@s.whatsapp.net`)} catch(erro) {ppimg = 'https://i.imgur.com/OqeFhHP.jpeg'}
-try {ppimg2 = await sandro.profilePictureUrl(`${nmr2}@s.whatsapp.net`)} catch(erro) {ppimg2 = 'https://i.imgur.com/OqeFhHP.jpeg'}
+try {ppimg = await calo.profilePictureUrl(`${nmr}@s.whatsapp.net`)} catch(erro) {ppimg = 'https://i.imgur.com/OqeFhHP.jpeg'}
+try {ppimg2 = await calo.profilePictureUrl(`${nmr2}@s.whatsapp.net`)} catch(erro) {ppimg2 = 'https://i.imgur.com/OqeFhHP.jpeg'}
 bl = await getBuffer(ppimg); bl_up = await upload(bl)
 bl2 = await getBuffer(ppimg2); bl_up2 = await upload(bl2)
 BLAP = await getBuffer(`https://eruakorl.sirv.com/josival-aleatory/vs.jpg?text.0.text=1- ${nmr}&text.0.position.gravity=southwest&text.0.position.x=6%25&text.0.position.y=-2%25&text.0.size=32&text.0.color=ff0000&text.0.font.family=Source%20Serif%20Pro&text.0.font.weight=700&text.0.font.style=italic&text.0.background.opacity=100&text.1.text=2- ${nmr2}&text.1.position.x=-7%25&text.1.position.y=-2%25&text.1.size=32&text.1.color=0022ff&text.1.font.family=Source%20Serif%20Pro&text.1.font.weight=700&text.1.font.style=italic`); bl_upd = await upload(BLAP)
 blup = await getBuffer(`https://yurimodz-apis.xyz/api/canvas/duelo?foto1=${bl_up}&foto2=${bl_up2}&fundo=${bl_upd}`)
-sandro.sendMessage(from, {image: blup, caption: `*🗳️ VOTAÇÃO INICIADA! 🌟*\n—\n*@${nmr}* VS *@${nmr2}*\n—\n• Para realizar seu voto use os seguintes números *1 ou 2*, _exemplo abaixo:_\n• Caso você deseja votar na opção *1*, _você envia 1 no grupo_, caso seja o *2*, é só você mudar os algarismos!\n*É fácil né?* Agora é só seguir o exemplo acima! Vote com consciência.\n–\n⚠️ Só é permitido votar uma única vez, portanto preste atenção em quem vai votar, pois não é possível alterar o voto.\n- Nenhum usuário deve atrapalhar a votação, quem enviar mensagem sem esta participando do mesmo, estará descumprindo as regras e poderá ser banido do grupo.\n—\n• Não vote por afinidade ao integrante, vote pela qualidade das respostas.`, mentions: [nmr+'@s.whatsapp.net', nmr2+'@s.whatsapp.net']}, {quoted: selo})
+calo.sendMessage(from, {image: blup, caption: `*🗳️ VOTAÇÃO INICIADA! 🌟*\n—\n*@${nmr}* VS *@${nmr2}*\n—\n• Para realizar seu voto use os seguintes números *1 ou 2*, _exemplo abaixo:_\n• Caso você deseja votar na opção *1*, _você envia 1 no grupo_, caso seja o *2*, é só você mudar os algarismos!\n*É fácil né?* Agora é só seguir o exemplo acima! Vote com consciência.\n–\n⚠️ Só é permitido votar uma única vez, portanto preste atenção em quem vai votar, pois não é possível alterar o voto.\n- Nenhum usuário deve atrapalhar a votação, quem enviar mensagem sem esta participando do mesmo, estará descumprindo as regras e poderá ser banido do grupo.\n—\n• Não vote por afinidade ao integrante, vote pela qualidade das respostas.`, mentions: [nmr+'@s.whatsapp.net', nmr2+'@s.whatsapp.net']}, {quoted: selo})
 AdicionarVoto(from, "-", nmr, nmr2, tempo, mention)
 break
 
@@ -3857,7 +3857,7 @@ men.push(mem.id)
 }
 }
 if(teks.indexOf('⇒') < 0) return reply(`Nenhum número com o ddi *+${args[0]}* foi encontrado.`)
-sandro.sendMessage(from, {text: teks, mentions: men}, {quoted: selo}).catch((error) => {
+calo.sendMessage(from, {text: teks, mentions: men}, {quoted: selo}).catch((error) => {
    reply(mess.error())
 })
 break
@@ -3874,7 +3874,7 @@ men.push(mem.id);
 }
 }
 if(teks.indexOf('⇒') < 0) return reply('Nenhum número brasileiro foi encontrado no grupo.')
-sandro.sendMessage(from, {text: teks, mentions: men}, {quoted: selo}).catch((error) => {
+calo.sendMessage(from, {text: teks, mentions: men}, {quoted: selo}).catch((error) => {
    reply(mess.error())
 })
 break
@@ -3893,7 +3893,7 @@ men.push(mem.id);
 }
 }
 if(teks.indexOf('⇒') < 0) return reply('Nenhum *número brasileiro* com ddd fornecido foi encontrado no grupo.')
-sandro.sendMessage(from, {text: teks, mentions: men}, {quoted: selo}).catch((error) => {
+calo.sendMessage(from, {text: teks, mentions: men}, {quoted: selo}).catch((error) => {
    reply(mess.error())
 })
 break
@@ -3987,11 +3987,11 @@ break
 
 case 'download-link':
 if(q.includes("video") || q.includes("mp4")) {
-sandro.sendMessage(from, {video: {url: q}, mimetype: 'video/mp4'}, {quoted: selo}).catch(e => {
+calo.sendMessage(from, {video: {url: q}, mimetype: 'video/mp4'}, {quoted: selo}).catch(e => {
 reply("Erro, visualize se este link é válido...")
 })
 } else if(q.includes("webp") || q.includes("jpg")) {
-sandro.sendMessage(from, {image: {url: q}}, {quoted: selo}).catch(e => {
+calo.sendMessage(from, {image: {url: q}}, {quoted: selo}).catch(e => {
 reply("Erro, visualize se este link é válido...")
 })
 }
@@ -4000,8 +4000,8 @@ break
 case 'signo':
 try {
 if(!q.trim()) return reply(`Digite seu signo, exemplo: ${prefix+command} virgem`);
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/horoscopo?signo=${q}&apikey=${API_SANDRO_MD}`)
-sandro.sendMessage(from, {image: {url: ABC.img}, caption: `Signo: ${q}\n\n${ABC.title}\n${ABC.body}`}).catch(e => {
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/horoscopo?signo=${q}&apikey=${API_calo_MD}`)
+calo.sendMessage(from, {image: {url: ABC.img}, caption: `Signo: ${q}\n\n${ABC.title}\n${ABC.body}`}).catch(e => {
 return reply("Erro..");
 })
 } catch (e) {
@@ -4036,7 +4036,7 @@ reply(`O áudio foi desativado para o menu com sucesso, se quiser ativar é só 
 break
 
 case 'comunidade':
-reply(`*Faça parte da comunidade e fique por dentro de todas as atualizações dos bots do sandro* ❤️
+reply(`*Faça parte da comunidade e fique por dentro de todas as atualizações dos bots do calo* ❤️
 
 https://whatsapp.com/channel/0029VarBveB6hENqZSkAM71p`)
 break
@@ -4053,7 +4053,7 @@ mediaType:2,
 //templateButtons: templateButtons
 }}
 }
-sandro.sendMessage(from, templateMassage)
+calo.sendMessage(from, templateMassage)
 break
     
 case 'menu':
@@ -4063,7 +4063,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = menu(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4075,7 +4075,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = menulink(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4086,7 +4086,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = menudono(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4097,7 +4097,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = adms(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4106,9 +4106,9 @@ break;
 case 'cpf':
 if(!isGroup && !SoDono) return reply("*❌ ERRO: PLANO VENCIDO*\n\n*😎 RENOVE SEU PLANO PARA CONTINUAR USANDO TODAS AS MINHAS FUNCIONALIDADE*!\n\n*💬 ENTRE EM CONTATO AGORA COM NOSSO TIME DE ATENDIMENTO*!\n\n*📞 wa.me/5511973969910 - CORINGA 🎲*")
 if (!q) return reply(`\n☑ 𝗖𝗢𝗡𝗦𝗨𝗟𝗧𝗔 CPF\n\n━━━━━━━━━━━━━━━━━━━━━\n\nConsulta Completa de CPF\n\nVeja abaixo um exemplo de como realizar a consulta:\n\n-cpf 11132699797\n\n━━━━━━━━━━━━━━━━━━━━━`)
-sandro.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
-consulta = await fetchJson(`https://pnsapis.online/api/busca/cpf1?query=${q}&apitoken=SANDRO_MD_PUXD`)
-await sandro.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
+calo.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
+consulta = await fetchJson(`https://pnsapis.online/api/busca/cpf1?query=${q}&apitoken=calo_MD_PUXD`)
+await calo.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
 contextInfo: {
 expiration: info.message[type].contextInfo?.expiration,
 mentionedJid: [from],
@@ -4118,7 +4118,7 @@ participant: info.key.participant, stanzaId: info.key.id, remoteJid: info.remote
 quotedMessage: info.message }}}, {})
 if (!q) {
 await sleep(1500)
-sandro.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
+calo.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
 🕵🏻 *${NomeDoBot}* - BUSCAS
 ✅ CONSULTA REALIZADA ✅` }, {quoted: info })}
 try {
@@ -4130,9 +4130,9 @@ break
 case 'cpf2':
 if(!isGroup && !SoDono) return reply("*❌ ERRO: PLANO VENCIDO*\n\n*😎 RENOVE SEU PLANO PARA CONTINUAR USANDO TODAS AS MINHAS FUNCIONALIDADE*!\n\n*💬 ENTRE EM CONTATO AGORA COM NOSSO TIME DE ATENDIMENTO*!\n\n*📞 wa.me/5511973969910 - CORINGA 🎲*")
 if (!q) return reply("\n☑ 𝗖𝗢𝗡𝗦𝗨𝗟𝗧𝗔 CPF\n\n━━━━━━━━━━━━━━━━━━━━━\n\nConsulta Completa de CPF\n\nVeja abaixo um exemplo de como realizar a consulta:\n\n-cpf2 11132699797\n\n━━━━━━━━━━━━━━━━━━━━━")
-sandro.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
-consulta = await fetchJson(`https://pnsapis.online/api/busca/cpf2?query=${q}&apitoken=SANDRO_MD_PUXD`)
-await sandro.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
+calo.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
+consulta = await fetchJson(`https://pnsapis.online/api/busca/cpf2?query=${q}&apitoken=calo_MD_PUXD`)
+await calo.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
 contextInfo: {
 expiration: info.message[type].contextInfo?.expiration,
 mentionedJid: [from],
@@ -4142,7 +4142,7 @@ participant: info.key.participant, stanzaId: info.key.id, remoteJid: info.remote
 quotedMessage: info.message }}}, {})
 if (!q) {
 await sleep(1500)
-sandro.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
+calo.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
 🕵🏻 *${NomeDoBot}* - BUSCAS
 ✅ CONSULTA REALIZADA ✅` }, {quoted: info })}
 try {
@@ -4154,9 +4154,9 @@ break
  case 'cpf3':
 if(!isGroup && !SoDono) return reply("*❌ ERRO: PLANO VENCIDO*\n\n*😎 RENOVE SEU PLANO PARA CONTINUAR USANDO TODAS AS MINHAS FUNCIONALIDADE*!\n\n*💬 ENTRE EM CONTATO AGORA COM NOSSO TIME DE ATENDIMENTO*!\n\n*📞 wa.me/5511973969910 - CORINGA 🎲*")
 if (!q) return reply("\n☑ 𝗖𝗢𝗡𝗦𝗨𝗟𝗧𝗔 CPF\n\n━━━━━━━━━━━━━━━━━━━━━\n\nConsulta Completa de CPF\n\nVeja abaixo um exemplo de como realizar a consulta:\n\n-cpf3 11132699797\n\n━━━━━━━━━━━━━━━━━━━━━")
-sandro.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
-consulta = await fetchJson(`https://pnsapis.online/api/busca/cpf3?query=${q}&apitoken=SANDRO_MD_PUXD`)
-await sandro.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
+calo.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
+consulta = await fetchJson(`https://pnsapis.online/api/busca/cpf3?query=${q}&apitoken=calo_MD_PUXD`)
+await calo.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
 contextInfo: {
 expiration: info.message[type].contextInfo?.expiration,
 mentionedJid: [from],
@@ -4166,7 +4166,7 @@ participant: info.key.participant, stanzaId: info.key.id, remoteJid: info.remote
 quotedMessage: info.message }}}, {})
 if (!q) {
 await sleep(1500)
-sandro.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
+calo.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
 🕵🏻 *${NomeDoBot}* - BUSCAS
 ✅ CONSULTA REALIZADA ✅` }, {quoted: info })}
 try {
@@ -4178,9 +4178,9 @@ break
 case 'nome':
 if(!isGroup && !SoDono) return reply("*❌ ERRO: PLANO VENCIDO*\n\n*😎 RENOVE SEU PLANO PARA CONTINUAR USANDO TODAS AS MINHAS FUNCIONALIDADE*!\n\n*💬 ENTRE EM CONTATO AGORA COM NOSSO TIME DE ATENDIMENTO*!\n\n*📞 wa.me/5511973969910 - CORINGA 🎲*")
 if (!q) return reply("\n☑ 𝗖𝗢𝗡𝗦𝗨𝗟𝗧𝗔 NOME\n\n━━━━━━━━━━━━━━━━━━━━━\n\nConsulta Completa de NOME\n\nVeja abaixo um exemplo de como realizar a consulta:\n\n-nome pedro Henrique\n\n━━━━━━━━━━━━━━━━━━━━━")
-sandro.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
-consulta = await fetchJson(`https://pnsapis.online/api/busca/nome?query=${q}&apitoken=SANDRO_MD_PUXD`)
-await sandro.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
+calo.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
+consulta = await fetchJson(`https://pnsapis.online/api/busca/nome?query=${q}&apitoken=calo_MD_PUXD`)
+await calo.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
 contextInfo: {
 expiration: info.message[type].contextInfo?.expiration,
 mentionedJid: [from],
@@ -4190,7 +4190,7 @@ participant: info.key.participant, stanzaId: info.key.id, remoteJid: info.remote
 quotedMessage: info.message }}}, {})
 if (!q) {
 await sleep(1500)
-sandro.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
+calo.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
 🕵🏻 *${NomeDoBot}* - BUSCAS
 ✅ CONSULTA REALIZADA ✅` }, {quoted: info })}
 try {
@@ -4202,9 +4202,9 @@ break
 case 'cep':
 if(!isGroup && !SoDono) return reply("*❌ ERRO: PLANO VENCIDO*\n\n*😎 RENOVE SEU PLANO PARA CONTINUAR USANDO TODAS AS MINHAS FUNCIONALIDADE*!\n\n*💬 ENTRE EM CONTATO AGORA COM NOSSO TIME DE ATENDIMENTO*!\n\n*📞 wa.me/5511973969910 - CORINGA 🎲*")
 if (!q) return reply("\n☑ 𝗖𝗢𝗡𝗦𝗨𝗟𝗧𝗔 CEP\n\n━━━━━━━━━━━━━━━━━━━━━\n\nConsulta Completa de CEP\n\nVeja abaixo um exemplo de como realizar a consulta:\n\n-cep 01311200\n\n━━━━━━━━━━━━━━━━━━━━━")
-sandro.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
-consulta = await fetchJson(`https://pnsapis.online/api/busca/cep?query=${q}&apitoken=SANDRO_MD_PUXD`)
-await sandro.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
+calo.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
+consulta = await fetchJson(`https://pnsapis.online/api/busca/cep?query=${q}&apitoken=calo_MD_PUXD`)
+await calo.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
 contextInfo: {
 expiration: info.message[type].contextInfo?.expiration,
 mentionedJid: [from],
@@ -4214,7 +4214,7 @@ participant: info.key.participant, stanzaId: info.key.id, remoteJid: info.remote
 quotedMessage: info.message }}}, {})
 if (!q) {
 await sleep(1500)
-sandro.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
+calo.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
 🕵🏻 *${NomeDoBot}* - BUSCAS
 ✅ CONSULTA REALIZADA ✅` }, {quoted: info })}
 try {
@@ -4226,9 +4226,9 @@ break
 case 'telefone':
 if(!isGroup && !SoDono) return reply("*❌ ERRO: PLANO VENCIDO*\n\n*😎 RENOVE SEU PLANO PARA CONTINUAR USANDO TODAS AS MINHAS FUNCIONALIDADE*!\n\n*💬 ENTRE EM CONTATO AGORA COM NOSSO TIME DE ATENDIMENTO*!\n\n*📞 wa.me/5511973969910 - CORINGA 🎲*")
               if (!q) return reply("\n☑ CONSULTA TELEFONE\n\n━━━━━━━━━━━━━━━━━━━━━\n\nConsulta completa telefone.\n\nVeja abaixo um exemplo de como realizar a consulta:\n\n-telefone 19996101067\n\n━━━━━━━━━━━━━━━━━━━━━")
-sandro.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
-consulta = await fetchJson(`https://pnsapis.online/api/busca/telefone?query=${q}&apitoken=SANDRO_MD_PUXD`)
-await sandro.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
+calo.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
+consulta = await fetchJson(`https://pnsapis.online/api/busca/telefone?query=${q}&apitoken=calo_MD_PUXD`)
+await calo.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
 contextInfo: {
 expiration: info.message[type].contextInfo?.expiration,
 mentionedJid: [from],
@@ -4238,7 +4238,7 @@ participant: info.key.participant, stanzaId: info.key.id, remoteJid: info.remote
 quotedMessage: info.message }}}, {})
 if (!q) {
 await sleep(1500)
-sandro.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
+calo.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
 🕵🏻 *${NomeDoBot}* - BUSCAS
 ✅ CONSULTA REALIZADA ✅` }, {quoted: info })}
 try {
@@ -4250,9 +4250,9 @@ break
 case 'placa':
 if(!isGroup && !SoDono) return reply("*❌ ERRO: PLANO VENCIDO*\n\n*😎 RENOVE SEU PLANO PARA CONTINUAR USANDO TODAS AS MINHAS FUNCIONALIDADE*!\n\n*💬 ENTRE EM CONTATO AGORA COM NOSSO TIME DE ATENDIMENTO*!\n\n*📞 wa.me/5511973969910 - CORINGA 🎲*")
 if (!q) return reply("\n☑ 𝗖𝗢𝗡𝗦𝗨𝗟𝗧𝗔 PLACA\n\n━━━━━━━━━━━━━━━━━━━━━\n\nConsulta completa de placa.\n\nVeja abaixo um exemplo de como realizar a consulta:\n\n-placa abc1234\n\n━━━━━━━━━━━━━━━━━━━━━")
-sandro.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
-consulta = await fetchJson(`https://pnsapis.online/api/busca/placa?query=GLU3211&apitoken=SANDRO_MD_PUXD`)
-await sandro.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
+calo.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
+consulta = await fetchJson(`https://pnsapis.online/api/busca/placa?query=GLU3211&apitoken=calo_MD_PUXD`)
+await calo.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
 contextInfo: {
 expiration: info.message[type].contextInfo?.expiration,
 mentionedJid: [from],
@@ -4262,7 +4262,7 @@ participant: info.key.participant, stanzaId: info.key.id, remoteJid: info.remote
 quotedMessage: info.message }}}, {})
 if (!q) {
 await sleep(1500)
-sandro.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
+calo.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
 🕵🏻 *${NomeDoBot}* - BUSCAS
 ✅ CONSULTA REALIZADA ✅` }, {quoted: info })}
 try {
@@ -4274,9 +4274,9 @@ break
 case 'cnpj':
 if(!isGroup && !SoDono) return reply("*❌ ERRO: PLANO VENCIDO*\n\n*😎 RENOVE SEU PLANO PARA CONTINUAR USANDO TODAS AS MINHAS FUNCIONALIDADE*!\n\n*💬 ENTRE EM CONTATO AGORA COM NOSSO TIME DE ATENDIMENTO*!\n\n*📞 wa.me/5511973969910 - CORINGA 🎲*")
 if (!q) return reply("\n☑ 𝗖𝗢𝗡𝗦𝗨𝗟𝗧𝗔 CNPJ\n\n━━━━━━━━━━━━━━━━━━━━━\n\nConsulta completa de cnpj.\n\nVeja abaixo um exemplo de como realizar a consulta:\n\n-cnpj 10440482000154\n\n━━━━━━━━━━━━━━━━━━━━━")
-sandro.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
-consulta = await fetchJson(`https://pnsapis.online/api/busca/cnpj?query=${q}&apitoken=SANDRO_MD_PUXD`)
-await sandro.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
+calo.sendMessage(from, {text: `➠ Consultando : ${q}\n*🕵🏻 HASHIRO - BUSCAS*\n*⚠️ AGUARDE UM MOMENTO ⚠️*`}, {quoted: info })
+consulta = await fetchJson(`https://pnsapis.online/api/busca/cnpj?query=${q}&apitoken=calo_MD_PUXD`)
+await calo.relayMessage(from, {extendedTextMessage: {text: consulta.resultado + `\n\n• 𝐇𝐀𝐒𝐇𝐈𝐑𝐎 𝐁𝐎𝐓 𝐁𝐔𝐒𝐂𝐀𝐒`,
 contextInfo: {
 expiration: info.message[type].contextInfo?.expiration,
 mentionedJid: [from],
@@ -4286,7 +4286,7 @@ participant: info.key.participant, stanzaId: info.key.id, remoteJid: info.remote
 quotedMessage: info.message }}}, {})
 if (!q) {
 await sleep(1500)
-sandro.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
+calo.sendMessage(from, {text: `➠ A consulta foi enviado em seu privado.
 🕵🏻 *${NomeDoBot}* - BUSCAS
 ✅ CONSULTA REALIZADA ✅` }, {quoted: info })}
 try {
@@ -4332,7 +4332,7 @@ break
 case 'canalbot':
 reply(`_aqui o canal do meu criador_
 
-https://youtube.com/@sandro_mg1?si=DN_gv6NZDBp-x-t7`)
+https://youtube.com/@calo_mg1?si=DN_gv6NZDBp-x-t7`)
 break
 
 
@@ -4342,7 +4342,7 @@ case 'menulogos':
 try {
 const imagemUrl = fotobot; 
 const menuTexto = menulogos(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4353,7 +4353,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = semprefixo(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4366,7 +4366,7 @@ case 'efeitosmarcar':
 try {
 const imagemUrl = fotobot; 
 const menuTexto = efeitos(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4418,14 +4418,14 @@ Lrows.push({title: ` [🔹 𝐌𝐄𝐍𝐔 𝐏𝐑𝐈𝐍𝐂𝐈𝐏𝐀𝐋
 {title: `[🔹 𝐌𝐄𝐍𝐔 𝐀𝐃𝐌 𝐃𝐄𝐒𝐀𝐓𝐈𝐕𝐀𝐑 🔹]`, description: ` 𝘾𝙊𝙈𝘼𝙉𝘿𝙊𝙎 𝘿𝙀𝙎𝘼𝙏𝙄𝙑𝘼𝘾𝘼𝙊 𝘼𝘿𝙈`, id: `${prefix}menuadmb0`},
 {title: `[🔹 𝐂𝐎𝐌𝐔𝐍𝐈𝐃𝐀𝐃𝐄 🔹]`, description: `𝘾𝙊𝙈𝙐𝙉𝙄𝘿𝘼𝘿𝙀 𝘿𝙊 𝘾𝘼𝙉𝘼𝙇 𝙎𝘼𝙉𝘿𝙍𝙊 𝘽𝙊𝙏`, id: `${prefix}comunidade`},
 {title: `[🔹 𝐂𝐎𝐌𝐏𝐑𝐀𝐑 𝐁𝐎𝐓 🔹]`, description: `𝘾𝙊𝙈𝙋𝙍𝘼𝙍 𝘼𝙍𝙌𝙐𝙄𝙑𝙊 𝘿𝙊 𝘽𝙊𝙏 𝘿𝙀𝙎𝘾𝙍𝙄𝙋𝙏𝙊𝙂𝙍𝘼𝙁𝘼𝘿𝙊`, id: `${prefix}comprarbot`})
-sandro.sendInteractiveIMG('./database/data/media/images/menulist-image.jpg', from, `> 𝙊𝙇𝘼:${pushname}
+calo.sendInteractiveIMG('./database/data/media/images/menulist-image.jpg', from, `> 𝙊𝙇𝘼:${pushname}
 > 𝘿𝘼𝙏𝘼: ${date}
 > 𝙃𝙊𝙍𝘼: ${hora}
 > 𝙑𝙄𝙋: ${isChVip}`, `> 𝙎𝘼𝙉𝘿𝙍𝙊 𝙈𝘿`, {participant: sender, quotedMessage: info.message}, {buttons: [{name: "single_select", buttonParamsJson: JSON.stringify({title: "[ 🔹 𝙊𝙋𝙀𝙉 𝙈𝙀𝙉𝙐 🔹 ]", sections: [{title: `𝙎𝘼𝙉𝘿𝙍𝙊 𝙈𝘿`, highlight_label: "", rows: Lrows}]})}]});
 break*/
 
 case 'siteapi':
-reply(`https://sandroapi.shop/security`)
+reply(`https://caloapi.shop/security`)
 break
 
 case 'tutorial':
@@ -4446,7 +4446,7 @@ reply(`
 
 🎯 *Quer garantir o seu?*  
 Clique no link abaixo e fale diretamente comigo no WhatsApp!  
-👉 [*Compre Agora!*](https://wa.me/553195595444?text=Ola%20Sandro%2C%20quero%20comprar%20Seu%20Bot%F0%9F%98%83)
+👉 [*Compre Agora!*](https://wa.me/553195595444?text=Ola%20calo%2C%20quero%20comprar%20Seu%20Bot%F0%9F%98%83)
 
  _Não perca essa oportunidade de ter seu próprio bot completo!_
 `)
@@ -4458,7 +4458,7 @@ case 'menufigurinhas':
 try {
 const imagemUrl = fotobot; 
 const menuTexto = figurinhas(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4473,14 +4473,14 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = downloads(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
 break;
 /*
 case 'tutorial': case 'infobot':
-sandro.sendMessage(from, {text: getInfo.tutorialBasic(prefix), contextInfo: {externalAdReply: {title: `Bot: ${NomeDoBot}`, body: `Olá ${pushname}, aqui está o tutorial de como usar o bot.`, thumbnail: await getBuffer(thumbnail), mediaType: 1, sourceUrl: `https://yurimodz-apis.xyz`}}, mentions: [sender]}, {quoted: info}) 
+calo.sendMessage(from, {text: getInfo.tutorialBasic(prefix), contextInfo: {externalAdReply: {title: `Bot: ${NomeDoBot}`, body: `Olá ${pushname}, aqui está o tutorial de como usar o bot.`, thumbnail: await getBuffer(thumbnail), mediaType: 1, sourceUrl: `https://yurimodz-apis.xyz`}}, mentions: [sender]}, {quoted: info}) 
 break 
 */
 case 'criador': 
@@ -4496,21 +4496,21 @@ case 'suporte-dono':
         + `item1.X-ABLabel:📱 Celular\n`
         + `END:VCARD`;
     
-    await sandro.sendMessage(from, { 
+    await calo.sendMessage(from, { 
         contacts: { 
             displayName: '👑 ${NomeDoBot}', 
             contacts: [{vcard}]
         }
     });
 
-    await sandro.sendMessage(from, {
+    await calo.sendMessage(from, {
         text: `*🛡️ Fale diretamente com o criador!*\n\n📞 *Contato*: wa.me/+553195595444\n ele está à disposição!_`
     }, { quoted: info });
     
     break;
 
 case 'alteradores':
-sandro.sendMessage(from, {image: {url: fotobot}, caption: linguagem.alteradores(prefix, sender), mentions: [sender]}, {quoted: selo})
+calo.sendMessage(from, {image: {url: fotobot}, caption: linguagem.alteradores(prefix, sender), mentions: [sender]}, {quoted: selo})
 break 
 
 case 'brincadeiras':
@@ -4519,7 +4519,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = brincadeiras(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4530,7 +4530,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = menuprem(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4542,7 +4542,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = animes(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4555,7 +4555,7 @@ reagir(from, "💜")
 try {
 const imagemUrl = fotobot; 
 const menuTexto = nsfw(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -4582,14 +4582,14 @@ case 'alugar': {
         `𝙻𝙾𝙰𝙳𝙸𝙽𝙶 𝙲𝙾𝙼𝙿𝙻𝙴𝚃𝙴𝙳...`
     ];
 
-    let { key } = await sandro.sendMessage(from, {text: `${tempo} ${pushname}`}, {quoted: selo});
+    let { key } = await calo.sendMessage(from, {text: `${tempo} ${pushname}`}, {quoted: selo});
     await sleep(2000);
 
     for (let i = 0; i < download.length; i++) {
-        await sandro.sendMessage(from, {text: download[i], edit: key}, {quoted: selo});
+        await calo.sendMessage(from, {text: download[i], edit: key}, {quoted: selo});
     }
 
-    sandro.sendMessage(from, {
+    calo.sendMessage(from, {
         text: moneybot,
         contextInfo: {
             externalAdReply: {
@@ -4609,9 +4609,9 @@ case 'amador':
 if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { amador } = require("./Sandro18/AmadorVideo/Amador.js")
-var Sandro18 = amador[Math.floor(Math.random()*amador.length)]
-sandro.sendMessage(sender, {video: {url: Sandro18}, caption: `*🔞Vídeo Amador🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { amador } = require("./calo18/AmadorVideo/Amador.js")
+var calo18 = amador[Math.floor(Math.random()*amador.length)]
+calo.sendMessage(sender, {video: {url: calo18}, caption: `*🔞Vídeo Amador🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'porno':
@@ -4619,9 +4619,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { PornoVid } = require("./Sandro18/PornoVideo/PornoVid.js")
-var Sandro18 = PornoVid[Math.floor(Math.random()*PornoVid.length)]
-sandro.sendMessage(sender, {video: {url: Sandro18}, caption: `*🔞Pornô Vídeo🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { PornoVid } = require("./calo18/PornoVideo/PornoVid.js")
+var calo18 = PornoVid[Math.floor(Math.random()*PornoVid.length)]
+calo.sendMessage(sender, {video: {url: calo18}, caption: `*🔞Pornô Vídeo🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'egirlvideo':
@@ -4629,9 +4629,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { EgirlVid } = require("./Sandro18/EgirlVideo/EgirlVid.js")
-var Sandro18 = EgirlVid[Math.floor(Math.random()*EgirlVid.length)]
-sandro.sendMessage(sender, {video: {url: Sandro18}, caption: `*🔞Egirl Vídeo🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { EgirlVid } = require("./calo18/EgirlVideo/EgirlVid.js")
+var calo18 = EgirlVid[Math.floor(Math.random()*EgirlVid.length)]
+calo.sendMessage(sender, {video: {url: calo18}, caption: `*🔞Egirl Vídeo🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'aline':
@@ -4639,9 +4639,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Aline } = require("./Sandro18/AlineFaria/Aline.js")
-var Sandro18 = Aline[Math.floor(Math.random()*Aline.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Aline Faria🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Aline } = require("./calo18/AlineFaria/Aline.js")
+var calo18 = Aline[Math.floor(Math.random()*Aline.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Aline Faria🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'alifox':
@@ -4649,9 +4649,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { AlineFx } = require("./Sandro18/AlineFox/AlineFx.js")
-var Sandro18 = AlineFx[Math.floor(Math.random()*AlineFx.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Aline Fox🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { AlineFx } = require("./calo18/AlineFox/AlineFx.js")
+var calo18 = AlineFx[Math.floor(Math.random()*AlineFx.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Aline Fox🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
     
 case 'alycia':
@@ -4659,9 +4659,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Alycia } = require("./Sandro18/AlyciaRibeiro/Alycia.js")
-var Sandro18 = Alycia[Math.floor(Math.random()*Alycia.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Alycia Ribeiro🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Alycia } = require("./calo18/AlyciaRibeiro/Alycia.js")
+var calo18 = Alycia[Math.floor(Math.random()*Alycia.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Alycia Ribeiro🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'amichan':
@@ -4669,9 +4669,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Amiichan } = require("./Sandro18/Amiichan/Amiichan.js")
-var Sandro18 = Amiichan[Math.floor(Math.random()*Amiichan.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Amiichan🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Amiichan } = require("./calo18/Amiichan/Amiichan.js")
+var calo18 = Amiichan[Math.floor(Math.random()*Amiichan.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Amiichan🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'aninha':
@@ -4679,9 +4679,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Aninha } = require("./Sandro18/AninhaLopes/Aninha.js")
-var Sandro18 = Aninha[Math.floor(Math.random()*Aninha.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Aninha Lopes🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Aninha } = require("./calo18/AninhaLopes/Aninha.js")
+var calo18 = Aninha[Math.floor(Math.random()*Aninha.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Aninha Lopes🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
   
 case 'victoria':
@@ -4689,9 +4689,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Victoria } = require("./Sandro18/VictoriaMatoso/Victoria.js")
-var Sandro18 = Victoria[Math.floor(Math.random()*Victoria.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Victoria Matoso🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Victoria } = require("./calo18/VictoriaMatoso/Victoria.js")
+var calo18 = Victoria[Math.floor(Math.random()*Victoria.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Victoria Matoso🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'belle':
@@ -4699,9 +4699,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Belle } = require("./Sandro18/BelleDelphine/Belle.js")
-var Sandro18 = Belle[Math.floor(Math.random()*Belle.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Belle Delphine🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Belle } = require("./calo18/BelleDelphine/Belle.js")
+var calo18 = Belle[Math.floor(Math.random()*Belle.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Belle Delphine🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'brenda':
@@ -4709,9 +4709,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Brenda } = require("./Sandro18/BrendaTrindade/Brenda.js")
-var Sandro18 = Brenda[Math.floor(Math.random()*Brenda.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Brenda Trindade🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Brenda } = require("./calo18/BrendaTrindade/Brenda.js")
+var calo18 = Brenda[Math.floor(Math.random()*Brenda.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Brenda Trindade🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
   
 case 'cami':
@@ -4719,9 +4719,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Cami } = require("./Sandro18/CamiBrito/Cami.js")
-var Sandro18 = Cami[Math.floor(Math.random()*Cami.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Cami Brito🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Cami } = require("./calo18/CamiBrito/Cami.js")
+var calo18 = Cami[Math.floor(Math.random()*Cami.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Cami Brito🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
    
 case 'clowniac':
@@ -4729,9 +4729,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Clowniac } = require("./Sandro18/Clowniac/Clowniac.js")
-var Sandro18 = Clowniac[Math.floor(Math.random()*Clowniac.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Clowniac🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Clowniac } = require("./calo18/Clowniac/Clowniac.js")
+var calo18 = Clowniac[Math.floor(Math.random()*Clowniac.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Clowniac🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'feh':
@@ -4739,9 +4739,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Feh } = require("./Sandro18/FehGalvao/Feh.js")
-var Sandro18 = Feh[Math.floor(Math.random()*Feh.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Feh Galvão🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Feh } = require("./calo18/FehGalvao/Feh.js")
+var calo18 = Feh[Math.floor(Math.random()*Feh.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Feh Galvão🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
   
 case 'giovanna':
@@ -4749,9 +4749,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Giovanna } = require("./Sandro18/GiovannaCampomar/Giovanna.js")
-var Sandro18 = Giovanna[Math.floor(Math.random()*Giovanna.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Giovanna Campomar🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Giovanna } = require("./calo18/GiovannaCampomar/Giovanna.js")
+var calo18 = Giovanna[Math.floor(Math.random()*Giovanna.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Giovanna Campomar🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
         
 case 'isadora':
@@ -4759,9 +4759,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Isadora } = require("./Sandro18/IsadoraMartinez/Isadora.js")
-var Sandro18 = Isadora[Math.floor(Math.random()*Isadora.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Isadora Martinez🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Isadora } = require("./calo18/IsadoraMartinez/Isadora.js")
+var calo18 = Isadora[Math.floor(Math.random()*Isadora.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Isadora Martinez🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'isa':
@@ -4769,9 +4769,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Isa } = require("./Sandro18/IsaWaifu/Isa.js")
-var Sandro18 = Isa[Math.floor(Math.random()*Isa.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Isa Waifu🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Isa } = require("./calo18/IsaWaifu/Isa.js")
+var calo18 = Isa[Math.floor(Math.random()*Isa.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Isa Waifu🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'lay':
@@ -4779,9 +4779,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Lay } = require("./Sandro18/LayMuniz/Lay.js")
-var Sandro18 = Lay[Math.floor(Math.random()*Lay.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Lay Muniz🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Lay } = require("./calo18/LayMuniz/Lay.js")
+var calo18 = Lay[Math.floor(Math.random()*Lay.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Lay Muniz🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'leticia':
@@ -4789,9 +4789,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Leticia } = require("./Sandro18/LeticiaShirayuki/Leticia.js")
-var Sandro18 = Leticia[Math.floor(Math.random()*Leticia.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Letícia Shirayuki🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Leticia } = require("./calo18/LeticiaShirayuki/Leticia.js")
+var calo18 = Leticia[Math.floor(Math.random()*Leticia.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Letícia Shirayuki🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'marina':
@@ -4799,9 +4799,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Marina } = require("./Sandro18/MarinaMui/Marina.js")
-var Sandro18 = Marina[Math.floor(Math.random()*Marina.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Marina Mui🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Marina } = require("./calo18/MarinaMui/Marina.js")
+var calo18 = Marina[Math.floor(Math.random()*Marina.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Marina Mui🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
      
 case 'maru':
@@ -4809,9 +4809,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Maru } = require("./Sandro18/MaruKarv/Maru.js")
-var Sandro18 = Maru[Math.floor(Math.random()*Maru.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Maru Karv🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Maru } = require("./calo18/MaruKarv/Maru.js")
+var calo18 = Maru[Math.floor(Math.random()*Maru.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Maru Karv🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
     
 case 'princesa':
@@ -4819,9 +4819,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Princesa } = require("./Sandro18/McPrincesa/Princesa.js")
-var Sandro18 = Princesa[Math.floor(Math.random()*Princesa.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Mc Princesa🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Princesa } = require("./calo18/McPrincesa/Princesa.js")
+var calo18 = Princesa[Math.floor(Math.random()*Princesa.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Mc Princesa🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break   
      
 case 'meladinha':
@@ -4829,9 +4829,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Me1adinha } = require("./Sandro18/Meladinha/Meladinha.js")
-var Sandro18 = Me1adinha[Math.floor(Math.random()*Me1adinha.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Me1adinha🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Me1adinha } = require("./calo18/Meladinha/Meladinha.js")
+var calo18 = Me1adinha[Math.floor(Math.random()*Me1adinha.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Me1adinha🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'nath':
@@ -4839,9 +4839,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Nath } = require("./Sandro18/NathBister/Nath.js")
-var Sandro18 = Nath[Math.floor(Math.random()*Nath.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Nath🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Nath } = require("./calo18/NathBister/Nath.js")
+var calo18 = Nath[Math.floor(Math.random()*Nath.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Nath🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'nega':
@@ -4849,9 +4849,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Nega } = require("./Sandro18/NegaBarbie/Nega.js")
-var Sandro18 = Nega[Math.floor(Math.random()*Nega.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Nega Barbie🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Nega } = require("./calo18/NegaBarbie/Nega.js")
+var calo18 = Nega[Math.floor(Math.random()*Nega.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Nega Barbie🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
        
 case 'polonesa':
@@ -4859,9 +4859,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Polonesa } = require("./Sandro18/PolonesaDoHype/Polonesa.js")
-var Sandro18 = Polonesa[Math.floor(Math.random()*Polonesa.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Polonesa Do Hype🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Polonesa } = require("./calo18/PolonesaDoHype/Polonesa.js")
+var calo18 = Polonesa[Math.floor(Math.random()*Polonesa.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Polonesa Do Hype🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
         
 case 'rute':
@@ -4869,9 +4869,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Rute } = require("./Sandro18/RuteRocha/Rute.js")
-var Sandro18 = Rute[Math.floor(Math.random()*Rute.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Rute Rocha🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Rute } = require("./calo18/RuteRocha/Rute.js")
+var calo18 = Rute[Math.floor(Math.random()*Rute.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Rute Rocha🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
         
 case 'celestine':
@@ -4879,9 +4879,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Celestine } = require("./Sandro18/VitaCelestine/Celestine.js")
-var Sandro18 = Celestine[Math.floor(Math.random()*Celestine.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Vita Celestine🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Celestine } = require("./calo18/VitaCelestine/Celestine.js")
+var calo18 = Celestine[Math.floor(Math.random()*Celestine.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Vita Celestine🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
      
 case 'carnie':
@@ -4889,9 +4889,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { Carniello } = require("./Sandro18/Carniello/Carniello.js")
-var Sandro18 = Carniello[Math.floor(Math.random()*Carniello.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Carniello🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { Carniello } = require("./calo18/Carniello/Carniello.js")
+var calo18 = Carniello[Math.floor(Math.random()*Carniello.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Carniello🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
         
 case 'gotica':
@@ -4899,9 +4899,9 @@ if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado p
 if(!isPremium) return reply(enviar.msg.premium)
 reagir(from, "😈")
 reply(`${isGroup ? "*ENVIANDO NO Privado...😈*" : "Enviando"} `)
-const { GoticaFT } = require("./Sandro18/GoticaFoto/Gotica.js")
-var Sandro18 = GoticaFT[Math.floor(Math.random()*GoticaFT.length)]
-sandro.sendMessage(sender, {image: {url: Sandro18}, caption: `*🔞Gótica Foto🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
+const { GoticaFT } = require("./calo18/GoticaFoto/Gotica.js")
+var calo18 = GoticaFT[Math.floor(Math.random()*GoticaFT.length)]
+calo.sendMessage(sender, {image: {url: calo18}, caption: `*🔞Gótica Foto🔞*\n*Bot: ${NomeDoBot} Dono ${NickDono}*`}, {quoted: info})
 break
 
 case 'ranklixo':
@@ -5373,7 +5373,7 @@ let buffer = Buffer.from(base64String, 'base64');
 let formData = new FormData();
 formData.append('file', buffer, {filename: isQuotedAudio ? 'audiofile': 'videofile', contentType: muk.mimetype });
 
-fetch(`https://api.bronxyshost.com.br/transcrever?apikey=${API_SANDRO_MD}`, {
+fetch(`https://api.bronxyshost.com.br/transcrever?apikey=${API_calo_MD}`, {
 method: 'POST',
 body: formData
 }).then(response => response.json())
@@ -5393,11 +5393,11 @@ case 'dono':
   try {
     const imagemUrl = fotobot; 
     const dptr = `
-DONO E CRIADOR: SANDRO😍😁
+DONO E CRIADOR: calo😍😁
 > ${NomeDoBot}`;
 
     // Envia o desafio com a imagem para o usuário
-    sandro.sendMessage(from, { image: { url: imagemUrl }, caption: dptr }, { quoted: selo });
+    calo.sendMessage(from, { image: { url: imagemUrl }, caption: dptr }, { quoted: selo });
   } catch (e) {
     console.log("Erro no comando 'desafio':", e);
   }
@@ -5582,9 +5582,9 @@ var [emj1, emj2] = q.trim().split("+")
 if(!q.includes("+")) return reply(`Olá, está faltando o +\nExemplo: ${prefix+command} 👿+😇`)
 try {
 reply(Res_Aguarde)
-sendStickerFromUrl(from, `https://api.bronxyshost.com.br/api-bronxys/emojimix?emoj=${encodeURI(emj1)}&emoj2=${encodeURI(emj2)}&apikey=${API_SANDRO_MD}`)
+sendStickerFromUrl(from, `https://api.bronxyshost.com.br/api-bronxys/emojimix?emoj=${encodeURI(emj1)}&emoj2=${encodeURI(emj2)}&apikey=${API_calo_MD}`)
 } catch (e) {
-if(JSON.stringify(e).includes(API_SANDRO_MD)) {
+if(JSON.stringify(e).includes(API_calo_MD)) {
 return console.log("A api caiu ou não foi possivel executar esta ação., espere retornar")
 } else {
 reply('*Ops não foi possivel fazer esse mix de emoji / Ou ocorreu algum problema no sistema..*')
@@ -5592,7 +5592,7 @@ reply('*Ops não foi possivel fazer esse mix de emoji / Ou ocorreu algum problem
 }
 break
 
-case 'hentai': { // Sandro bot
+case 'hentai': { // calo bot
     try {
         if (!isNsfw && isGroup) 
             return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`);
@@ -5625,13 +5625,13 @@ case 'hentai': { // Sandro bot
         // Gera informações aleatórias
         const randomName = `Nome_${Math.floor(Math.random() * 100)}`;
         const randomLikes = Math.floor(Math.random() * 1000);
-        const randomEmail = `sandromd${Math.floor(Math.random() * 100)}@exemplo.com`;
+        const randomEmail = `calomd${Math.floor(Math.random() * 100)}@exemplo.com`;
 
         // Monta o texto com as informações
         const infoText = `Nome: ${randomName}\nLikes: ${randomLikes}\nEmail: ${randomEmail}`;
 
         // Envia a imagem com o texto
-        await sandro.sendMessage(sender, { 
+        await calo.sendMessage(sender, { 
             image: imageBuffer, 
             caption: `${infoText}\n\nAqui está a sua imagem.` 
         }, { quoted: info });
@@ -5655,8 +5655,8 @@ case 'plaq8':
 try {
 if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o modonsfw ativo, fale com um administrador ou se voce for um apenas digite: .modonsfw 1.')
 reply(`Enviando no PV... caso demore de mais nao consegui te enviar `)
-buffer = await getBuffer(`http://br1.bronxyshost.com:4360/api/${command}?texto=${q}&apikey=${SANDRO_MD}`)
-sandro.sendMessage(sender, {image: buffer, caption: `Ola aqui esta sua plaquinha 😈`}, {quoted: info})
+buffer = await getBuffer(`http://br1.bronxyshost.com:4360/api/${command}?texto=${q}&apikey=${calo_MD}`)
+calo.sendMessage(sender, {image: buffer, caption: `Ola aqui esta sua plaquinha 😈`}, {quoted: info})
 } catch {
 reply(`Erro`)
 } 
@@ -5667,7 +5667,7 @@ try {
 if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o modonsfw ativo, fale com um administrador ou se voce for um apenas digite: .modonsfw 1.')
 reply('*Estou fazendo... *')
 buffer = await getBuffer(`https://rsymenti.sirv.com/images%20(10).jpeg?text.0.text=${q}&text.0.position.gravity=south&text.0.position.x=4%25&text.0.position.y=-32%25&text.0.align=left&text.0.size=34&text.0.color=000000&text.0.opacity=78&text.0.background.opacity=78&text.0.outline.blur=72&text.0.outline.opacity=74`)
-sandro.sendMessage(sender, {image: buffer, caption: `Ola aqui esta sua plaquinha 😈`}, {quoted: info})
+calo.sendMessage(sender, {image: buffer, caption: `Ola aqui esta sua plaquinha 😈`}, {quoted: info})
 } catch {
 reply(`Erro`)
 } 
@@ -5678,19 +5678,19 @@ try {
 if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o modonsfw ativo, fale com um administrador ou se voce for um apenas digite: .modonsfw 1.')
 reply('*Estou fazendo... *')
 buffer = await getBuffer(`https://carisys.online/api/plaq5?q=Carisys`)
-sandro.sendMessage(sender, {image: buffer, caption: `Ola aqui esta sua plaquinha 😈`}, {quoted: info})
+calo.sendMessage(sender, {image: buffer, caption: `Ola aqui esta sua plaquinha 😈`}, {quoted: info})
 } catch {
 reply(`Erro`)
 } 
 break
 
 case 'configurar-bot':
-sandro.sendMessage(from, {text: getInfo.configbot(prefix)}, {quoted: selo})
+calo.sendMessage(from, {text: getInfo.configbot(prefix)}, {quoted: selo})
 break
 
 
 case 'destrava':
-sandro.sendMessage(from, {text: destrava(prefix)}, {quoted: selo})
+calo.sendMessage(from, {text: destrava(prefix)}, {quoted: selo})
 break 
 
 case 'perfil':
@@ -5766,7 +5766,7 @@ case 'perfil':
 > ${NomeDoBot}`;
 
     // Envio do texto com a imagem
-    sandro.sendMessage(from, { text: dptr }, { quoted: selo });
+    calo.sendMessage(from, { text: dptr }, { quoted: selo });
     
   } catch (e) {
     console.log("Erro no comando 'perfil':", e);
@@ -5851,8 +5851,8 @@ case 'perfilff':
 
 > ${NomeDoBot}`;
 
-    // Envio do texto com a imagem (substitua `sandro` pela função de envio do seu bot)
-    sandro.sendMessage(from, { text: perfilFF }, { quoted: selo });
+    // Envio do texto com a imagem (substitua `calo` pela função de envio do seu bot)
+    calo.sendMessage(from, { text: perfilFF }, { quoted: selo });
     
   } catch (e) {
     console.log("Erro no comando 'perfil':", e);
@@ -5902,7 +5902,7 @@ case 'perfil':
 > ${NomeDoBot}`;
 
     // Envio do texto com as informações de futebol
-    sandro.sendMessage(from, { text: dptr }, { quoted: selo });
+    calo.sendMessage(from, { text: dptr }, { quoted: selo });
     
   } catch (e) {
     console.log("Erro no comando 'perfil':", e);
@@ -5970,7 +5970,7 @@ case 'perfiljogo':
 > ${NomeDoBot}`;
 
     // Envio do texto com as informações de futebol
-    sandro.sendMessage(from, { text: dptr }, { quoted: selo });
+    calo.sendMessage(from, { text: dptr }, { quoted: selo });
     
   } catch (e) {
     console.log("Erro no comando 'perfiljogo':", e);
@@ -6020,18 +6020,18 @@ ${desafioPesadoSelecionado}
 > ${NomeDoBot}`;
 
     // Envia o desafio com a imagem para o usuário
-    sandro.sendMessage(from, { image: { url: imagemUrl }, caption: dptr }, { quoted: selo });
+    calo.sendMessage(from, { image: { url: imagemUrl }, caption: dptr }, { quoted: selo });
   } catch (e) {
     console.log("Erro no comando 'desafio':", e);
   }
   break;
   
 case 'tabela':
-sandro.sendMessage(from, {text: tabela(prefix, NomeDoBot)}, {quoted: selo})
+calo.sendMessage(from, {text: tabela(prefix, NomeDoBot)}, {quoted: selo})
 break 
 
 case 'destrava2':
-sandro.sendMessage(from, {text: destrava2 (prefix)}, {quoted: selo})
+calo.sendMessage(from, {text: destrava2 (prefix)}, {quoted: selo})
 break 
 
 case 'tradutor': case 'traduzir':
@@ -6040,12 +6040,12 @@ if(!q) return reply(`Exemplo: ${prefix}tradutor pt|Dog`)
 txt = q.replace(" |", "|").replace("| ", "|").replace(" | ", "|")
 var [idioma, texto] = txt.split("|")
 if(!q.includes("|")) return reply(`Está faltando a |, *use como exemplo:* ${prefix}tradutor pt|Dog`)
-bla = await fetchJson(`https://yurimodz-apis.xyz/api/info/translate?texto=${encodeURI(texto)}&ling=${encodeURI(idioma)}&apikey=${SANDRO_MD_BOT}`)
+bla = await fetchJson(`https://yurimodz-apis.xyz/api/info/translate?texto=${encodeURI(texto)}&ling=${encodeURI(idioma)}&apikey=${calo_MD_BOT}`)
 reply(mess.translator(bla)).catch(e => {
 reply("Ocorreu um erro ao realizar a tradução do texto.")
 })
 } catch (e) {
-if(String(e).includes(`${SANDRO_MD_BOT}`)) {
+if(String(e).includes(`${calo_MD_BOT}`)) {
 console.log("A api caiu ou não foi possivel executar esta ação., espere retornar.")   
 }
 }
@@ -6053,13 +6053,13 @@ break
 
 case 'idiomas':
 case 'idioma':
-sandro.sendMessage(from, {text: getInfo.listLanguages(prefix)}, {quoted: selo})
+calo.sendMessage(from, {text: getInfo.listLanguages(prefix)}, {quoted: selo})
 break
 
 case 'infobv':
 case 'infowelcome':
 case 'infobemvindo':
-sandro.sendMessage(from, {text: getInfo.bemvindo(prefix)}, {quoted: selo})
+calo.sendMessage(from, {text: getInfo.bemvindo(prefix)}, {quoted: selo})
 break
 
 case 'getquoted':
@@ -6079,7 +6079,7 @@ cp2 = `${Math.floor(Math.random() * 300) + 600}`
 cp3 = `${Math.floor(Math.random() * 300) + 600}`
 cp4 = `${Math.floor(Math.random() * 30) + 60}`
 cpf = `${cp1}.${cp2}.${cp3}-${cp4}`
-sandro.sendMessage(from, {text: `CPF gerado com sucesso : ${cpf}`}, {quoted: selo})
+calo.sendMessage(from, {text: `CPF gerado com sucesso : ${cpf}`}, {quoted: selo})
 break
 
 case 'ddd':
@@ -6103,7 +6103,7 @@ case 'ddd':
     });
 
     // Enviando a lista de cidades para o usuário
-    sandro.sendMessage(from, { text: dddList }, { quoted: selo });
+    calo.sendMessage(from, { text: dddList }, { quoted: selo });
   } catch (error) {
     console.error(error);
     reply('Ocorreu um erro ao buscar as informações do DDD. Tente novamente mais tarde.');
@@ -6136,7 +6136,7 @@ case 'cep44':
     `;
 
     // Enviando a resposta com o CEP encontrado
-    sandro.sendMessage(from, { text: cepInfo }, { quoted: selo });
+    calo.sendMessage(from, { text: cepInfo }, { quoted: selo });
   } catch (error) {
     console.error(error);
     reply('Ocorreu um erro ao buscar o CEP. Tente novamente mais tarde.');
@@ -6253,8 +6253,8 @@ if(!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 blat = args.join(" ")
-sandro.groupUpdateSubject(from, `${blat}`)
-sandro.sendMessage(from, {text: 'Sucesso, alterou o nome do grupo'}, {quoted: selo})
+calo.groupUpdateSubject(from, `${blat}`)
+calo.sendMessage(from, {text: 'Sucesso, alterou o nome do grupo'}, {quoted: selo})
 break
 
 case 'descgp':
@@ -6263,8 +6263,8 @@ if(!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.adm)
 blabla = args.join(" ")
-sandro.groupUpdateDescription(from, `${blabla}`)
-sandro.sendMessage(from, {text: 'Sucesso, alterou a descrição do grupo'}, {quoted: selo})
+calo.groupUpdateDescription(from, `${blabla}`)
+calo.sendMessage(from, {text: 'Sucesso, alterou a descrição do grupo'}, {quoted: selo})
 break
 
 case 'requestgp':
@@ -6272,12 +6272,12 @@ if(!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 if(!q) return reply(mess.syntaxRequestProhibited(prefix))
-const req = await sandro.groupRequestParticipantsList(from)
+const req = await calo.groupRequestParticipantsList(from)
 if (args[0] === '-r') {
-await sandro.groupRequestParticipantsUpdate(from, [args[1].split(' ')[0]+"@s.whatsapp.net"], "reject")
+await calo.groupRequestParticipantsUpdate(from, [args[1].split(' ')[0]+"@s.whatsapp.net"], "reject")
 } else if (args[0] === '-a') {
 mentionSemQuoted(`Seja bem-vindo(a) ao grupo @${args[1].split(' ')[0]}, sua aprovação foi aceita pelo administrador(a).`)
-await sandro.groupRequestParticipantsUpdate(from, [args[1].split(' ')[0]+"@s.whatsapp.net"], "approve")
+await calo.groupRequestParticipantsUpdate(from, [args[1].split(' ')[0]+"@s.whatsapp.net"], "approve")
 } else if (args[0] === '-list') {
 let totalRequest = req.length
 if (req == 0) return reply(`Não encontrei nenhuma solicitação pendente no grupo.`)
@@ -6301,7 +6301,7 @@ rane = getRandom('.'+await getExtension(ftgp.mimetype))
 buffimg = await getFileBuffer(ftgp, 'image')
 fs.writeFileSync(rane, buffimg)
 medipp = rane 
-sandro.updateProfilePicture(from, {url: medipp})
+calo.updateProfilePicture(from, {url: medipp})
 reply(`Foto do grupo alterada com sucesso`) 
 break
 
@@ -6310,7 +6310,7 @@ case 'linkgroup':
 if(!isGroup) return reply('so em grupo')
 if(!isGroupAdmins) return reply('vc nao e adm')
 if(!isBotGroupAdmins) return reply('bot precisa ser adm')
-linkgc = await sandro.groupInviteCode(from)
+linkgc = await calo.groupInviteCode(from)
 reply('https://chat.whatsapp.com/'+linkgc)
 break
 
@@ -6320,13 +6320,13 @@ if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 if(!q) return reply("Cadê o número do usuário que você deseja convidar.")
 try {
-photoG = await sandro.profilePictureUrl(from, 'image') // Pegar a foto do grupo aonde foi solicitado o comando de recrutamento.
+photoG = await calo.profilePictureUrl(from, 'image') // Pegar a foto do grupo aonde foi solicitado o comando de recrutamento.
 } catch {
 photoG = thumbnail // Vai colocar a img que está na definição, caso esteja sem foto.
 }
 rcrt = q.replace(new RegExp("[()+-/ +/]", "gi"), "") + `@s.whatsapp.net`
-linkgc = await sandro.groupInviteCode(from)
-sandro.sendMessage(rcrt, {text: "*Olá, tudo bem?* Você foi convidado(a) pelo(a) adminstrador(a) do grupo.\nPara entrar no grupo, clique acima!", contextInfo: {externalAdReply: {title: "Clique aqui para participar do grupo.", thumbnail: await getBuffer(photoG), mediaType: 1, sourceUrl: "https://chat.whatsapp.com/"+linkgc}}})
+linkgc = await calo.groupInviteCode(from)
+calo.sendMessage(rcrt, {text: "*Olá, tudo bem?* Você foi convidado(a) pelo(a) adminstrador(a) do grupo.\nPara entrar no grupo, clique acima!", contextInfo: {externalAdReply: {title: "Clique aqui para participar do grupo.", thumbnail: await getBuffer(photoG), mediaType: 1, sourceUrl: "https://chat.whatsapp.com/"+linkgc}}})
 reply("Convite de recrutamento do usuário, foi enviado para o privado dele com sucesso...")
 break
 
@@ -6411,7 +6411,7 @@ var DFC = aud_d
 aud_d.audio = {url: aud_d.url}
 }
 for (i = 0; i < rgp.length; i++) {
-sandro.sendMessage(rgp[i].id, DFC)}
+calo.sendMessage(rgp[i].id, DFC)}
 break
 
 case 'grupo':
@@ -6421,11 +6421,11 @@ if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 if(args[0] === 'a') {
 setTimeout(() => {reagir(from, "🔓")}, 300)
 await reply(`😁 - Certo meu consagrado humano, vou abrir o grupo...`)
-sandro.groupSettingUpdate(from, 'not_announcement')
+calo.groupSettingUpdate(from, 'not_announcement')
 } else if(args[0] === 'f') {
 setTimeout(() => {reagir(from, "🔐")}, 300)
 await reply(`😁 - Certo meu consagrado humano, vou fechar o grupo...`)
-sandro.groupSettingUpdate(from, 'announcement')
+calo.groupSettingUpdate(from, 'announcement')
 }				 
 break
 
@@ -6433,8 +6433,8 @@ case 'infogp':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
-const metadata = await sandro.groupMetadata(from);
-var puxarInfo = await sandro.groupMetadata(from);
+const metadata = await calo.groupMetadata(from);
+var puxarInfo = await calo.groupMetadata(from);
 var ANC_INFO = puxarInfo.announce;
 var returnAnnounce = ANC_INFO === false ? "Não." : ANC_INFO === true ? "Sim." : undefined;
 var RST_INFO = puxarInfo.restrict;
@@ -6444,7 +6444,7 @@ var infoCreator = puxarInfo.subjectOwner;
 // URL da imagem (substitua pelo link da imagem desejada)
 const imageURL = fotobot;
 
-sandro.sendMessage(from, {
+calo.sendMessage(from, {
     image: { url: imageURL }, // Adiciona a imagem através do link
     caption: `*_🏷️ Nome do Grupo:_* *${puxarInfo.subject}*\n• ID: *${puxarInfo.id}*\n-\n*_👑 Este grupo foi criado por:_* *@${infoCreator.replace("@s.whatsapp.net", "")}*\n*_📆 Data/hora de criação do grupo:_* *${moment(`${puxarInfo.creation}` * 1000).tz('America/Sao_Paulo').format('DD/MM/YYYY HH:mm:ss')}*\n• Horário e data da última alteração no grupo: *${moment(`${puxarInfo.subjectTime}` * 1000).format('DD/MM/YYYY HH:mm:ss')}*\n-\n*_🔰 Quantidade de administradores:_* *${groupAdmins.length}*\n*_👥Quantidade de membros:_* *${somembros.length}*\n*_🌐 Soma total de membros e admins do grupo:_* *${puxarInfo.participants.length} participantes*\n-\n*_🔐 Este grupo está fechado no momento?_* *${returnAnnounce}*\n*_🧑‍💻 As informações do grupo podem ser alteradas por membros?_* *${returnRestrict}*\n-\n*_🖥️ Para ver as atividades dos participantes, use:_* *${prefix}atividade*\n*_😴 Para ver os membros inativos no grupo, use:_* *${prefix}inativos [quantidade de mensagens], ex:* ${prefix}inativos 10`,
 }, { quoted: info });
@@ -6513,7 +6513,7 @@ if (pink && !aud_d && !purple) {
     aud_d.ptt = true
 }
 
-sandro.sendMessage(from, DFC).catch(e => {
+calo.sendMessage(from, DFC).catch(e => {
     console.log(e)
 })
 break
@@ -6553,7 +6553,7 @@ if(!isModobn) return reply(mess.warningMB(prefix))
             const randomFromArray = (array) => array[Math.floor(Math.random() * array.length)];
             
             /** Pega a imagem */
-            const getProfileUrl = await sandro.profilePictureUrl(mentionMessage, 'image').catch(() => "https://telegra.ph/file/b5427ea4b8701bc47e751.jpg");
+            const getProfileUrl = await calo.profilePictureUrl(mentionMessage, 'image').catch(() => "https://telegra.ph/file/b5427ea4b8701bc47e751.jpg");
             
             /** Pode add mais... */
             const types = {
@@ -6579,7 +6579,7 @@ if(!isModobn) return reply(mess.warningMB(prefix))
             
             /** Retonarndo resultado akkaka */
             const b = getResults();
-            await sandro.sendMessage(from, {
+            await calo.sendMessage(from, {
                 image: {
                     url: getProfileUrl,
                 }, 
@@ -6629,7 +6629,7 @@ for (let mem of groupMembers) {
 teks += `╠➥ https://wa.me/${mem.id.split('@')[0]}\n`
 members_id.push(mem.id)
 }
-sandro.sendMessage(from, {text: teks}, {quoted: selo})
+calo.sendMessage(from, {text: teks}, {quoted: selo})
 } catch {
 reply('Erro ao mencionar.')
 }
@@ -6649,7 +6649,7 @@ break
 case 'ptvmsg':
 if (!isQuotedVideo && !info.message.videoMessage) {
 return reply('Marque um vídeo/gif que você deseja converter para mensagem de vídeo.')}
-sandro.relayMessage(from, {ptvMessage: isQuotedVideo ? info.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage : info.message.videoMessage }, {})
+calo.relayMessage(from, {ptvMessage: isQuotedVideo ? info.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage : info.message.videoMessage }, {})
 break
 
 case 'reviver':
@@ -6659,7 +6659,7 @@ if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 if(info.message.extendedTextMessage === undefined || info.message.extendedTextMessage === null) return reply('Marque uma mensagem do alvo!')
 sleep(5000)
-response2 = await sandro.groupParticipantsUpdate(from, [menc_prt], "add" )
+response2 = await calo.groupParticipantsUpdate(from, [menc_prt], "add" )
 reply('Usuario adicionado de volta ao grupo.')
 break
 
@@ -6672,7 +6672,7 @@ reply(`Ok ${pushname}
 Olá, pessoal! Estou saindo do grupo, pois o aluguel venceu. Caso alguém queira fazer uma nova contratação, é só chamar no privado. Agradeço a todos e até mais!`)
 await delay(1000)
 try {
-await sandro.groupLeave(from)
+await calo.groupLeave(from)
 } catch(e) {
 console.log(e)
 reply(`Erro`)
@@ -6684,14 +6684,14 @@ case 'seradm':
 if(!SoDono && !isnit) return reply("⚒️ Só o dono pode executar este comando.")
 await sleep(1000)
 mentions(`@${sender.split("@")[0]} Pronto - Agora você é um administrador...`, [sender], true)
-sandro.groupParticipantsUpdate(from, [sender], "promote")
+calo.groupParticipantsUpdate(from, [sender], "promote")
 break
 
 case 'sermembro':
 if(!SoDono && !isnit) return reply("⚒️ Só o dono pode executar este comando.")
 await sleep(1000)
 mentions(`@${sender.split("@")[0]} Pronto - Agora você é um membro comum novamente..`, [sender], true)
-sandro.groupParticipantsUpdate(from, [sender], "demote")
+calo.groupParticipantsUpdate(from, [sender], "demote")
 break
 
 case 'advertir':
@@ -6711,9 +6711,9 @@ if(!JSON.stringify(ADVT).includes(sender)) {
 await sleep(1500); mentions(dfntxt, [menc_os2])
 } else if(dfqn == 2) {
 await sleep(1500); mentions(dfntxt, [menc_os2])
-}} else {sandro.sendMessage(from, {text: mess.finishAdvertencia(menc_os2), mentions: [menc_os2]})
+}} else {calo.sendMessage(from, {text: mess.finishAdvertencia(menc_os2), mentions: [menc_os2]})
 await sleep(1500)
-sandro.groupParticipantsUpdate(from, [menc_os2], "remove")
+calo.groupParticipantsUpdate(from, [menc_os2], "remove")
 var i = ADVT.indexOf(menc_os2); ADVT.splice(i, 3); setGp(dataGp)}}, 3000)
 break
 
@@ -6733,13 +6733,13 @@ break
 case 'sairdogp':
 if(!SoDono)return reply(enviar.msg.donosmt)  
 if(!q) return reply(`Você deve visualizar o comando ${prefix}listagp e olhar de qual o grupo quer sair, e veja a numeração dele, e só digitar\nExemplo: ${prefix}sairdogp 0\nesse comando é para o bot sair do grupo que deseja..`)
-var getGroups = await sandro.groupFetchAllParticipating()
+var getGroups = await calo.groupFetchAllParticipating()
 var groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 var ingfoo = groups.map(v => v)
 try {
-sandro.sendMessage(ingfoo[q].id, {text: "Irei sair do grupo, por ordem do meu dono, adeus..."}) 
+calo.sendMessage(ingfoo[q].id, {text: "Irei sair do grupo, por ordem do meu dono, adeus..."}) 
 setTimeout(() => {
-sandro.groupLeave(ingfoo[q].id)
+calo.groupLeave(ingfoo[q].id)
 }, 5000)
 } catch(erro) {
 reply(String(erro))
@@ -6750,7 +6750,7 @@ break
 case "aptoide":
 if(!q.trim()) return reply("Exemplo: WhatsApp")
 try {
-abc = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/aptoide_pesquisa?pesquisa=${q.trim()}&apikey=${API_SANDRO_MD}`)
+abc = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/aptoide_pesquisa?pesquisa=${q.trim()}&apikey=${API_calo_MD}`)
 reply(abc.aptoide)
 } catch (e) {
 console.log(e)
@@ -6762,8 +6762,8 @@ case "aptoidelink":
 if(!q.trim().includes("aptoide.com")) return reply(`Exemplo: ${prefix+command} link do aptoide.`)
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 try {
-abc = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/aptoide?url=${q.trim()}&apikey=${API_SANDRO_MD}`)
-sandro.sendMessage(from, {document: {url: abc.link}, mimetype: "application/vnd.android.package-archive", fileName: abc.titulo}, {quoted: info}).catch((e) => console.log(e))
+abc = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/aptoide?url=${q.trim()}&apikey=${API_calo_MD}`)
+calo.sendMessage(from, {document: {url: abc.link}, mimetype: "application/vnd.android.package-archive", fileName: abc.titulo}, {quoted: info}).catch((e) => console.log(e))
 } catch (e) {
 console.log(e)
 return reply("Erro...")
@@ -6772,15 +6772,15 @@ break;
 
 case 'listagp':
 if(!SoDono && !isnit && !info.key.fromMe) return reply('```SOMENTE MEU DONO LINDÃO```')
-var getGroups = await sandro.groupFetchAllParticipating()
+var getGroups = await calo.groupFetchAllParticipating()
 var groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 var ingfoo = groups.map(v => v)
 ingfoo.sort((a, b) => (a[0] < b.length))
 teks1 = `LISTA DE GRUPOS / COMUNIDADES\n*Total de Grupos:* ${ingfoo.length}\n-\n`
 for (let i = 0; i < ingfoo.length; i++){
-var metadt = await sandro.groupMetadata(ingfoo[i].id) 
+var metadt = await calo.groupMetadata(ingfoo[i].id) 
 try {
-var linkdogp = await sandro.groupInviteCode(ingfoo[i].id)
+var linkdogp = await calo.groupInviteCode(ingfoo[i].id)
 } catch {
 var linkdogp = "Não foi possivel puxar o link."
 }
@@ -6881,7 +6881,7 @@ blue.push(i.id)}
 if(blue.length == 0) return reply(`Não tem mais pessoas com ${q.trim()} mensagem(ns) para eu remover..`)
 for ( i = 0; i < blue.length; i++) {
 await sleep(1000)
-sandro.groupParticipantsUpdate(from, [blue[i]], "remove")}
+calo.groupParticipantsUpdate(from, [blue[i]], "remove")}
 break
 
 case 'correio':
@@ -6891,11 +6891,11 @@ let txt1 = txt.split("/")[0].replace(/\D/g,'');
 let txt2 = txt.split("/")[1];
 if(!txt1) return reply('*Cadê o número do destinatário?*')
 if(!txt2) return reply('*Cadê a mensagem para ser enviada ao destinatário?*')
-let [result] = await sandro.onWhatsApp(txt1)
+let [result] = await calo.onWhatsApp(txt1)
 if(!result) return reply(`O número fornecido está indisponível no WhatsApp! Verifique por favor.`)
 setTimeout(() => {reagir(from, "💌️")}, 50)
 reply(mess.sucessAnonymousMail())
-sandro.sendMessage(result.jid, {text: mess.anonymousMail(txt2)}).catch((error) => {
+calo.sendMessage(result.jid, {text: mess.anonymousMail(txt2)}).catch((error) => {
 return reply("Error ao encaminhar a mensagem, tente novamente mais tarde!")
 })
 break
@@ -7053,13 +7053,13 @@ if(!SoDono) return reply(enviar.msg.donosmt)
 if (!q) return reply(mess.syntaxPrivatePhotoBot(prefix))
 if (args[0] === 'all') {
 reply(`- A minha foto do perfil agora está visível à todos.`)
-await sandro.updateProfilePicturePrivacy('all')
+await calo.updateProfilePicturePrivacy('all')
 } else if (args[0] === 'cntt') {
 reply(`- A minha foto do perfil agora está visível somente aos meus contatos.`)
-await sandro.updateProfilePicturePrivacy('contacts')
+await calo.updateProfilePicturePrivacy('contacts')
 } else if (args[0] === 'ngm') {
 reply(`- A foto do meu perfil está privada a todos, até mesmo ao senhor mestre.`)
-await sandro.updateProfilePicturePrivacy('none')
+await calo.updateProfilePicturePrivacy('none')
 }
 }
 break
@@ -7069,13 +7069,13 @@ if(!SoDono) return reply(enviar.msg.donosmt)
 if (!q) return reply(mess.syntaxPrivAddGroup(prefix))
 if (args[0] === 'all') {
 reply(`- Pronto, agora todos pode me adicionar em grupo normalmente.`)
-await sandro.updateGroupsAddPrivacy(`all`)
+await calo.updateGroupsAddPrivacy(`all`)
 } else if (args[0] === 'cntt') {
 reply(`- Agora somente meus contatos, pode me adicionar em grupo.`)
-await sandro.updateGroupsAddPrivacy(`contacts`)
+await calo.updateGroupsAddPrivacy(`contacts`)
 } else if (args[0] === 'ngm') {
 reply(`- Agora ninguém pode ousar me adicionar em grupo, pois será negado.`)
-await sandro.updateGroupsAddPrivacy('none')
+await calo.updateGroupsAddPrivacy('none')
 }
 }
 break
@@ -7090,7 +7090,7 @@ randKey = jsonData[randIndex];
 imagem = await getBuffer(randKey.result)
 let thumbInfo = `${zaltin}`;
 blabla = await getBuffer(`https://telegra.ph/file/0e2989e6947b464fa66b8.jpg`);
-sandro.sendMessage(from, {image: imagem, caption: `${thumbInfo}`},{quoted: info})
+calo.sendMessage(from, {image: imagem, caption: `${thumbInfo}`},{quoted: info})
 }
 break
 
@@ -7105,7 +7105,7 @@ randKey = jsonData[randIndex];
 imagem = await getBuffer(randKey.result)
 let thumbInfo = `${zaltin}`;
 blabla = await getBuffer(`https://telegra.ph/file/0e2989e6947b464fa66b8.jpg`);
-sandro.sendMessage(from, {image: imagem, caption: `${thumbInfo}`},{quoted: info})
+calo.sendMessage(from, {image: imagem, caption: `${thumbInfo}`},{quoted: info})
 }
 break
 
@@ -7119,7 +7119,7 @@ randKey = jsonData[randIndex];
 imagem = await getBuffer(randKey.result)
 let thumbInfo = `${zaltin}`;
 blabla = await getBuffer(`https://telegra.ph/file/0e2989e6947b464fa66b8.jpg`);
-sandro.sendMessage(from, {image: imagem, caption: `${thumbInfo}`},{quoted: info})
+calo.sendMessage(from, {image: imagem, caption: `${thumbInfo}`},{quoted: info})
 }
 break
 
@@ -7133,7 +7133,7 @@ randKey = jsonData[randIndex];
 imagem = await getBuffer(randKey.result)
 let thumbInfo = `${zaltin}`;
 blabla = await getBuffer(`https://telegra.ph/file/0e2989e6947b464fa66b8.jpg`);
-sandro.sendMessage(from, {image: imagem, caption: `${thumbInfo}`},{quoted: info})
+calo.sendMessage(from, {image: imagem, caption: `${thumbInfo}`},{quoted: info})
 }
 break
 
@@ -7150,14 +7150,14 @@ case 'nomegp':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
-sandro.groupUpdateSubject(from, `${body.slice(9)}`)
-sandro.sendMessage(from, {text: 'Sucesso, alterou o nome do grupo'}, {quoted: selo})
+calo.groupUpdateSubject(from, `${body.slice(9)}`)
+calo.sendMessage(from, {text: 'Sucesso, alterou o nome do grupo'}, {quoted: selo})
 break
 
 case 'envmsg':
 if(!SoDono && !isnit) return
 var [tx1, tx2] = q.split("/")
-sandro.sendMessage(tx1, {text: tx2})
+calo.sendMessage(tx1, {text: tx2})
 break
 
 case 'bcgp':
@@ -7170,7 +7170,7 @@ if(isMedia && !info.message.videoMessage || isQuotedImage) {
 encmedia = await getFileBuffer(info.message.extendedTextMessage.contextInfo.quotedMessage.imageMessage, 'image')
 for (i = 0; i < groupMembers.length; i++) {
 await sleep(2000)  
-sandro.sendMessage(groupMembers[i].id, {image: buff}, {caption: `*「 TRANSMISSÃO 」*\n-\nGrupo: ${groupName}\n• Número: wa.me/${sender.split('@')[0]}\n• Mensagem: ${body.slice(6)}`})
+calo.sendMessage(groupMembers[i].id, {image: buff}, {caption: `*「 TRANSMISSÃO 」*\n-\nGrupo: ${groupName}\n• Número: wa.me/${sender.split('@')[0]}\n• Mensagem: ${body.slice(6)}`})
 }
 reply('A transmissão foi enviada com êxito.')
 } else {
@@ -7320,11 +7320,11 @@ AB = premium.map(i => i.id).indexOf(usur)
 if(premium[AB].infinito == true) return reply(`Não é possível adicionar + dias ao usuário, por motivos que ele contém o premium infinito.`)
 premium[AB].dias += Number(tempo50)
 fs.writeFileSync('./database/usuarios/premium.json', JSON.stringify(premium))
-sandro.sendMessage(from, {text: `${tempo50} dia${Number(tempo50) > 1 ? `s` : ``} fo${Number(tempo50) > 1 ? `ram` : `i`} adicionado${Number(tempo50) > 1 ? `s` : ``} ao usuário @${usur.split("@")[0]}`, mentions: [usur]}, {quoted: info})
+calo.sendMessage(from, {text: `${tempo50} dia${Number(tempo50) > 1 ? `s` : ``} fo${Number(tempo50) > 1 ? `ram` : `i`} adicionado${Number(tempo50) > 1 ? `s` : ``} ao usuário @${usur.split("@")[0]}`, mentions: [usur]}, {quoted: info})
 } else {
 premium.push({id: usur, dias: Number(tempo50), save: Number(dvip), infinito: mega})
 fs.writeFileSync('./database/usuarios/premium.json', JSON.stringify(premium))
-sandro.sendMessage(from, {text: `${Number(tempo50) > 0 ? `@${usur.split("@")[0]} foi adicionado à lista premium com sucesso!` : `@${usur.split("@")[0]} foi agraciado com o benefício do premium infinito!`}`, mentions: [usur]}, {quoted: info})
+calo.sendMessage(from, {text: `${Number(tempo50) > 0 ? `@${usur.split("@")[0]} foi adicionado à lista premium com sucesso!` : `@${usur.split("@")[0]} foi agraciado com o benefício do premium infinito!`}`, mentions: [usur]}, {quoted: info})
 }
 break
 
@@ -7337,7 +7337,7 @@ if(!JSON.stringify(premium).includes(marc_tds)) return reply("Este número não 
 AB = premium.map(i => i.id).indexOf(marc_tds)
 premium.splice(AB, 1)
 fs.writeFileSync('./database/usuarios/premium.json', JSON.stringify(premium))
-sandro.sendMessage(from, {text: `@${marc_tds.split("@")[0]} foi removido da lista premium com sucesso!`, mentions: [marc_tds]}, {quoted: info})
+calo.sendMessage(from, {text: `@${marc_tds.split("@")[0]} foi removido da lista premium com sucesso!`, mentions: [marc_tds]}, {quoted: info})
 break
 
 case 'premiumlist':
@@ -7351,11 +7351,11 @@ case 'limpar':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 clear = `🗑️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n🗑️\n❲❗❳ *Lɪᴍᴘᴇᴢᴀ ᴅᴇ Cʜᴀᴛ Cᴏɴᴄʟᴜɪ́ᴅᴀ* ✅`
-sandro.sendMessage(from, {text: clear}, {quoted: selo, contextInfo : { forwardingScore: 500, isForwarded:true}})
+calo.sendMessage(from, {text: clear}, {quoted: selo, contextInfo : { forwardingScore: 500, isForwarded:true}})
 break
 
 case 'd_':
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.message.buttonsResponseMessage.contextInfo.stanzaId, participant: botNumber}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.message.buttonsResponseMessage.contextInfo.stanzaId, participant: botNumber}})
 break
 
 case 'doc':
@@ -7384,7 +7384,7 @@ if(mimetyp.toLowerCase() == 'png') mimetyp = 'image/png'
 if(mimetyp.toLowerCase() == 'svg') mimetyp = 'image/svg+xml'
 if(mimetyp.toLowerCase() == 'txt') mimetyp = 'text/plain'
 let Messagemdoc = {document: fs.readFileSync('./database/data/docf.txt'), mimetype: mimetyp, jpegThumbnail: await getBuffer(thumbc), fileName: nomedoc, fileLength: peso, headerType: 4, contextInfo:{forwardingScore:999,isForwarded:true}}
-sandro.sendMessage(from, Messagemdoc, {quoted: selo})
+calo.sendMessage(from, Messagemdoc, {quoted: selo})
 } catch (err) {
 console.log(err)
 reply(`Ops ocorreu um erro`)
@@ -7422,13 +7422,13 @@ setTimeout(async () => {
 reagir(from, "🔴")
 await sleep(1000)
 reply("*_🧙🏻‍♂️ Grupo fechado com sucesso no horário programado..._*")
-await sandro.groupSettingUpdate(from, 'announcement')  
+await calo.groupSettingUpdate(from, 'announcement')  
 }, `${tempodttl.tempo1}`)
 setTimeout(async () => {
 reagir(from, "🟢")
 await sleep(1000)
 reply("*_🧙🏻‍♂️ Grupo aberto com sucesso no horário programado..._*")
-await sandro.groupSettingUpdate(from, 'not_announcement')  
+await calo.groupSettingUpdate(from, 'not_announcement')  
 }, `${tempodttl.tempo2}`)
 break
 
@@ -7439,7 +7439,7 @@ case 'd':
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 if(!isPremium) return reply("somente membros vip!")
 if(!menc_prt) return reply("Marque a mensagem do usuário que deseja apagar, do bot ou de alguém.")
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.message.extendedTextMessage.contextInfo.stanzaId, participant: menc_prt}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.message.extendedTextMessage.contextInfo.stanzaId, participant: menc_prt}})
 break
 
 case 'fundobemvindo':
@@ -7536,8 +7536,8 @@ break;
 case 'lyrics':
 if(!q) return reply(`Você esqueceu de colocar após o comando o nome da música...`);
 try {
-data = await fetchJson(`https://yurimodz-apis.xyz/api/search/lyrics?query=${q}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {text: mess.lyrics(data, II), contextInfo: {externalAdReply: {title: data.resultado.name, body: data.resultado.description, thumbnail: await getBuffer(data.resultado.image), mediaType: 2, sourceUrl: data.resultado.url}}}, {quoted: info});
+data = await fetchJson(`https://yurimodz-apis.xyz/api/search/lyrics?query=${q}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {text: mess.lyrics(data, II), contextInfo: {externalAdReply: {title: data.resultado.name, body: data.resultado.description, thumbnail: await getBuffer(data.resultado.image), mediaType: 2, sourceUrl: data.resultado.url}}}, {quoted: info});
 } catch(error) {
 return reply(mess.error())
 };
@@ -7551,7 +7551,7 @@ var numblc = ban.indexOf(blcp)
 if(numblc >= 0) return reply('*Esse número já esta incluso na lista de bloqueio.*')
 ban.push(blcp)
 fs.writeFileSync('./database/usuarios/banned.json', JSON.stringify(ban))
-sandro.sendMessage(from, {text: mess.bannedMessage(blcp), mentions: [blcp]})
+calo.sendMessage(from, {text: mess.bannedMessage(blcp), mentions: [blcp]})
 break
 
 case 'unblock':
@@ -7567,7 +7567,7 @@ ban.splice(processo, 1)
 processo = ban.indexOf(pesquisar)
 }
 fs.writeFileSync('./database/usuarios/banned.json', JSON.stringify(ban))
-sandro.sendMessage(from, {text: mess.unbannedMessage(blcp), mentions: [blcp]})
+calo.sendMessage(from, {text: mess.unbannedMessage(blcp), mentions: [blcp]})
 break
 
 
@@ -7575,9 +7575,9 @@ case 'acess':
 if(!SoDono && !isnit && !issupre && !ischyt) return reply(enviar.msg.donosmt)
 teks = body.slice(7)
 exec(teks, (err, stdout) => {
-if(err) return sandro.sendMessage(from, {text: `sandromdOfc:~ ${err}`}, {quoted: selo})
+if(err) return calo.sendMessage(from, {text: `calomdOfc:~ ${err}`}, {quoted: selo})
 if(stdout) {
-sandro.sendMessage(from, {text: stdout})
+calo.sendMessage(from, {text: stdout})
 }
 })
 break
@@ -7587,7 +7587,7 @@ if(!SoDono  && !isnit && !issupre && !ischyt) return reply(enviar.msg.donosmt)
 try{
 return eval(`(async() => { ${args.join(' ')}})()`)
 } catch (e) {
-sandro.sendMessage(from, {text:`${e}`})
+calo.sendMessage(from, {text:`${e}`})
 }
 break
 
@@ -7611,7 +7611,7 @@ case 'totalcmd2':
 case 'totalcmd':
 case 'totalcomando':{ 
 if(!SoDono) return reply(enviar.msg.donosmt)
-fs.readFile('./sandro.js', 'utf8', (err, data) => { 
+fs.readFile('./calo.js', 'utf8', (err, data) => { 
  if (err) throw err;
  let regex = /case\s'(\w+)'/g;
  let match;
@@ -7633,10 +7633,10 @@ case 'instagram':
 try {
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 if(q.length < 5) return reply(`Exemplo: ${prefix+command} o link`);
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/instagram?url=${q.trim()}&apikey=${API_SANDRO_MD}`)
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/instagram?url=${q.trim()}&apikey=${API_calo_MD}`)
 let DM_T = ABC.msg[0].type
 var A_T = DM_T === "mp4" ? "video/mp4" : DM_T === "webp" ? "image/webp" : DM_T === "jpg" ? "image/jpeg" : DM_T === "mp3" ? "audio/mpeg" : "video/mp4"
-sandro.sendMessage(from, {[A_T.split("/")[0]]: {url: ABC.msg[0].url}, mimetype: A_T}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {[A_T.split("/")[0]]: {url: ABC.msg[0].url}, mimetype: A_T}, {quoted: info}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -7648,10 +7648,10 @@ case 'instaaudio':
 try {
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 if(!q.trim()) return reply(`Exemplo: ${prefix+command} o link`);
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/instagram?url=${q.trim()}&apikey=${API_SANDRO_MD}`)
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/instagram?url=${q.trim()}&apikey=${API_calo_MD}`)
 let DM_T = ABC.msg[0].type
 var A_T = DM_T === "webp" ? "image/webp" : DM_T === "jpg" ? "image/jpeg" : DM_T === "mp3" ? "audio/mpeg" : "audio/mpeg"
-sandro.sendMessage(from, {[A_T.split("/")[0]]: {url: ABC.msg[0].url}, mimetype: A_T}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {[A_T.split("/")[0]]: {url: ABC.msg[0].url}, mimetype: A_T}, {quoted: info}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -7660,7 +7660,7 @@ return reply("Erro..")
 break;
 
 case 'ping2':
-sendMsg = await sandro.sendMessage(from, {react: {text: `,🧸`, key: info.key}})
+sendMsg = await calo.sendMessage(from, {react: {text: `,🧸`, key: info.key}})
 r = (Date.now() / 1000) - info.messageTimestamp
 uptime = process.uptime()
 hora1 = moment.tz('America/Sao_Paulo').format('HH:mm:ss');
@@ -7668,7 +7668,7 @@ bla = `*Hora:${hora1}*
 *Velocidade: ${String(r.toFixed(3))}*
 *Tempo Ativo: ${kyun(uptime)}*
 `
-await sandro.sendMessage(from, {text: bla}, {quoted: info})
+await calo.sendMessage(from, {text: bla}, {quoted: info})
 break
 
 case 'ping': {
@@ -7678,7 +7678,7 @@ r = (Date.now() / 1000) - info.messageTimestamp
 uptime = process.uptime()
 hora1 = moment.tz('America/Sao_Paulo').format('HH:mm:ss');
 respon = `⏱️ *Velocidade de Resposta:* ${String(r.toFixed(3))} _segundos._\n🤖 *O bot se encontra online por:* ${kyun(uptime)}\n💻 *Sistema Operacional:* ${infoSystem.type()}\n📂 *Versão:* ${infoSystem.release()}\n💾 *Memoria RAM total:* ${(infoSystem.totalmem()/Math.pow(1024, 3)).toFixed(2)}GB\n💾 *Memoria RAM disponível:* ${(infoSystem.freemem()/Math.pow(1024, 3)).toFixed(2)}GB`.trim()
-await sandro.sendMessage(from, { image: { url: `https://eruakorl.sirv.com/Bot%20dudinha/ping.jpeg?text.0.text=VELOCIDADE%20DO%20SANDRO&text.0.position.gravity=north&text.0.position.y=15%25&text.0.size=40&text.0.font.family=Teko&text.0.font.weight=800&text.0.background.opacity=100&text.0.outline.blur=100&text.1.text=${String(r.toFixed(3))}&text.1.position.gravity=center&text.1.size=30&text.1.color=ffffff&text.1.font.family=Teko&text.1.font.weight=800&text.1.background.opacity=100&text.1.outline.blur=100` }, caption: respon, mentions: [sender]}, {quoted: info}) 
+await calo.sendMessage(from, { image: { url: `https://eruakorl.sirv.com/Bot%20dudinha/ping.jpeg?text.0.text=VELOCIDADE%20DO%20calo&text.0.position.gravity=north&text.0.position.y=15%25&text.0.size=40&text.0.font.family=Teko&text.0.font.weight=800&text.0.background.opacity=100&text.0.outline.blur=100&text.1.text=${String(r.toFixed(3))}&text.1.position.gravity=center&text.1.size=30&text.1.color=ffffff&text.1.font.family=Teko&text.1.font.weight=800&text.1.background.opacity=100&text.1.outline.blur=100` }, caption: respon, mentions: [sender]}, {quoted: info}) 
 }
 break                 
 
@@ -7686,16 +7686,16 @@ case 'gtts':
 case 'falar':
 case 'fala':
 try {
-if (args.length < 1) return sandro.sendMessage(from,{text: `Cade o texto?, digite algo Exemplo:\n${prefix}gtts PT Oi`}, {quoted: selo})
+if (args.length < 1) return calo.sendMessage(from,{text: `Cade o texto?, digite algo Exemplo:\n${prefix}gtts PT Oi`}, {quoted: selo})
 const gtts = require('./arquivos/funcoes/gtts')(args[0])
-if (args.length < 2) return sandro.sendMessage(from, {text: 'Falta colocar o código do idioma!'}, {quoted: selo})
+if (args.length < 2) return calo.sendMessage(from, {text: 'Falta colocar o código do idioma!'}, {quoted: selo})
 dtt = body.slice(8)
 ranm = getRandom('.mp3')
 rano = getRandom('.ogg')
 if(dtt.length > 200) return reply('Para reduzir spam o máximo de letras permitidas são 200!')
 gtts.save(ranm, dtt, function() {
 exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
-sandro.sendMessage(from, {audio: fs.readFileSync(ranm), ptt:true, mimetype: "audio/mpeg"}, {quoted: selo}).catch(e => {
+calo.sendMessage(from, {audio: fs.readFileSync(ranm), ptt:true, mimetype: "audio/mpeg"}, {quoted: selo}).catch(e => {
 return reply(mess.error())
 })
 DLT_FL(ranm)
@@ -7757,14 +7757,14 @@ break
 case 'listacmdprem':
 tkks = `[Total: *${isCmdPremium.length}*] - Comandos que foram adicionados para uso Premium:\n–\n`
 tkks += isCmdPremium.map((v, index) =>  `\t• [ *N° ${index+1}* ] - Comando: ${prefix+v}`).join('\n–\n')
-sandro.sendMessage(from, {text: tkks.trim()}, {quoted: selo})
+calo.sendMessage(from, {text: tkks.trim()}, {quoted: selo})
 break
 
 case 'blocklist':
 if(ban.length == 0) return reply(`Existe *0* user(s) bloqueado(s), ou seja, não existe ninguém.`)
 tkks = `[Total: *${ban.length}*] - Lista de Usuários bloqueados pelo julgamento do(s) donos(as):\n–\n`
 tkks += ban.map((v, index) =>  `\t• [ *N° ${index+1}* ] - Usuário: @${v.split('@')[0]}`).join('\n–\n')
-sandro.sendMessage(from, {text: tkks.trim(), mentions: ban}, {quoted: selo})
+calo.sendMessage(from, {text: tkks.trim(), mentions: ban}, {quoted: selo})
 break
 
 case 'blockcmdgp':
@@ -7792,7 +7792,7 @@ if(!isGroup) return reply(enviar.msg.grupo);
 if(getComandoBlock(from).length == 0) return reply("Não existe ainda nenhum *comando bloqueado* neste grupo.");
 tkks = `[Total: *${getComandoBlock(from).length}*] - Comandos bloqueados pelo adminstrador(s) do grupo:\n–\n`
 tkks += getComandoBlock(from).map((v, index) =>  `\t• [ *N° ${index+1}* ] - Comando: ${prefix + getComandoBlock(from)[v]}`).join('\n–\n')
-sandro.sendMessage(from, {text: tkks.trim()}, {quoted: selo})
+calo.sendMessage(from, {text: tkks.trim()}, {quoted: selo})
 break
 
 case 'blockcmdg':
@@ -7820,19 +7820,19 @@ case 'listbcmdglobal':
 if(isBlockCmdG.length == 0) return reply("Não existe nenhum *comando bloqueado* na lista")
 tkks = `[Total: *${isBlockCmdG.length}*] - Lista de comandos bloqueados pelo(s) meus proprietários:\n–\n`
 tkks += isBlockCmdG.map((v, index) =>  `\t• [ *N° ${index+1}* ] - Comando: ${prefix+v}`).join('\n–\n')
-sandro.sendMessage(from, {text: tkks.trim()}, {quoted: selo})
+calo.sendMessage(from, {text: tkks.trim()}, {quoted: selo})
 break
 
 case 'avalie':
 case 'avaliar':
 qp = args.join(" ")
 if(!qp) return reply(`*❕Exemplo:* ${prefix + command} _"Bot muito bom, parabéns!"_.`)
-if(args.length >= 400) return sandro.sendMessage(from, {text: '❗Máximo 400 caracteres'}, {quoted: info})
+if(args.length >= 400) return calo.sendMessage(from, {text: '❗Máximo 400 caracteres'}, {quoted: info})
 reagir(from, "🔏")
 await sleep(1000)
 var nomor = info.participant
 tdptls = `*_🔏 Avaliação 🔏_*\n-\n*👤 De:* wa.me/${sender.split("@s.whatsapp.net")[0]}\n-\n*📄 Disse isso:* ${qp}`
-sandro.sendMessage(nmrdn, {text: tdptls}, {quoted: info})
+calo.sendMessage(nmrdn, {text: tdptls}, {quoted: info})
 reply("*_😉 Mensagem enviada ao meu dono, obrigado pela avaliação, iremos melhorar a cada dia._*")
 break
 
@@ -7840,12 +7840,12 @@ case 'bug':
 case 'erro':
 qp = args.join(" ")
 if(!qp) return reply(`*❕Exemplo:* ${prefix + command} _"ocorreu um erro no comando sticker"._`)
-if(args.length >= 800) return sandro.sendMessage(from, {text: '❗Máximo 800 caracteres'}, {quoted: info})
+if(args.length >= 800) return calo.sendMessage(from, {text: '❗Máximo 800 caracteres'}, {quoted: info})
 reagir(from, "🚨")
 await sleep(1000)
 var nomor = info.participant
 teks1 = `*_🚨 Bug 🚨_*\n-\n*👤 De:* wa.me/${sender.split("@s.whatsapp.net")[0]}\n-\n*🚩 Erro ou bug:* ${qp}`
-sandro.sendMessage(nmrdn, {text: teks1}, {quoted: info})
+calo.sendMessage(nmrdn, {text: teks1}, {quoted: info})
 reply("*_😉 Mensagem enviada ao meu dono, se enviar muitas mensagens repetida por zoueiras, você sera banido de utilizar os comandos do bot._*")
 break
 
@@ -7853,12 +7853,12 @@ case 'sugestão':
 case 'sugestao':
 qp = args.join(" ")
 if(!qp) return reply(`*❕Exemplo:* ${prefix + command} _"opa, crie um comando tal, que ele funcione de tal maneira, isso será muito bom."_`)
-if(args.length >= 800) return sandro.sendMessage(from, {text: '❗Máximo 800 caracteres'}, {quoted: info})
+if(args.length >= 800) return calo.sendMessage(from, {text: '❗Máximo 800 caracteres'}, {quoted: info})
 reagir(from, "💡")
 await sleep(1000)
 var nomor = info.participant
 sug = `*_📝 Sugestão 📝_*\n-\n*👤 De:* wa.me/${sender.split("@s.whatsapp.net")[0]}\n-\n*💡 Falou isso:* ${qp}`
-sandro.sendMessage(nmrdn, {text: sug}, {quoted: info})
+calo.sendMessage(nmrdn, {text: sug}, {quoted: info})
 reply("*_😉 Mensagem enviada ao meu dono, obrigado pela sugestão, iremos tentar ouvir o máximo possível de sugestões._*")
 break
 
@@ -7867,9 +7867,9 @@ break
 case 'gimage':
 if(!q) return reply(`Coloque o que deseja após o comando... Por exemplo: *${prefix + command} Fogo*`)
 try {
-data = await fetchJson(`http://br1.bronxyshost.com:4360/api/gimage?q=${q}&apikey=${SANDRO_MD}`);
+data = await fetchJson(`http://br1.bronxyshost.com:4360/api/gimage?q=${q}&apikey=${calo_MD}`);
 returnData = pickRandom(data.resultado); /* Cria um random no resultado, retornando só 1. */
-await sandro.sendMessage(from, {image: {url: returnData.url}, caption: mess.googleImage(returnData)}, {quoted: selo});
+await calo.sendMessage(from, {image: {url: returnData.url}, caption: mess.googleImage(returnData)}, {quoted: selo});
 } catch (error) {
 reply(mess.error());
 }
@@ -8034,7 +8034,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer dar, a mensagem ou o @')
 susp = `Você deu com vontade para @${menc_os2.split('@')[0]}! 😳)` 
 jrq = await getBuffer(`https://telegra.ph/file/d72e1d4dba05d2b054fd8.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 case 'dar2'://BY: ZERØPHOENIX 
@@ -8042,7 +8042,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer dar, a mensagem ou o @')
 susp = `Você deu com tanta vontade para @${menc_os2.split('@')[0]}! 😳)` 
 jrq = await getBuffer(`https://telegra.ph/file/d577416360c3e9799f880.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 case 'dar3'://BY: ZERØPHOENIX
@@ -8050,7 +8050,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer dar, a mensagem ou o @')
 susp = `Você deu com tanta vontade para @${menc_os2.split('@')[0]}! 😳)` 
 jrq = await getBuffer(`https://telegra.ph/file/ccade2471e6371452a021.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 case 'mamar'://BY: ZERØPHOENIX 
@@ -8058,7 +8058,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer mamar, a mensagem ou o @')
 susp = `@${menc_os2.split('@')[0]} Você Recebeu um mamada gostoso(a)` 
 jrq = await getBuffer(`https://telegra.ph/file/3ad3be6f2ceec10ced5e8.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 //NOVOS CMDS
@@ -8066,7 +8066,7 @@ case 'beijo': case 'beijar': //BY: ZERØPHOENIX
 if(!isGroup) return reply(Res_SoGrupo)
 if(!isModobn) return reply(`Este tipo de comando só pode ser utilizado com o modobrincadeira ativo, fale com um adm ou se você for, apenas digite ${prefix}modobrincadeira 1`)
 if(!menc_os2 || menc_jid2[1]) return reply('marque a pessoa que você quer beijar, a mensagem ou o @')
-sandro.sendMessage(from, {video: {url: 'https://telegra.ph/file/04b88dcf0195faf4e8900.mp4'}, gifPlayback: true, caption: `Você deu um beijo incrível na(o) @${menc_os2.split('@')[0]} 😳😏❤️‍🔥` , mentions: [menc_os2]}, {quoted: info})
+calo.sendMessage(from, {video: {url: 'https://telegra.ph/file/04b88dcf0195faf4e8900.mp4'}, gifPlayback: true, caption: `Você deu um beijo incrível na(o) @${menc_os2.split('@')[0]} 😳😏❤️‍🔥` , mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 case 'comergay'://BY: ZERØPHOENIX 
@@ -8074,7 +8074,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer comer, a mensagem ou o @')
 susp = `Você comeu o chocolate branco @${menc_os2.split('@')[0]} com prazer 🥵🍫)` 
 jrq = await getBuffer(`https://telegra.ph/file/6804014b0f3b42711b257.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 case 'comer'://BY: ZERØPHOENIX 
@@ -8082,7 +8082,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer mamar, a mensagem ou o @')
 susp = `Você tratou da(o) @${menc_os2.split('@')[0]} com muito cuidado e dedicação 😈🔥` 
 jrq = await getBuffer(`https://telegra.ph/file/cd28a1938d70cf025e207.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 case 'comer1'://BY: ZERØPHOENIX 
@@ -8090,7 +8090,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer mamar, a mensagem ou o @')
 susp = `Você cuidou de @${menc_os2.split('@')[0]} com muito carinho e atenção 😈🔥` 
 jrq = await getBuffer(`https://telegra.ph/file/594c6ddb8d18f2a7d49e9.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 case 'comer2'://BY: ZERØPHOENIX 
@@ -8098,7 +8098,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer mamar, a mensagem ou o @')
 susp = `A @${menc_os2.split('@')[0]} recebeu um tratamento especial e cheio de dedicação 😈🔥` 
 jrq = await getBuffer(`https://telegra.ph/file/edeb2315d9ec5f32179ac.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
 case 'comer3'://BY: ZERØPHOENIX 
@@ -8106,7 +8106,7 @@ if(!isNsfw) return reply('🔞 Este tipo de comando só pode ser utilizado com o
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer mamar, a mensagem ou o @')
 susp = `Você tratou @${menc_os2.split('@')[0]} com todo o zelo e energia 😈🔥` 
 jrq = await getBuffer(`https://telegra.ph/file/dd55bfd88c1449838f800.mp4`)
-await sandro.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
+await calo.sendMessage(from, {video: jrq, gifPlayback: true, caption: susp, mentions: [menc_os2]}, {quoted: info})
 break//BY: ZERØPHOENIX 
 
   case 'interesses_trabalho':
@@ -8379,9 +8379,9 @@ case 'google': case 'googlesrc':
 if(!q) return reply(`Você esqueceu de colocar o que você deseja pesquisar após o comando.`);
 try {
 reply(enviar.espere);
-data = await fetchJson(`https://yurimodz-apis.xyz/api/googlesrc?query=${q}&apikey=${SANDRO_MD_BOT}`);
+data = await fetchJson(`https://yurimodz-apis.xyz/api/googlesrc?query=${q}&apikey=${calo_MD_BOT}`);
 RST = data.result.map(v =>  `• Título: *${v.title}*\n• Foto: *${v.url}*\n• Link: *${v.originalUrl}*`).join('\n–\n')
-sandro.sendMessage(from, {text: RST, contextInfo: {externalAdReply: {title: data.result[0].title, body: data.result.length, thumbnail: await getBuffer(data.result[0].url), mediaType: 2, sourceUrl: "https://cybercook.com.br/"}}}, {quoted: info});
+calo.sendMessage(from, {text: RST, contextInfo: {externalAdReply: {title: data.result[0].title, body: data.result.length, thumbnail: await getBuffer(data.result[0].url), mediaType: 2, sourceUrl: "https://cybercook.com.br/"}}}, {quoted: info});
 } catch(e) {
 return reply(mess.error())
 }
@@ -8391,8 +8391,8 @@ case 'screenshotweb': case 'printsite': case 'ssweb':
 reply('Aguarde um pouco, entrando no site solicitado...')
 if(!q) return reply(`Cadê o link do site o qual você deseja visualizar?`)
 try {
-img = await getBuffer(`https://yurimodz-apis.xyz/api/ssweb?link=${q}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: img, caption: `• *Site:* ${q}`}, {quoted: selo})
+img = await getBuffer(`https://yurimodz-apis.xyz/api/ssweb?link=${q}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: img, caption: `• *Site:* ${q}`}, {quoted: selo})
 } catch (e) {
 if(String(e).includes("invalid json response body at")) {
 console.log("A api caiu ou não foi possivel executar esta ação., espere retornar")   
@@ -8409,7 +8409,7 @@ only1 = `
 Luiz russo (mans茫o maromba)
 > https://t.me/+8cJ7yGnq5fI2YjYx
 `
-sandro.sendMessage(sender, {text: only1}, {quoted: selo})
+calo.sendMessage(sender, {text: only1}, {quoted: selo})
 break
 
 case 'only2': //by Natsumi
@@ -8419,7 +8419,7 @@ only2 = `
 Luiza blue 
 > https://t.me/+JaX8wY_45843ZTBh
 `
-sandro.sendMessage(sender, {text: only2}, {quoted: selo})
+calo.sendMessage(sender, {text: only2}, {quoted: selo})
 break
 
 case 'only3': //by Natsumi
@@ -8429,7 +8429,7 @@ only3 = `
 Isadora vale 
 > https://t.me/+smb4i0bxRl41ZjRh
 `
-sandro.sendMessage(sender, {text: only3}, {quoted: selo})
+calo.sendMessage(sender, {text: only3}, {quoted: selo})
 break
 
 case 'only4': //by Natsumi
@@ -8439,7 +8439,7 @@ only4 = `
 Ingrid bianchi
 > https://t.me/+RJtf2TqTQ8NjZjlh
 `
-sandro.sendMessage(sender, {text: only4}, {quoted: selo})
+calo.sendMessage(sender, {text: only4}, {quoted: selo})
 break
 
 case 'only5'://by Natsumi 
@@ -8449,7 +8449,7 @@ only5 = `
 Lizy Donato 
 > https://t.me/+gmSjm2WZnb41OGEx
 `
-sandro.sendMessage(sender, {text: only5}, {quoted: selo})
+calo.sendMessage(sender, {text: only5}, {quoted: selo})
 break
 
 case 'only6': //by Natsumi
@@ -8459,7 +8459,7 @@ only6 = `
 Feh Galv茫o
 > https://t.me/+naeQ1pp8ajswMjgx
 `
-sandro.sendMessage(sender, {text: only6}, {quoted: selo})
+calo.sendMessage(sender, {text: only6}, {quoted: selo})
 break
 
 case 'only7': //by Natsumi
@@ -8469,7 +8469,7 @@ only7 = `
 Tatyzack
 > https://t.me/+NvglGFhOLSY5NmZ
 `
-sandro.sendMessage(sender, {text: only7}, {quoted: selo})
+calo.sendMessage(sender, {text: only7}, {quoted: selo})
 break
 
 case 'only8'://by Natsumi 
@@ -8479,7 +8479,7 @@ only8 = `
 Ayrla Souza 
 > https://t.me/+XLziPd47MWo2N2Y
 `
-sandro.sendMessage(sender, {text: only8}, {quoted: selo})
+calo.sendMessage(sender, {text: only8}, {quoted: selo})
 break
 
 case 'only9'://by Natsumi
@@ -8489,7 +8489,7 @@ only9 = `
 ALINE FARIA
 > https://t.me/+j1xp_hmXrx5lZWMx
 `
-sandro.sendMessage(sender, {text: only9}, {quoted: selo})
+calo.sendMessage(sender, {text: only9}, {quoted: selo})
 break
 
 case 'only10'://by Natsumi
@@ -8499,7 +8499,7 @@ only10 = `
 KINE CHAN 
 > https://t.me/+YIVax4IQ9aFlMDgx
 `
-sandro.sendMessage(sender, {text: only10}, {quoted: selo})
+calo.sendMessage(sender, {text: only10}, {quoted: selo})
 break
 
 case 'only11': //by Natsumi
@@ -8509,7 +8509,7 @@ only11 = `
 DJ NATHI
 > https://t.me/+6Z5vuVApT-1lYjEx
 `
-sandro.sendMessage(sender, {text: only11}, {quoted: selo})
+calo.sendMessage(sender, {text: only11}, {quoted: selo})
 break
 
 case 'only12': //by Natsumi
@@ -8519,16 +8519,16 @@ only12 = `
 BELE KAFFER
 > https://t.me/+70DMw3iTzb0yMzEx
 `
-sandro.sendMessage(sender, {text: only12}, {quoted: selo})
+calo.sendMessage(sender, {text: only12}, {quoted: selo})
 break
 
 case 'memes': 
 case 'memedroid':
 try {
 reply(enviar.espere)
-res = await axios.get(`https://yurimodz-apis.xyz/api/memes?apikey=${SANDRO_MD_BOT}`);
+res = await axios.get(`https://yurimodz-apis.xyz/api/memes?apikey=${calo_MD_BOT}`);
 teks = pickRandom(res.data.pesquisa.resultado)
-await sandro.sendMessage(from, {image: await getBuffer(teks.imagem), caption: mess.memesImages(teks)}, {quoted: selo}).catch(() => {
+await calo.sendMessage(from, {image: await getBuffer(teks.imagem), caption: mess.memesImages(teks)}, {quoted: selo}).catch(() => {
 return reply(mess.error());
 })
 } catch (e) {
@@ -8540,9 +8540,9 @@ case 'memesvid':
 case 'ifunnyvideo':
 try {
 reply(enviar.espere)
-res = await axios.get(`https://yurimodz-apis.xyz/api/memesvid?apikey=${SANDRO_MD_BOT}`);
+res = await axios.get(`https://yurimodz-apis.xyz/api/memesvid?apikey=${calo_MD_BOT}`);
 teks = pickRandom(res.data.videos)
-await sandro.sendMessage(from, {video: await getBuffer(teks.video), caption: mess.iFunnyVideo(teks)}, {quoted: selo}).catch(() => {
+await calo.sendMessage(from, {video: await getBuffer(teks.video), caption: mess.iFunnyVideo(teks)}, {quoted: selo}).catch(() => {
 return reply(mess.error());
 })
 } catch (e) {
@@ -8565,13 +8565,13 @@ case 'cases':
 if(!SoDono) return reply("Você não é dono para utilizar este comando...")
 try {
 const listCases = () => {
-const fileContent = fs.readFileSync("sandro.js").toString();
+const fileContent = fs.readFileSync("calo.js").toString();
 const caseNames = fileContent.match(/case\s+'(.+?)'/g);
 if (caseNames) {
 return caseNames.map((caseName, index) => `${index + 1}. ${caseName.match(/'(.+?)'/)[1]}`).join('\n');
 } else {
 reply("Nenhuma case encontrada.") } }
-sandro.sendMessage(from, { text: listCases() }, { quoted: selo });
+calo.sendMessage(from, { text: listCases() }, { quoted: selo });
 } catch (e) {
 console.log(e)
 reply('Ocorreu um erro ao obter as cases.') }
@@ -8581,8 +8581,8 @@ case 'opag':
 reply("*Aguarde um momento.*") 
 try {
 if(!q) return reply(`Exemplo: ${prefix+command} Thais Carla`)
-reply(`*Aguarde enviando* _SANDRO API_`)
-await sandro.sendMessage(from, {image: {url: (`http://br1.bronxyshost.com:4360/ias/animeai?apikey=${SANDRO_MD}&img=https://telegra.ph/file/7200048b9363d0532d0fe.jpg`)}, caption: 'Aqui esta sua imagem.'}, {quoted:info})
+reply(`*Aguarde enviando* _calo API_`)
+await calo.sendMessage(from, {image: {url: (`http://br1.bronxyshost.com:4360/ias/animeai?apikey=${calo_MD}&img=https://telegra.ph/file/7200048b9363d0532d0fe.jpg`)}, caption: 'Aqui esta sua imagem.'}, {quoted:info})
 } catch (e) {
 return reply(`${e}`);
 }
@@ -8592,8 +8592,8 @@ case 'pinterest2':
 try {
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 if(!q.trim()) return reply(`Exemplo: ${prefix+command} naruto`)
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pinterest?nome=${q}&apikey=${API_SANDRO_MD}`);
-sandro.sendMessage(from, {image: {url: ABC[Math.floor(Math.random() * ABC.length)]}}).catch(() => {
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pinterest?nome=${q}&apikey=${API_calo_MD}`);
+calo.sendMessage(from, {image: {url: ABC[Math.floor(Math.random() * ABC.length)]}}).catch(() => {
 return reply("Erro..");
 })
 } catch (e) {
@@ -8605,8 +8605,8 @@ case 'pinterest':
 try {
 if(!q) return reply(`Digite o nome da imagem que vc quer buscar\nExemplo: ${prefix + command} cat`)
 reply(enviar.espere)
-blap = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pinterest?nome=${q}&apikey=${API_SANDRO_MD}`)
-await sandro.sendMessage(from, {image: blap, thumbnail: null}, {quoted: info}).catch(e => {
+blap = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pinterest?nome=${q}&apikey=${API_calo_MD}`)
+await calo.sendMessage(from, {image: blap, thumbnail: null}, {quoted: info}).catch(e => {
 reply('❌️ *Erro ao fornecer o resultado da sua pesquisa.* Tente novamente mais tarde!')
 })
 } catch (e) {
@@ -8741,7 +8741,7 @@ try {
 nick = args.join(' ')
 if(ANT_LTR_MD_EMJ(q)) return reply("Ao realizar a solicita��o de cria��o foi detectada letras modificadas ou emojis, ou seja, n�o se pode conter emojis e letras modificadas.");
 if(!q) return reply(`Escreveva um nome para eu enviar ele com letras modificadas.\n*Exemplo:* ${prefix+command}LB Bot`);
-axios.get(`http://br1.bronxyshost.com:4360/api/fazernick?nome=${q}&apikey=${SANDRO_MD}`)
+axios.get(`http://br1.bronxyshost.com:4360/api/fazernick?nome=${q}&apikey=${calo_MD}`)
 .then(dados => {
 var emoji = `〽️`
 nicks = dados.data
@@ -8814,7 +8814,7 @@ if(!textin) return reply("Você precisa acrescentar um texto!")
 try {
 await reply(`Enviando.. caso demore de mais nao consegui te enviar `)
 let logos = await getBuffer(`https://carisys.online/api/logos/${command}?texto=${textin}`)
-await sandro.sendMessage(from, 
+await calo.sendMessage(from, 
 {image: logos}, 
 {quoted: info})
 } catch (error) {
@@ -8829,7 +8829,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_api.jpg?text.0.text=${q}&text.0.color=000000&text.0.font.family=Pacifico&text.0.font.weight=600&text.0.background.color=ffffff&text.0.outline.color=ffffff&text.0.outline.width=10&text.0.outline.blur=17`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break
 
 case 'anime1':
@@ -8838,7 +8838,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis2.jpg?text.0.text=${q}&text.0.position.gravity=center&text.0.position.x=1%25&text.0.position.y=16%25&text.0.size=80&text.0.color=ff2772&text.0.opacity=67&text.0.font.family=Bangers&text.0.font.style=italic&text.0.background.opacity=50&text.0.outline.width=6`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break
 
 case 'ff1':
@@ -8847,7 +8847,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis3.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.y=59%25&text.0.size=89&text.0.color=000000&text.0.opacity=71&text.0.font.family=Changa%20One&text.0.font.style=italic&text.0.background.opacity=10&text.0.outline.color=ffffff&text.0.outline.width=3`)
-sandro.sendMessage(from, { image: venomk }, {quoted: selo })
+calo.sendMessage(from, { image: venomk }, {quoted: selo })
 break	
 
 case 'game':
@@ -8856,7 +8856,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis5.jpg?text.0.text=${q}&text.0.position.gravity=center&text.0.position.x=1%25&text.0.position.y=22%25&text.0.align=left&text.0.size=59&text.0.font.family=Permanent%20Marker&text.0.outline.color=df00ff&text.0.outline.width=2&text.0.outline.blur=18`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break
 
 case 'ff2':
@@ -8865,7 +8865,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis6.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.x=1%25&text.0.position.y=50%25&text.0.size=68&text.0.color=464646&text.0.opacity=51&text.0.font.family=Sigmar%20One&text.0.background.opacity=2&text.0.outline.color=ffffff&text.0.outline.width=2&text.0.outline.opacity=61`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break	
 
 case 'anime2':
@@ -8874,7 +8874,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis7.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.x=1%25&text.0.position.y=58%25&text.0.size=69&text.0.color=00ffea&text.0.opacity=37&text.0.font.family=Bangers&text.0.background.opacity=77&text.0.outline.color=ffffff&text.0.outline.width=2&text.0.outline.blur=20`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break
 
 case 'entardecer':
@@ -8883,7 +8883,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis9.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=68&text.0.color=ffffff&text.0.opacity=61&text.0.font.family=Tangerine&text.0.font.style=italic&text.0.background.opacity=61&text.0.outline.color=ff6f00&text.0.outline.width=9`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break
 
 case 'indian':
@@ -8892,7 +8892,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis10.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.y=62%25&text.0.size=63&text.0.color=004124&text.0.opacity=99&text.0.font.family=Permanent%20Marker&text.0.font.style=italic&text.0.background.color=feff00&text.0.outline.color=ffe8a3&text.0.outline.width=9&text.0.outline.blur=21`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break 
 
 case 'lixo': case 'lgbt': case 'morto': case 'preso': case 'deletem':
@@ -8901,7 +8901,7 @@ try {
 IMG = JSON.parse(JSON.stringify(info)?.replace('quotedM','m'))?.message?.extendedTextMessage?.contextInfo?.message?.imageMessage || info.message?.imageMessage
 PXR = await getFileBuffer(IMG, "image")
 link = await upload(PXR)
-sandro.sendMessage(from, {image: {url:`https://api.bronxyshost.com.br/api-bronxys/montagem?url=${link}&category=${command}&apikey=${API_SANDRO_MD}`}}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {image: {url:`https://api.bronxyshost.com.br/api-bronxys/montagem?url=${link}&category=${command}&apikey=${API_calo_MD}`}}, {quoted: info}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -8915,7 +8915,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis12.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.y=65%25&text.0.size=61&text.0.color=ff00e6&text.0.opacity=32&text.0.font.family=Chewy&text.0.font.style=italic&text.0.outline.width=6`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break	
 
 case 'ffgren':
@@ -8924,7 +8924,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis13.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.y=63%25&text.0.size=68&text.0.color=ffffff&text.0.opacity=92&text.0.font.family=Permanent%20Marker&text.0.font.weight=800&text.0.outline.color=5dff00&text.0.outline.width=13&text.0.outline.blur=21`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break		
 
 case 'chufuyu':
@@ -8933,7 +8933,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis14.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.y=68%25&text.0.size=60&text.0.color=ffffff&text.0.font.family=Sigmar%20One&text.0.font.style=italic&text.0.background.opacity=17&text.0.outline.color=a99cff&text.0.outline.width=9&text.0.outline.blur=16`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break	
 
 case 'wolf':
@@ -8942,7 +8942,7 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis15.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.y=62%25&text.0.size=63&text.0.color=000000&text.0.font.family=Audiowide&text.0.font.style=italic&text.0.background.opacity=15&text.0.outline.color=ffffff&text.0.outline.width=9&text.0.outline.blur=33`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break	
 
 case 'dragonred':
@@ -8951,12 +8951,12 @@ teks = body.slice(7)
 if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
 reply(enviar.espere)
 venomk = await getBuffer(`https://lollityp.sirv.com/venom_apis16.jpg?text.0.text=${q}&text.0.position.gravity=north&text.0.position.y=58%25&text.0.size=99&text.0.color=fffefe&text.0.font.family=Permanent%20Marker&text.0.background.color=000000&text.0.outline.color=000000&text.0.outline.width=19&text.0.outline.blur=66`)
-sandro.sendMessage(from, { image: venomk }, { quoted: selo })
+calo.sendMessage(from, { image: venomk }, { quoted: selo })
 break	
 
 case 'grupos': {
 reply("[❗] aguarde uns minutinho estou processado")
-blue = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/grupos?q=${q}&apikey=${API_SANDRO_MD}`)
+blue = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/grupos?q=${q}&apikey=${API_calo_MD}`)
 let red = "Listagem de grupos para você:\n\n"
 blue.forEach(function(ab) {
 red += ` - Url do Grupo: ${ab.link}\n\n - Descrição: ${ab.desc}\n\n${"-".repeat(20)}\n\n`
@@ -8969,9 +8969,9 @@ case "orangejuice":
 textin = args.join(" ")
 if(!textin) return reply(mess.syntaxLogos())
 reply(enviar.espere)
-bla = await fetchJson(`https://yurimodz-apis.xyz/api/textpro/3d-orange-juice?texto=${textin}&apikey=${SANDRO_MD_BOT}`)
+bla = await fetchJson(`https://yurimodz-apis.xyz/api/textpro/3d-orange-juice?texto=${textin}&apikey=${calo_MD_BOT}`)
 dllink = await getBuffer(bla.resultado)
-sandro.sendMessage(from, {image: dllink}, {quoted: selo}).catch(e =>{
+calo.sendMessage(from, {image: dllink}, {quoted: selo}).catch(e =>{
 reply("Erro ao criar sua logo! Tente novamente mais tarde.")   
 })
 break
@@ -8980,9 +8980,9 @@ case "neonlight":
 textin = args.join(" ")
 if(!textin) return reply(mess.syntaxLogos())
 reply(enviar.espere)
-bla = await fetchJson(`https://yurimodz-apis.xyz/api/textpro/3d-neon-light?texto=${textin}&apikey=${SANDRO_MD_BOT}`)
+bla = await fetchJson(`https://yurimodz-apis.xyz/api/textpro/3d-neon-light?texto=${textin}&apikey=${calo_MD_BOT}`)
 dllink = await getBuffer(bla.resultado)
-sandro.sendMessage(from, {image: dllink}, {quoted: selo}).catch(e =>{
+calo.sendMessage(from, {image: dllink}, {quoted: selo}).catch(e =>{
 reply("Erro ao criar sua logo! Tente novamente mais tarde.")  
 })
 break
@@ -8996,8 +8996,8 @@ case "tela":
 textin = args.join(" ")
 if(!textin) return reply(mess.syntaxLogos())
 reply(enviar.espere)
-bla = await getBuffer(`https://yurimodz-apis.xyz/api/ephoto/${command}?texto=${textin}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: bla}, {quoted: selo}).catch(e =>{
+bla = await getBuffer(`https://yurimodz-apis.xyz/api/ephoto/${command}?texto=${textin}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: bla}, {quoted: selo}).catch(e =>{
 reply("Erro ao criar sua logo! Tente novamente mais tarde.")  
 })
 break
@@ -9006,8 +9006,8 @@ case "desfocado":
 textin = args.join(" ")
 if(!textin) return reply(mess.syntaxLogos())
 reply(enviar.espere)
-bla = await getBuffer(`https://yurimodz-apis.xyz/api/ephoto/blur?texto=${textin}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: bla}, {quoted: selo}).catch(e =>{
+bla = await getBuffer(`https://yurimodz-apis.xyz/api/ephoto/blur?texto=${textin}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: bla}, {quoted: selo}).catch(e =>{
 reply("Erro ao criar sua logo! Tente novamente mais tarde.")  
 })
 break
@@ -9019,8 +9019,8 @@ case 'trigrev':
 textin = args.join(" ")
 if(!textin) return reply(mess.syntaxLogos())
 reply(enviar.espere)
-bla = await getBuffer(`https://yurimodz-apis.xyz/api/ephoto/${command}?texto=${textin}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {video: bla}, {quoted: selo}).catch(e =>{
+bla = await getBuffer(`https://yurimodz-apis.xyz/api/ephoto/${command}?texto=${textin}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {video: bla}, {quoted: selo}).catch(e =>{
 reply("Erro ao criar sua logo em vídeo! Tente novamente mais tarde.")  
 })
 break
@@ -9029,11 +9029,11 @@ case 'qc':
 if(!q) return reply(`Para usar este comando é nescessário adicionar algo após o comando.`)
 reply(enviar.espere)
 try {
-ppimg = await sandro.profilePictureUrl(sender, 'image')} catch {ppimg = 'https://telegra.ph/file/24fa902ead26340f3df2c.png'}
+ppimg = await calo.profilePictureUrl(sender, 'image')} catch {ppimg = 'https://telegra.ph/file/24fa902ead26340f3df2c.png'}
 const json = {"type": "quote", "format": "png", "backgroundColor": "#FFFFFF", "width": 512, "height": 768, "scale": 2, "messages": [{"entities": [], "avatar": true, "from": {"id": 1, "name": pushname, "photo": {"url": ppimg}}, "text": q, "replyMessage": {}}]};
 axios.post('https://quote.btch.bz/generate', json, {headers: {'Content-Type': 'application/json'}}).then(res => {
 const buffer = Buffer.from(res.data.result.image, 'base64')
-sandro.sendImageAsSticker(from, buffer, {author: `📌 Criado(a) por: ${NomeDoBot}`})
+calo.sendImageAsSticker(from, buffer, {author: `📌 Criado(a) por: ${NomeDoBot}`})
 }).catch((e) => {
 return reply(mess.error())
 })
@@ -9048,12 +9048,12 @@ reply("• Aguarde, estou gerando a figurinha de acordo o que você solicitou!")
 setTimeout(() => { reagir(from, "💬"); }, 500);
 const colorC = {'1': '#000000', '2': '#FFFFFF','3': '#FF0000', '4': '#0000FF'};
 const backgroundColor = colorC[colorNumber] || '#000000';
-try {ppimg = await sandro.profilePictureUrl(sender, 'image')} catch {ppimg = 'https://i.imgur.com/OqeFhHP.jpeg'}
+try {ppimg = await calo.profilePictureUrl(sender, 'image')} catch {ppimg = 'https://i.imgur.com/OqeFhHP.jpeg'}
 const avatar = `${ppimg}`
 const jsonNew = {"type": "quote", "format": "png", "backgroundColor": backgroundColor, "width": 512, "height": 768, "scale": 2, "messages": [{"entities": [], "avatar": true, "from": {"id": 1, "name": pushname, "photo": {"url": avatar}}, "text": text, "replyMessage": {}}]};
 axios.post('https://bot.lyo.su/quote/generate', jsonNew, {headers: {'Content-Type': 'application/json'}}).then((reesult) => {
 const bufferE = Buffer.from(reesult.data.result.image, 'base64')
-sandro.sendImageAsSticker(from, bufferE, {author: `📌 Criado(a) por: ${NomeDoBot}`})
+calo.sendImageAsSticker(from, bufferE, {author: `📌 Criado(a) por: ${NomeDoBot}`})
 }).catch((e) => {
 return reply(mess.error())
 })
@@ -9065,7 +9065,7 @@ case 'amazonsearch':
 if(q.trim().length < 4) return reply(`Exemplo: ${prefix+command} fone redmi airdots 2`)
 reply(enviar.espere);
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/amazon?nome=${q}&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/amazon?nome=${q}&apikey=${calo_MD_BOT}`);
 RST = "🛒 *𝐏𝐄𝐒𝐐𝐔𝐈𝐒𝐀 - 𝐀𝐌𝐀𝐙𝐎𝐍 𝐒𝐓𝐎𝐑𝐄:*\n–\n"
 RST += ABC.resultado.map((v, index) => `*${index+1}.* Produto: *${v.titulo}*\n• Valor do Produto: *${v.valor}*\n• Link: *${v.link}*`).join('\n–\n')
 return reply(RST)
@@ -9076,7 +9076,7 @@ break;
 /*
 case 'brasileirao':
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/brasileirao?apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/brasileirao?apikey=${calo_MD_BOT}`);
 RST = "⚽️📊 *Tabela Brasileirão:*\n–\n"
 RST += ABC.resultado.map((v, index) => `${index+1}°) Time: *${v.equipe}*\n• Pontos alcançados pelo time: *${v.pontos}*\n• Jogos jogados pelo time: *${v.jogosJogados}*`).join("\n–\n")
 return reply(RST)
@@ -9090,11 +9090,11 @@ case 'receita':
 case 'revenue': 
 if (!q) return reply(`NaN, você esqueceu de digitar após o comando.`)
 try {
-data = await fetchJson(`https://yurimodz-apis.xyz/api/search/cybercook?query=${q}&apikey=${SANDRO_MD_BOT}`)
+data = await fetchJson(`https://yurimodz-apis.xyz/api/search/cybercook?query=${q}&apikey=${calo_MD_BOT}`)
 if (data.resultado.length == 0) return reply(mess.noresult())
 RST = "© • *𝐏𝐄𝐒𝐐𝐔𝐈𝐒𝐀 𝐃𝐄 𝐑𝐄𝐂𝐄𝐈𝐓𝐀𝐒*\n  • Fonte: https://cybercook.com.br/\n—\n"
 RST += data.resultado.map((v, index) => `*${index+1}.* Título: *Receita de ${v.title}*\n• Avaliação: *${v.assessment.starEmoji} (${v.assessment.star})*\n• Enviada por: *${v.by}*\n• Foto: *${v.image}*\n• Acesse o link para saber mais sobre a receita: *${v.url}*`).join('\n—\n')
-sandro.sendMessage(from, {text: RST, contextInfo: {externalAdReply: {title: `[Total: ${data.resultado.length}] • 👩🏼‍🍳 Encontre as melhores receitas culinárias no CyberCook!`, thumbnail: await getBuffer(data.resultado[0].image), mediaType: 2, sourceUrl: "https://cybercook.com.br/"}}}, {quoted: info});
+calo.sendMessage(from, {text: RST, contextInfo: {externalAdReply: {title: `[Total: ${data.resultado.length}] • 👩🏼‍🍳 Encontre as melhores receitas culinárias no CyberCook!`, thumbnail: await getBuffer(data.resultado[0].image), mediaType: 2, sourceUrl: "https://cybercook.com.br/"}}}, {quoted: info});
 } catch(error) {
 return reply(mess.error())
 }
@@ -9106,15 +9106,15 @@ await carregamento()
 await sleep(3000)
 if(!q) return reply(mess.noArgsSearch()+`use como exemplo: *${prefix+command} minecraft*`);
 await reply(`Enviando.. caso demore de mais nao consegui te enviar `)
-AB = await fetchJson(`http://br1.bronxyshost.com:4360/api/playstore?nome=${q}&apikey=${SANDRO_MD}`)
+AB = await fetchJson(`http://br1.bronxyshost.com:4360/api/playstore?nome=${q}&apikey=${calo_MD}`)
 ABC = ` *Pesquisa:* ${q} - *[ PlayStore ]*\nTotal de aplicativos encontrados: ${AB.pesquisa.resultado.length}\n${"-\t".repeat(24)}\n`
 for (var i of AB.pesquisa.resultado) {
 ABC += `*Aplicativo:* ${i.nome}\n* Desenvolvedor do App:* ${i.desenvolvedor}\n* Avaliação do Aplicativo:* ${i.estrelas}\n* Link do Aplicativo:* ${i.link}\n`;
 ABC += `${"-\t".repeat(24)}\n`
 }
-sandro.sendMessage(from, {image:{url: AB.pesquisa.resultado[0].imagem}, caption: ABC});
+calo.sendMessage(from, {image:{url: AB.pesquisa.resultado[0].imagem}, caption: ABC});
 } catch (e) {
-reply(`alguma coisa deu errado entre em contato com o Sandro para descobrir.`)
+reply(`alguma coisa deu errado entre em contato com o calo para descobrir.`)
 }
 break
 
@@ -9122,8 +9122,8 @@ break
 case 'rastrear':
 if (!q) return reply(mess.syntaxTrackParcels(prefix))
 if (q.length < 13 || q.length > 13) return reply(mess.invalidCodeRastrear())
-data = await fetchJson(`https://yurimodz-apis.xyz/api/rastreio?code=${q}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {text: mess.rastrearEncomenda(data, q)}, {quoted:info}).catch(e => {
+data = await fetchJson(`https://yurimodz-apis.xyz/api/rastreio?code=${q}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {text: mess.rastrearEncomenda(data, q)}, {quoted:info}).catch(e => {
 return reply(mess.error())
 })
 break
@@ -9134,100 +9134,100 @@ case 'gamenews':
 if(!q) return reply(mess.syntaxNewsGame(prefix))
 if (args[0] === '-cod') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=cod&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=cod&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-csgo') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=csgo&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=csgo&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-fifa') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=fifa&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=fifa&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-fortnite') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=fortnite&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=fortnite&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-gamexp') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=gamexp&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=gamexp&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-pes') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=pes&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=pes&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-lol') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=lol&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=lol&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-pokemon') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=pokemon&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=pokemon&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-rainbow-6') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=rainbow-6&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=rainbow-6&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-valorant') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=valorant&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=valorant&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-tcg') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=tcg&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/e-sports_noticias?query=tcg&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: ABC.resultado[0].linkImagem}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
@@ -9242,163 +9242,163 @@ case 'esportenews':
 if(!q) return reply(mess.syntaxNewsEsportes(prefix))
 if (args[0] === '-all') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-futebol') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=futebol&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=futebol&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-futsal') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=futsal&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=futsal&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-skate') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=skate&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=skate&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-surfe') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=surfe&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=surfe&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-basquete') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=basquete&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=basquete&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-volei') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=volei&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=volei&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-tenis') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=tenis&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=tenis&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-atletismo') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=atletismo&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=atletismo&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-natacao') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=natacao&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=natacao&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-ciclismo') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=ciclismo&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=ciclismo&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-boxe') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=boxe&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=boxe&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-beisebol') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=beisebol&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=beisebol&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-futebol-eua') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=futebol-americano&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=futebol-americano&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 } 
 } else if (args[0] === '-judo') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=judo&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=judo&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 }
 } else if (args[0] === '-ginastica') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=ginastica-artistica&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=ginastica-artistica&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 } 
 } else if (args[0] === '-golfe') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=golfe&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=golfe&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 } 
 } else if (args[0] === '-formula-1') {
 try {
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=formula-1&apikey=${SANDRO_MD_BOT}`);
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/esporte_noticias?esporte=formula-1&apikey=${calo_MD_BOT}`);
 RST = ""
 RST += `${ABC.resultado.map(v => `*${v.titulo}*\n• ${v.trechoManchete}`).join('\n–\n')}`
-sandro.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
+calo.sendMessage(from,{image: {url: "https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg"}, caption: RST}, {quoted:info})
 } catch(e) {
 return reply(mess.error())
 } 
@@ -9438,7 +9438,7 @@ break;
 */
 case 'imdb':
 if (!q) return reply(`• Para realizar a pesquisa do filme no *IMDb* é necessário conter pelo menos um gênero ou nome do filme.\n      • Exemplo: *${prefix}imdb Ação*\n–\n🔍 Saber mais informações sobre o filme pesquisado? Use: *${prefix}imdbinfo [link]*\n      • Lembrando que o *link do filme* para ser usado ele é apresentado na pesquisa, *se obter sucesso.*\n          • Exemplo: *https://m.imdb.com/title/tt6495770/?ref_=fn_al_tt_5*`)
-AB = await fetchJson(`https://yurimodz-apis.xyz/api/search/imdb?query=${q}&apikey=${SANDRO_MD_BOT}`)
+AB = await fetchJson(`https://yurimodz-apis.xyz/api/search/imdb?query=${q}&apikey=${calo_MD_BOT}`)
 ABC = `• 𝐈𝐌𝐃𝐛 𝐏𝐄𝐒𝐐𝐔𝐈𝐒𝐀 - *( ${date} ${hora} )*\n     • *Nota:* Para ver as informações do filme de uma forma detalhada, use o comando: *${prefix}imdbinfo [link do filme]*\n         Exemplo: *${prefix}imdbinfo ${AB.resultado[0].url}*\n–\n`
 ABC += AB.resultado.map((v, index) => `*1.* Título: *${v.title}*\n• Ano de Lançamento: *${v.release}*\n• Créditos principais: *${v.topCredits[0]} e ${v.topCredits[1]}*\n• Link: *${v.url}*`).join('\n–\n')
 reply(ABC).catch(e => {
@@ -9449,7 +9449,7 @@ break;
 case 'imdbinfo':
 if(!q.includes("m.imdb.com")) return reply("Coloque o link do filme que você deseja puxar informações.")
 try {
-RST = await fetchJson(`https://yurimodz-apis.xyz/api/search/imdb_info?url=${q}&apikey=${SANDRO_MD_BOT}`)
+RST = await fetchJson(`https://yurimodz-apis.xyz/api/search/imdb_info?url=${q}&apikey=${calo_MD_BOT}`)
 ABC = `• 𝐈𝐌𝐃𝐛 𝐈𝐍𝐅𝐎 - *( ${date} ${hora} )*\n–\n• Título em Português: *${RST.resultado.titulo}*\n• Título Original: *${RST.resultado.tituloOriginal}*\n–\n• Trama/Sinopse: *${RST.resultado.trama}*\n–\n• Status do filme: *${RST.resultado.status}*\n• Data de lançamento: *${RST.resultado.dataLancamento.dia}.${RST.resultado.dataLancamento.mes}.${RST.resultado.dataLancamento.ano}*\n• Duração do filme: *${RST.resultado.duracao}*\n• Números de certificados: *${RST.resultado.certificado}*\n–\n• Avaliação total de usuários: *${RST.resultado.avaliacaoTotalUsers}*\n• Total de críticas: *${RST.resultado.criticaTotal}*\n–\n• Valor orçamentário: *$ ${RST.resultado.dinheiro.orcamento.valor}*\n• Valor bruto por países: *$ ${RST.resultado.dinheiro.brutoPaises.valor}*\n• Valor semanal: *$ ${RST.resultado.dinheiro.semana.valor}*\n• Valor bruto pelo mundo: *$ ${RST.resultado.dinheiro.brutoMundial.valor}*\n–\n• Prêmios: *${RST.resultado.avaliado.vitorias} vitória(s) e ${RST.resultado.avaliado.indicacoes} indicação(s)*\n• Disputando no rank em: *${RST.resultado.avaliado.rank}° lugar*\n–`
 ABC += `\n• Mixagens: *${RST.resultado.mixagens.map(v => `${v}`).join(', ')}*\n`
 ABC += `• Produção: *${RST.resultado.producao.map(v => `${v}`).join(', ')}*\n–\n`
@@ -9465,8 +9465,8 @@ break;
 case 'movie2':
 if(!q) return reply("Coloque o nome do filme que você deseja puxar informações.")
 try {
-AB = await fetchJson(`https://yurimodz-apis.xyz/api/search/imdb?query=${q}&apikey=${SANDRO_MD_BOT}`)
-RST = await fetchJson(`https://yurimodz-apis.xyz/api/search/imdb_info?url=${AB.resultado[0].url}&apikey=${SANDRO_MD_BOT}`)
+AB = await fetchJson(`https://yurimodz-apis.xyz/api/search/imdb?query=${q}&apikey=${calo_MD_BOT}`)
+RST = await fetchJson(`https://yurimodz-apis.xyz/api/search/imdb_info?url=${AB.resultado[0].url}&apikey=${calo_MD_BOT}`)
 ABC = `• 𝐈𝐌𝐃𝐛 𝐈𝐍𝐅𝐎 - *( ${date} ${hora} )*\n–\n• Título em Português: *${RST.resultado.titulo}*\n• Título Original: *${RST.resultado.tituloOriginal}*\n–\n• Trama/Sinopse: *${RST.resultado.trama}*\n–\n• Status do filme: *${RST.resultado.status}*\n• Data de lançamento: *${RST.resultado.dataLancamento.dia}.${RST.resultado.dataLancamento.mes}.${RST.resultado.dataLancamento.ano}*\n• Duração do filme: *${RST.resultado.duracao}*\n• Números de certificados: *${RST.resultado.certificado}*\n–\n• Avaliação total de usuários: *${RST.resultado.avaliacaoTotalUsers}*\n• Total de críticas: *${RST.resultado.criticaTotal}*\n–\n• Valor orçamentário: *$ ${RST.resultado.dinheiro.orcamento.valor}*\n• Valor bruto por países: *$ ${RST.resultado.dinheiro.brutoPaises.valor}*\n• Valor semanal: *$ ${RST.resultado.dinheiro.semana.valor}*\n• Valor bruto pelo mundo: *$ ${RST.resultado.dinheiro.brutoMundial.valor}*\n–\n• Prêmios: *${RST.resultado.avaliado.vitorias} vitória(s) e ${RST.resultado.avaliado.indicacoes} indicação(s)*\n• Disputando no rank em: *${RST.resultado.avaliado.rank}° lugar*\n–`
 ABC += `\n• Mixagens: *${RST.resultado.mixagens.map(v => `${v}`).join(', ')}*\n`
 ABC += `• Produção: *${RST.resultado.producao.map(v => `${v}`).join(', ')}*\n–\n`
@@ -9482,7 +9482,7 @@ break;
 case 'sanime': case 'animetv':
 if(!q) return reply("Você não digitou nenhuma palavra ao lado do comando.")
 try {
-RST = await fetchJson(`https://yurimodz-apis.xyz/api/animetv_search?query=${q}&apikey=${SANDRO_MD_BOT}`)
+RST = await fetchJson(`https://yurimodz-apis.xyz/api/animetv_search?query=${q}&apikey=${calo_MD_BOT}`)
 ABC = `${RST.resultado.map(v => `• Título: *${v.title}* | *${v.type}*\n• Foto: *${v.thumb}*\n• Link: *${v.url}*`).join('\n–\n')}`
 reply(ABC)
 } catch(e) {
@@ -9492,7 +9492,7 @@ break;
 
 case 'frases': case 'pensador':
 if(!q) return reply(mess.noArgsSearch()+`Exemplo: *${prefix+command} Amor`);
-AB = await fetchJson(`https://yurimodz-apis.xyz/search/pensador?query=${q}&apikey=${SANDRO_MD_BOT}`)
+AB = await fetchJson(`https://yurimodz-apis.xyz/search/pensador?query=${q}&apikey=${calo_MD_BOT}`)
 ABC = ""
 ABC += `${AB.resultado.map(v => `“${v.frase}”`).join('\n–\n')}`
 reply(ABC).catch(e => {
@@ -9513,29 +9513,29 @@ const fileListINFO = File.fromURL(q);
 await fileListINFO.loadAttributes(); // Rodar a função para executar o resultado.
 if (fileListINFO.size >= 300000000) return reply(`😿 Infelizmente, não foi possível concluir a ação, *pois o tamanho do arquivo excede o limite máximo de 300MB.*`);
 function formatSize(bytes){if(bytes >= 1073741824) {bytes = (bytes / 1073741824).toFixed(2) + " GB"} else if (bytes >= 1048576) {bytes = (bytes / 1048576).toFixed(2) + " MB"} else if(bytes >= 1024) {bytes = (bytes / 1024).toFixed(2) + " KB"} else if(bytes > 1) {bytes = bytes + " bytes"} else if(bytes == 1) {bytes = bytes + " byte"} else {bytes = "0 bytes"} return bytes};
-sandro.sendMessage(from, {text: `🤖💫 Por favor, aguarde alguns minutos! O arquivo está sendo baixado!\n• Arquivo: *${fileListINFO.name}* - [${formatSize(fileListINFO.size)}]`, contextInfo: {forwardingScore: 1000000, isForwarded: true, forwardedNewsletterMessageInfo: {newsletterJid: channel}}}, {quoted: info});
+calo.sendMessage(from, {text: `🤖💫 Por favor, aguarde alguns minutos! O arquivo está sendo baixado!\n• Arquivo: *${fileListINFO.name}* - [${formatSize(fileListINFO.size)}]`, contextInfo: {forwardingScore: 1000000, isForwarded: true, forwardedNewsletterMessageInfo: {newsletterJid: channel}}}, {quoted: info});
 const dataFileBuffer = await fileListINFO.downloadBuffer();
 // Adicionadas extensões suportadas (zip, rar, 7z, jpg, png, zip) à lista.
 if (/mp4/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, {document: dataFileBuffer, caption: fileListINFO.name, mimetype: "video/mp4", fileName: `Download Completo! Obrigado por esperar *${pushname}*...`}, {quoted: selo});
+await calo.sendMessage(from, {document: dataFileBuffer, caption: fileListINFO.name, mimetype: "video/mp4", fileName: `Download Completo! Obrigado por esperar *${pushname}*...`}, {quoted: selo});
 } else if (/mp3|mpeg/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, {document: dataFileBuffer, caption: fileListINFO.name, mimetype: "audio/mpeg", fileName: `Download Completo! Obrigado por esperar *${pushname}*...`}, {quoted: selo});
+await calo.sendMessage(from, {document: dataFileBuffer, caption: fileListINFO.name, mimetype: "audio/mpeg", fileName: `Download Completo! Obrigado por esperar *${pushname}*...`}, {quoted: selo});
 } else if (/pdf/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo: *100%* - ${fileListINFO.name}`, mimetype: "application/pdf", fileName: fileListINFO.name}, {quoted: selo});
+await calo.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo: *100%* - ${fileListINFO.name}`, mimetype: "application/pdf", fileName: fileListINFO.name}, {quoted: selo});
 } else if (/txt/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "text/plain", fileName: fileListINFO.name}, {quoted: selo});
+await calo.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "text/plain", fileName: fileListINFO.name}, {quoted: selo});
 } else if (/zip/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, { document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "application/zip", fileName: fileListINFO.name}, {quoted: selo});
+await calo.sendMessage(from, { document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "application/zip", fileName: fileListINFO.name}, {quoted: selo});
 } else if (/rar/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, { document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "application/x-rar-compressed", fileName: fileListINFO.name }, {quoted: selo});
+await calo.sendMessage(from, { document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "application/x-rar-compressed", fileName: fileListINFO.name }, {quoted: selo});
 } else if (/7z/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "application/x-7z-compressed", fileName: `${fileListINFO.name}` }, {quoted: selo});
+await calo.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "application/x-7z-compressed", fileName: `${fileListINFO.name}` }, {quoted: selo});
 } else if (/jpg|jpeg/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "image/jpeg", fileName: fileListINFO.name}, {quoted: selo});
+await calo.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "image/jpeg", fileName: fileListINFO.name}, {quoted: selo});
 } else if (/png/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "image/png", fileName: fileListINFO.name}, {quoted: selo});
+await calo.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "image/png", fileName: fileListINFO.name}, {quoted: selo});
 } else if (/apk/.test(fileListINFO.name)) {
-await sandro.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "application/vnd.android.package-archive", fileName: fileListINFO.name}, {quoted: selo});
+await calo.sendMessage(from, {document: dataFileBuffer, caption: `Download Completo! Obrigado por esperar *${pushname}*...`, mimetype: "application/vnd.android.package-archive", fileName: fileListINFO.name}, {quoted: selo});
 } else {
 return reply('- Desculpe-me, ocorreu um erro ao encaminhar o arquivo!😿 O formato de arquivo apresentado não é suportado.');
 }
@@ -9546,7 +9546,7 @@ break;
 
 case 'dicionario': 
 if (!q) return reply(mess.noArgsSearch()+`Exemplo: *${prefix+command} [palavra]*`)
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/dicionario?q=${q}&apikey=${SANDRO_MD_BOT}`)
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/dicionario?q=${q}&apikey=${calo_MD_BOT}`)
 reply(`${ABC.significado}`).catch(e => {
 reply(mess.error());
 })
@@ -9554,7 +9554,7 @@ break;
 
 case 'encurtalink': 
 case 'tinyurl':
-if(args.length < 1) return reply(`❌️ *Forma incorreta, use está como exemplo:* ${prefix + command} https://instagram.com/sandrobot.wpp`)
+if(args.length < 1) return reply(`❌️ *Forma incorreta, use está como exemplo:* ${prefix + command} https://instagram.com/calobot.wpp`)
 anu = await axios.get(`https://tinyurl.com/api-create.php?url=${q}`)
 reply(`*Link encurtado com sucesso, aqui está:* ${anu.data}`).catch(e => {
 reply(mess.error())
@@ -9563,8 +9563,8 @@ break
 
 case 'encurtarlink2': 
 case 'cuttly':
-if(args.length < 1) return reply(`❌️ *Forma incorreta, use está como exemplo:* ${prefix + command} https://instagram.com/sandrobot.wpp`)
-anu = await axios.get(`https://yurimodz-apis.xyz/api/linkshort/cuttly?link=${q}&apikey=${SANDRO_MD_BOT}`)
+if(args.length < 1) return reply(`❌️ *Forma incorreta, use está como exemplo:* ${prefix + command} https://instagram.com/calobot.wpp`)
+anu = await axios.get(`https://yurimodz-apis.xyz/api/linkshort/cuttly?link=${q}&apikey=${calo_MD_BOT}`)
 reply(`*Link encurtado com sucesso, aqui está:* ${anu.data.result}`).catch(e => {
 emror = String(e)
 reply(mess.error())
@@ -9574,7 +9574,7 @@ break
 case 'biografia':
 case 'bio':
 try {
-status = (await sandro.fetchStatus(sender_ou_n)).status
+status = (await calo.fetchStatus(sender_ou_n)).status
 } catch {
 status = "🔒 Privada 🔒"
 }
@@ -9583,8 +9583,8 @@ break
 
 case 'encurtarlink3': 
 case 'bitly':
-if(args.length < 1) return reply(`❌️ *Forma incorreta, use está como exemplo:* ${prefix + command} https://instagram.com/sandrobot.wpp`)
-anu = await axios.get(`https://yurimodz-apis.xyz/api/linkshort/bitly?link=${q}&apikey=${SANDRO_MD_BOT}`)
+if(args.length < 1) return reply(`❌️ *Forma incorreta, use está como exemplo:* ${prefix + command} https://instagram.com/calobot.wpp`)
+anu = await axios.get(`https://yurimodz-apis.xyz/api/linkshort/bitly?link=${q}&apikey=${calo_MD_BOT}`)
 reply(`*Link encurtado com sucesso, aqui está:* ${anu.data.result}`).catch(e => {
 reply(mess.error())
 })
@@ -9618,7 +9618,7 @@ let datadelancamento = searchapi.released
 let avaliacaodojogo = searchapi.rating
 let rating_top = searchapi.rating_top
 let esrb = gamesearch.data.results[0].esrb_rating === null ? '' : gamesearch.data.results[0].esrb_rating.name;
-sandro.sendMessage(from, {image: await getBuffer(searchapi.background_image), caption: mess.gamesResult(titulo, genero, plataforma, compreaqui, tempodejogatina, datadelancamento, avaliacaodojogo, rating_top, esrb)}, {quoted: info})
+calo.sendMessage(from, {image: await getBuffer(searchapi.background_image), caption: mess.gamesResult(titulo, genero, plataforma, compreaqui, tempodejogatina, datadelancamento, avaliacaodojogo, rating_top, esrb)}, {quoted: info})
 }
 break;
 
@@ -9626,7 +9626,7 @@ case 'celular':
 try {
 if(!q.trim()) return reply(`Exemplo: ${prefix+command} galaxy a9 2018`);
 reply("[❗] aguarde uns minutinho estou processado");
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/info_celular?celular=${q}&apikey=${API_SANDRO_MD}`);
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/info_celular?celular=${q}&apikey=${API_calo_MD}`);
 reply(`📱 Celular: ${ABC.celular || "Não encontrado"}\n\nInformações:\n${ABC.resumo || ABC.infoc || "Não encontrado, seja mais específico, a marca e a versão"}`);
 } catch (e) {
 return reply("Erro...");
@@ -9636,15 +9636,15 @@ break;
 case 'threads':
 if(!q.includes("threads.net")) return reply("Por favor, adicione um link válido do threads. (foto ou vídeo)");
 try {
-data = await fetchJson(`https://yurimodz-apis.xyz/api/dl/threads?url=${q}&apikey=${SANDRO_MD_BOT}`);
+data = await fetchJson(`https://yurimodz-apis.xyz/api/dl/threads?url=${q}&apikey=${calo_MD_BOT}`);
 for (let i = 0; i < data.resultado.image_urls.length; i++) {
 photos = await fetch(data.resultado.image_urls[i]).then(v => v.buffer())
-sandro.sendMessage(from, {image: photos})
+calo.sendMessage(from, {image: photos})
 }
 } finally {
 for (let i = 0; i < data.resultado.video_urls.length; i++) {
 videoUrl = await fetch(data.resultado.video_urls[i].download_url).then(v => v.buffer())
-sandro.sendMessage(from, {video: videoUrl})
+calo.sendMessage(from, {video: videoUrl})
 }
 }
 break
@@ -9653,7 +9653,7 @@ case 'spotify': {
 if(!q.trim().includes("spotify")) return reply(`Cadê a url do spotiy? exemplo: ${prefix+command} https://open.spotify.com/intl-pt/track/4m3mrHuttXhK58f6Tenai1\nNão baixo playlist, quiser pegar o link da música, acessa o site: https://open.spotify.com/search e pesquisa lá.`)
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 try {
-sandro.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/spotify?url=${q.trim()}&apikey=${API_SANDRO_MD}`}, mimetype: "audio/mpeg"}, {quoted: info}).catch(() => reply("Erro!"))
+calo.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/spotify?url=${q.trim()}&apikey=${API_calo_MD}`}, mimetype: "audio/mpeg"}, {quoted: info}).catch(() => reply("Erro!"))
 } catch (e) {
 console.log(e);
 return reply("Erro...");
@@ -9668,13 +9668,13 @@ text: "🥰",
 key: info.key
 }
 }
-sendMsg = await sandro.sendMessage(from, reactionMessage)
+sendMsg = await calo.sendMessage(from, reactionMessage)
 break
 
 case "ytsearch":
 try {
 if(!q) return reply(`Digite o nome de algum vídeo ou música que deseja encontrar..`);
-AB = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_SANDRO_MD}`)
+AB = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_calo_MD}`)
 ABC = `${"-\t".repeat(13)}\n\n`
 for (var i of AB) {
 ABC += `Titulo: ${i.titulo}\nUrl: ${i.url}\npublicado`;
@@ -9690,7 +9690,7 @@ case 'pesquisa_yt': case 'ytsearch':
 case 'pesquisa':
 try {
 if(!q.trim()) return reply(`Digite o nome de algum vídeo ou música que deseja encontrar..`);
-AB = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_SANDRO_MD}`)
+AB = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_calo_MD}`)
 ABC = `${"-\t".repeat(13)}\n\n`
 for (var i of AB) {
 ABC += `Titulo: ${i.titulo}\nUrl: ${i.url}\nTempo: ${i.tempo}\nPostado: ${i.postado}\n\nDescrição: ${i.desc}\n\n`;
@@ -9708,7 +9708,7 @@ await sleep(3000)
 if(!q) return reply(`${pushname} Cade o nome da musica?\n Exemplo: ${prefix}${command} MTG BARRACO DELA`)
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 try {
-ytbr = await fetchJson(`http://br1.bronxyshost.com:4360/youtube/play?query=${q}&apikey=${SANDRO_MD}`)
+ytbr = await fetchJson(`http://br1.bronxyshost.com:4360/youtube/play?query=${q}&apikey=${calo_MD}`)
 ytbrt = `「🎵𝐏𝐋𝐀𝐘 𝐀𝐔𝐃𝐈𝐎🎵」
 🥂∆𝐁𝐄𝐌✰𝐕𝐈𝐍𝐃𝐎∆🥂
 
@@ -9719,13 +9719,13 @@ ytbrt = `「🎵𝐏𝐋𝐀𝐘 𝐀𝐔𝐃𝐈𝐎🎵」
 > • *Descrição*: ${ytbr.Description}
 > • *Link*: ${ytbr.Link}
 > • *Site-api*: ${ytbr.site}
-> • *Criador: SANDRO BOT*
+> • *Criador: calo BOT*
 
 > 0:35 ━❍──────── -${ytbr.Duration} ↻ ⊲ Ⅱ ⊳ ↺ VOLUME: ▁▂▃▄▅▆▇ 100%`
-sandro.sendMessage(from, {image: {url: `${ytbr.Thumb}`}, caption: ytbrt}, {quoted: info})
-sandro.sendMessage(from, {audio: {url: `http://br1.bronxyshost.com:4360/youtube/mp3?url=${ytbr.Link}&apikey=${SANDRO_MD}` }, mimetype: "audio/mpeg"}, {quoted: info})
+calo.sendMessage(from, {image: {url: `${ytbr.Thumb}`}, caption: ytbrt}, {quoted: info})
+calo.sendMessage(from, {audio: {url: `http://br1.bronxyshost.com:4360/youtube/mp3?url=${ytbr.Link}&apikey=${calo_MD}` }, mimetype: "audio/mpeg"}, {quoted: info})
 } catch (err) {
-reply(`alguma coisa deu errado entre em contato com o Sandro para descobrir.`)
+reply(`alguma coisa deu errado entre em contato com o calo para descobrir.`)
 console.log(err)
 } 
 break
@@ -9734,9 +9734,9 @@ case 'play5':
 case 'p5':
 if(!q) return reply(mess.syntaxDownloadMusic())
 try {
-data = await fetchJson(`https://yurimodz-apis.xyz/api/ytsrc/videos?q=${q}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from,{image: {url: `${data.resultado[0].image}`}, caption: mess.playResult(data)}, {quoted:info})
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[0].url}&apikey=${SANDRO_MD_BOT}`}, fileName: data.resultado[0].title+'.mp3', mimetype: "audio/mpeg"}, {quoted: info}).catch(e => {
+data = await fetchJson(`https://yurimodz-apis.xyz/api/ytsrc/videos?q=${q}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from,{image: {url: `${data.resultado[0].image}`}, caption: mess.playResult(data)}, {quoted:info})
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[0].url}&apikey=${calo_MD_BOT}`}, fileName: data.resultado[0].title+'.mp3', mimetype: "audio/mpeg"}, {quoted: info}).catch(e => {
 return reply(mess.error())
 })
 } catch(error) {
@@ -9749,7 +9749,7 @@ try {
 await carregamento()
 await sleep(3000)
 if(!q.trim()) return reply(`- Exemplo: ${prefix}play nome da música\na música será baixada, só basta escolher áudio ou vídeo, se não baixar, o YouTube privou de não baixarem, ou algo do tipo..`)
-data = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_SANDRO_MD}`)
+data = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_calo_MD}`)
 if(data[0]?.tempo?.length >= 7) return reply("Desculpe, este video ou audio é muito grande, não poderei realizar este pedido, peça outra música abaixo de uma hora.")
 var N_E = " Não encontrado."
 var bla = `
@@ -9757,8 +9757,8 @@ var bla = `
 > Tempo: ${data[0]?.tempo||N_E}
 > Postado: ${data[0]?.postado||N_E}
 > Descrição: ${data[0]?.desc||N_E}`
-sandro.sendMessage(from, {image: {url: data[0]?.thumb || logoslink.logo}, caption: bla}, {quoted: info})
-sandro.sendMessage(from, {document: {url: `https://api.bronxyshost.com.br/api-bronxys/play?nome_url=${q}&apikey=${API_SANDRO_MD}`}, mimetype: "audio/mpeg", fileName: data[0]?.titulo || "play.mp3"}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {image: {url: data[0]?.thumb || logoslink.logo}, caption: bla}, {quoted: info})
+calo.sendMessage(from, {document: {url: `https://api.bronxyshost.com.br/api-bronxys/play?nome_url=${q}&apikey=${API_calo_MD}`}, mimetype: "audio/mpeg", fileName: data[0]?.titulo || "play.mp3"}, {quoted: info}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -9770,7 +9770,7 @@ break;
 case 'ytmp4': 
 if(!q) return reply(`Cada o link do video para eu baixar?\n\nExemplo: *${prefix+command} https://www.youtube.com/watch?v=hmBAvAugQqA&t=160s*`)
 await reply(`Enviando.. caso demore de mais nao consegui te enviar `)
-sandro.sendMessage(from, {video: {url: (`https://api.bronxyshost.com.br/api-bronxys/play_video?nome_url=${q}&apikey=${API_SANDRO_MD}`)}, mimetype: "video/mp4"}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {video: {url: (`https://api.bronxyshost.com.br/api-bronxys/play_video?nome_url=${q}&apikey=${API_calo_MD}`)}, mimetype: "video/mp4"}, {quoted: info}).catch(e => {
 reply("Seja mais específico, não deu pra encontrar com apenas isto...");
 })
 break
@@ -9792,8 +9792,8 @@ break;
 reply(`erro mn`)
 if(!q) return reply(mess.syntaxDownloadMusic());
 try {
-data = await fetchJson(`http://br1.bronxyshost.com:4360/youtube/play?query=${q}&apikey=${SANDRO_MD}`);
-sandro.sendInteractiveIMG('./database/data/media/images/play-thumb.jpg', from, mess.playResult(data), "© sandro Supremacy", {participant: sender, quotedMessage: info.message}, {buttons: [{name: "quick_reply", buttonParamsJson: JSON.stringify({display_text: "「 🩸 」𝐃𝐎𝐂𝐔𝐌𝐄𝐍𝐓𝐎「 🩸 」", id: `${prefix}ytdoc ${data.resultado[0].url}`})}, {name: "quick_reply", buttonParamsJson: JSON.stringify({display_text: "「 🩸 」𝐀𝐔𝐃𝐈𝐎「 🩸 」", id: `${prefix}ytmp3 ${data.resultado[0].url}`})}, {name: "quick_reply", buttonParamsJson: JSON.stringify({display_text: "「 🩸 」𝐕𝐈𝐃𝐄𝐎「 🩸 」", id: `${prefix}ytmp4 ${data.resultado[0].url}`})}]});
+data = await fetchJson(`http://br1.bronxyshost.com:4360/youtube/play?query=${q}&apikey=${calo_MD}`);
+calo.sendInteractiveIMG('./database/data/media/images/play-thumb.jpg', from, mess.playResult(data), "© calo Supremacy", {participant: sender, quotedMessage: info.message}, {buttons: [{name: "quick_reply", buttonParamsJson: JSON.stringify({display_text: "「 🩸 」𝐃𝐎𝐂𝐔𝐌𝐄𝐍𝐓𝐎「 🩸 」", id: `${prefix}ytdoc ${data.resultado[0].url}`})}, {name: "quick_reply", buttonParamsJson: JSON.stringify({display_text: "「 🩸 」𝐀𝐔𝐃𝐈𝐎「 🩸 」", id: `${prefix}ytmp3 ${data.resultado[0].url}`})}, {name: "quick_reply", buttonParamsJson: JSON.stringify({display_text: "「 🩸 」𝐕𝐈𝐃𝐄𝐎「 🩸 」", id: `${prefix}ytmp4 ${data.resultado[0].url}`})}]});
 } catch(error) {
 reply("Seja mais específico, não deu pra encontrar com apenas isto...");
 }
@@ -9803,7 +9803,7 @@ case 'soundcloud':
 if(!q.trim().includes("soundcloud")) return reply("Cadê o link do soundcloud?")
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 try {
-sandro.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/soundcloud?url=${q.trim()}&apikey=${API_SANDRO_MD}`}, mimetype: "audio/mpeg"}, {quoted: info})
+calo.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/soundcloud?url=${q.trim()}&apikey=${API_calo_MD}`}, mimetype: "audio/mpeg"}, {quoted: info})
 } catch (e) {
 console.log(e)
 reply("Erro...")
@@ -9819,7 +9819,7 @@ try {
 await carregamento()
 await sleep(3000)
 if(!q.trim()) return reply(`Exemplo: ${prefix}play nome da música\na música será baixada, só basta escolher áudio ou vídeo, se não baixar, o YouTube privou de não baixarem, ou algo do tipo..`)
-data = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_SANDRO_MD}`)
+data = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_calo_MD}`)
 if(data[0]?.tempo?.length >= 7) return reply("Desculpe, este video ou audio é muito grande, não poderei realizar este pedido, peça outra música abaixo de uma hora.")
 var N_E = " Não encontrado."
 var bla = `〔 𝗣𝗟𝗔𝗬 Á𝗨𝗗𝗜𝗢 〕
@@ -9830,13 +9830,13 @@ var bla = `〔 𝗣𝗟𝗔𝗬 Á𝗨𝗗𝗜𝗢 〕
 > Tempo: ${data[0]?.tempo||N_E}
 > Postado: ${data[0]?.postado||N_E}
 > Descrição: ${data[0]?.desc||N_E}
-> Criador: SANDRO BOT
+> Criador: calo BOT
 
 > 0:35 ━❍────────-${data[0]?.tempo||N_E} ↻ ⊲ Ⅱ ⊳ ↺
 > *VOLUME:* ▁▂▃▄▅▆▇ 100%
 > ılı.lıllılı.ıllı..ılı.lıllılı.ıllı`
-sandro.sendMessage(from, {image: {url: data[0]?.thumb || logoslink?.logo}, caption: bla}, {quoted: info})
-sandro.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/play?nome_url=${q}&apikey=${API_SANDRO_MD}`}, mimetype: "audio/mpeg", fileName: data[0]?.titulo || "play.mp3"}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {image: {url: data[0]?.thumb || logoslink?.logo}, caption: bla}, {quoted: info})
+calo.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/play?nome_url=${q}&apikey=${API_calo_MD}`}, mimetype: "audio/mpeg", fileName: data[0]?.titulo || "play.mp3"}, {quoted: info}).catch(e => {
 return reply(`_Ola ${pushname} Não foi possível enviar o áudio *${q}*. Por favor, selecione outra música e tente novamente._`)
 })
 } catch (e) {
@@ -9851,10 +9851,10 @@ case 'p2':
     try {
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
         if (!q) return reply(mess.syntaxDownloadMusic());
-        const ytbr = await fetchJson(`http://br1.bronxyshost.com:4360/youtube/play?query=${q}&apikey=${SANDRO_MD}`);
+        const ytbr = await fetchJson(`http://br1.bronxyshost.com:4360/youtube/play?query=${q}&apikey=${calo_MD}`);
         const thumbBuffer = await getBuffer(ytbr.Thumb);
         fs.writeFileSync(`./database/data/media/images/play-thumb.jpg`, thumbBuffer);
-        await sandro.sendInteractiveIMG('./database/data/media/images/play-thumb.jpg', from, mess.playResult(ytbr), "© 𝙎𝘼𝙉𝘿𝙍𝙊 𝙈𝘿", 
+        await calo.sendInteractiveIMG('./database/data/media/images/play-thumb.jpg', from, mess.playResult(ytbr), "© 𝙎𝘼𝙉𝘿𝙍𝙊 𝙈𝘿", 
         {
             participant: sender,
             quotedMessage: info.message
@@ -9904,7 +9904,7 @@ await sleep(3000)
 if(!q) return reply(`${pushname} Cade o nome da musica?\n Exemplo: ${prefix}${command} MTG BARRACO DELA`)
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 try {
-ytbr = await fetchJson(`http://br1.bronxyshost.com:4360/youtube/play?query=${q}&apikey=${SANDRO_MD}`)
+ytbr = await fetchJson(`http://br1.bronxyshost.com:4360/youtube/play?query=${q}&apikey=${calo_MD}`)
 ytbrt = `「🎵𝐏𝐋𝐀𝐘 𝐀𝐔𝐃𝐈𝐎🎵」
 🥂∆𝐁𝐄𝐌✰𝐕𝐈𝐍𝐃𝐎∆🥂
 
@@ -9917,8 +9917,8 @@ ytbrt = `「🎵𝐏𝐋𝐀𝐘 𝐀𝐔𝐃𝐈𝐎🎵」
 > • *Site-api*: ${ytbr.site}
 
 > 0:35 ━❍──────── -${ytbr.Duration} ↻ ⊲ Ⅱ ⊳ ↺ VOLUME: ▁▂▃▄▅▆▇ 100%`
-sandro.sendMessage(from, {image: {url: `${ytbr.Thumb}`}, caption: ytbrt}, {quoted: info})
-sandro.sendMessage(from, {audio: {url: `http://br1.bronxyshost.com:4360/youtube/mp3?url=${ytbr.Link}&apikey=${SANDRO_MD}` }, mimetype: "audio/mpeg"}, {quoted: info})
+calo.sendMessage(from, {image: {url: `${ytbr.Thumb}`}, caption: ytbrt}, {quoted: info})
+calo.sendMessage(from, {audio: {url: `http://br1.bronxyshost.com:4360/youtube/mp3?url=${ytbr.Link}&apikey=${calo_MD}` }, mimetype: "audio/mpeg"}, {quoted: info})
 } catch (err) {
 reply(`${err}`)
 console.log(err)
@@ -9929,7 +9929,7 @@ case "letra": case "liryc": case "letram": case "letramusic": case "letramusica"
 if(!q.trim()) return reply(`Exemplo: ${prefix+command} Cansei de me apegar`)
 try {
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
-const abc = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/letra_musica?letra=${q.trim()}&apikey=${API_SANDRO_MD}`)
+const abc = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/letra_musica?letra=${q.trim()}&apikey=${API_calo_MD}`)
 reply(` - Titulo: ${abc.titulo}\n\n - Compositor: ${abc.compositor}\n\n - Letra: ${abc.letra}`)
 } catch (e) {
 reply("Erro...")
@@ -9941,7 +9941,7 @@ case 'faceaudio':
 try {
 if(!q.includes("facebook") && !q.includes("fb.watch")) return reply(`Exemplo: ${prefix+command} o link do Facebook`);
 reply("[❗] aguarde uns minutinho estou processado")
-sandro.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/${command}?url=${q}&apikey=${API_SANDRO_MD}`}, mimetype: "audio/mpeg"}).catch(e => {
+calo.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/${command}?url=${q}&apikey=${API_calo_MD}`}, mimetype: "audio/mpeg"}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -9953,12 +9953,12 @@ break;
 case 'p22':
 if(!q) return reply(mess.syntaxDownloadMusic());
 try {
-data = await fetchJson(`https://yurimodz-apis.xyz/api/ytsrc/videos?q=${q}&apikey=${SANDRO_MD_BOT}`);
+data = await fetchJson(`https://yurimodz-apis.xyz/api/ytsrc/videos?q=${q}&apikey=${calo_MD_BOT}`);
 Lrows = []
 for(let v of data.resultado) {
 Lrows.push({title: v.title, description: `${v.description}`, id: `${prefix}play ${v.title}`, header: `Tipo: Áudio > Canal: ${v.author.name} | Duração: ${v.duration.timestamp}`}, {title: v.title, description: v.description, id: `${prefix}playvid ${v.title}`, header: `Tipo: Vídeo > Canal: ${v.author.name} | Duração: ${v.duration.timestamp}`})
 };
-await sandro.relayMessage(from, {interactiveMessage: {body: {text: `⸺͟͞ꪶ𝐘𝐎𝐔𝐓𝐔𝐁𝐄 - 𝐏𝐋𝐀𝐘 𝐕𝟐ꫂ ♪`}, footer: {text: `${tempo}, ${pushname}! Aqui está o resultado da sua pesquisa, selecione a música a qual você deseja baixar.`}, contextInfo: {participant: sender, quotedMessage: info.message}, nativeFlowMessage: {buttons: [{name: "single_select", buttonParamsJson: JSON.stringify({title: "SELECIONAR", sections: [{title: NomeDoBot, highlight_label: "", rows: Lrows}]})}]}}}, {});
+await calo.relayMessage(from, {interactiveMessage: {body: {text: `⸺͟͞ꪶ𝐘𝐎𝐔𝐓𝐔𝐁𝐄 - 𝐏𝐋𝐀𝐘 𝐕𝟐ꫂ ♪`}, footer: {text: `${tempo}, ${pushname}! Aqui está o resultado da sua pesquisa, selecione a música a qual você deseja baixar.`}, contextInfo: {participant: sender, quotedMessage: info.message}, nativeFlowMessage: {buttons: [{name: "single_select", buttonParamsJson: JSON.stringify({title: "SELECIONAR", sections: [{title: NomeDoBot, highlight_label: "", rows: Lrows}]})}]}}}, {});
 } catch(error) {
 return await reply("Seja mais específico, não deu pra encontrar com apenas isto...");
 }
@@ -9969,7 +9969,7 @@ break
 case 'ytmp3':
 if(!q) return reply(`Cadê o link do vídeo para eu baixar no formato de áudio?\n\nExemplo: *${prefix+command} https://www.youtube.com/watch?v=hmBAvAugQqA&t=160s*`)
 reply(`Enviando.. caso demore de mais nao consegui te enviar `)
-sandro.sendMessage(from, {audio: {url: (`https://api.bronxyshost.com.br/api-bronxys/play?nome_url=${q}&apikey=${API_SANDRO_MD}`)}, mimetype: "audio/mpeg"}).catch(err => {
+calo.sendMessage(from, {audio: {url: (`https://api.bronxyshost.com.br/api-bronxys/play?nome_url=${q}&apikey=${API_calo_MD}`)}, mimetype: "audio/mpeg"}).catch(err => {
 return reply(mess.error())
 })
 break
@@ -9977,7 +9977,7 @@ break
 case 'ytdoc':
 if(!q) return reply(`Por favor, insira um link de um *vídeo do YouTube* após o comando.\n   • Exemplo: *${prefix+command} https://youtube.com/watch?v=JXGpTLg7qoQ*`)
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
-sandro.sendMessage(from, {document: {url: `https://api.bronxyshost.com.br/api-bronxys/play?nome_url=${q}&apikey=${API_SANDRO_MD}`}, fileName: '.mp3', mimetype: "audio/mpeg"}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {document: {url: `https://api.bronxyshost.com.br/api-bronxys/play?nome_url=${q}&apikey=${API_calo_MD}`}, fileName: '.mp3', mimetype: "audio/mpeg"}, {quoted: info}).catch(e => {
 reply(`Alguma coisa deu errado...`)
 })
 break
@@ -9990,17 +9990,17 @@ if(!q) return reply("Você esqueceu de adicionar um link de um vídeo, após o c
 reply(enviar.espere)
 if(cmd == "ytmp3" || cmd == "ytaudio") {
 try {
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${q}&apikey=${SANDRO_MD_BOT}`}}, {quoted: info})
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${q}&apikey=${calo_MD_BOT}`}}, {quoted: info})
 .catch((error) => {return reply(mess.error())})
 } catch(error) {return console.error(error)}
 } else if(cmd == "ytmp4" || cmd == "ytvideo") {
 try {
-sandro.sendMessage(from, {video: {url: `https://yurimodz-apis.xyz/api/dl/ytvideo?url=${q}&apikey=${SANDRO_MD_BOT}`}}, {quoted: info})
+calo.sendMessage(from, {video: {url: `https://yurimodz-apis.xyz/api/dl/ytvideo?url=${q}&apikey=${calo_MD_BOT}`}}, {quoted: info})
 .catch((error) => {return reply(mess.error())})
 } catch(error) {return console.error(error)}
 } else if(cmd == "ytdoc") {
 try {
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${q}&apikey=${SANDRO_MD_BOT}`}}, {quoted: info})
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${q}&apikey=${calo_MD_BOT}`}}, {quoted: info})
 .catch((error) => {return reply(mess.error())})
 } catch(error) {return console.error(error)}
 }
@@ -10015,14 +10015,14 @@ fs.writeFileSync(`./database/data/media/audios/shazam/shazam-${sender}.mp3`, dat
 let aud_ = fs.readFileSync(`./database/data/media/audios/shazam/shazam-${sender}.mp3`, {encoding: "base64" })
 try {
 let hasil = await arcloud(aud_)
-data = await fetchJson(`https://yurimodz-apis.xyz/api/ytsrc/videos?q=${hasil[0].titulo}&apikey=${SANDRO_MD_BOT}`)
+data = await fetchJson(`https://yurimodz-apis.xyz/api/ytsrc/videos?q=${hasil[0].titulo}&apikey=${calo_MD_BOT}`)
 } catch (e) {
 reply ('Desculpe, não consegui identificar a música. Por favor, tente novamente!️')
 }
 shzi = await getBuffer(data.resultado[0].image)
-sandro.sendMessage(from, {image: shzi, caption: mess.shazamResult(data)}, {quoted: selo})
-audioShz = await getBuffer(`https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[0].url}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {audio: audioShz, mimetype: 'audio/mpeg'}).catch((e) => {
+calo.sendMessage(from, {image: shzi, caption: mess.shazamResult(data)}, {quoted: selo})
+audioShz = await getBuffer(`https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[0].url}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {audio: audioShz, mimetype: 'audio/mpeg'}).catch((e) => {
 reply(mess.error())
 })
 DLT_FL(`./database/data/media/audios/shazam/shazam-${sender}.mp3`)
@@ -10031,23 +10031,23 @@ break
 case 'playmix': 
 case 'pmix':
 if(!q) return reply(mess.syntaxPlayMix())
-data = await fetchJson(`https://yurimodz-apis.xyz/api/ytsrc/videos?q=${q}&apikey=${SANDRO_MD_BOT}`)
+data = await fetchJson(`https://yurimodz-apis.xyz/api/ytsrc/videos?q=${q}&apikey=${calo_MD_BOT}`)
 // Enviar a thumbnail + nomes das músicas. 
-sandro.sendMessage(from,{image: {url: `${data.resultado[0].image}`}, caption: mess.playMixResult(data)})
+calo.sendMessage(from,{image: {url: `${data.resultado[0].image}`}, caption: mess.playMixResult(data)})
 // Enviar os áudios. 
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[0].url}&apikey=${SANDRO_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[0].url}&apikey=${calo_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
 return reply(mess.error())
 })
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[1].url}&apikey=${SANDRO_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[1].url}&apikey=${calo_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
 return reply(mess.error())
 })
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[2].url}&apikey=${SANDRO_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[2].url}&apikey=${calo_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
 return reply(mess.error())
 })
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[3].url}&apikey=${SANDRO_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[3].url}&apikey=${calo_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
 return reply(mess.error())
 })
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[4].url}&apikey=${SANDRO_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=${data.resultado[4].url}&apikey=${calo_MD_BOT}`}, mimetype: "audio/mpeg"}).catch(e => {
 return reply(mess.error())
 })
 break
@@ -10057,9 +10057,9 @@ case 'playmeme':
 if(!q) return reply(`NaN, você não digitou nada... Exemplo: *${prefix+command} Lula*`);
 reagir(from, "😸")
 try {
-bla = await fetchJson(`https://yurimodz-apis.xyz/api/audiomeme?query=${q}&apikey=${SANDRO_MD_BOT}`)
+bla = await fetchJson(`https://yurimodz-apis.xyz/api/audiomeme?query=${q}&apikey=${calo_MD_BOT}`)
 teks = pickRandom(bla.resultado)
-sandro.sendMessage(from, {audio: {url: teks}, mimetype: "audio/mpeg", ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: {url: teks}, mimetype: "audio/mpeg", ptt:true}, {quoted: selo})
 } catch(e) {
 reagir(from, "😿")
 reply("Sem Resultados.");
@@ -10071,9 +10071,9 @@ case 'playmeme2':
 if(!q) return reply(`NaN, você não digitou nada... Exemplo: *${prefix+command} Lula*`);
 reagir(from, "😸")
 try {
-bla = await fetchJson(`https://yurimodz-apis.xyz/api/audiomeme?query=${q}&apikey=${SANDRO_MD_BOT}`)
+bla = await fetchJson(`https://yurimodz-apis.xyz/api/audiomeme?query=${q}&apikey=${calo_MD_BOT}`)
 teks = pickRandom(bla.resultado)
-sandro.sendMessage(from, {audio: {url: teks}, mimetype: "audio/mpeg", ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: {url: teks}, mimetype: "audio/mpeg", ptt:true}, {quoted: selo})
 } catch(e) {
 reagir(from, "😿")
 reply("Sem Resultados.");
@@ -10086,10 +10086,10 @@ case 'toque':
 if(!q) return reply(`NaN, você não digitou nada... Exemplo: *${prefix+command} iPhone*`);
 setTimeout(() => {reagir(from, "🫨")}, 100)
 try {
-bla = await fetchJson(`https://yurimodz-apis.xyz/api/ringtone?query=${q}&apikey=${SANDRO_MD_BOT}`)
+bla = await fetchJson(`https://yurimodz-apis.xyz/api/ringtone?query=${q}&apikey=${calo_MD_BOT}`)
 teks = pickRandom(bla.resultado.resultado);
 mention(`Olá @${sender.split("@")[0]}, o toque está intitulado como: *${teks.titulo}*.\n• Deseja mais? É só pedir, que eu tô enviando! Você manda e eu obedeço.`)
-sandro.sendMessage(from, {audio: {url: teks.audio}, mimetype: "audio/mpeg", ptt:true})
+calo.sendMessage(from, {audio: {url: teks.audio}, mimetype: "audio/mpeg", ptt:true})
 } catch(e) {
 return reply(mess.error())
 }
@@ -10146,8 +10146,8 @@ base64 = Buffer.from([])
 for await(const send of imagem) { base64 = Buffer.concat( [ base64, send ] ) }
 reply(`Criando seu avatar, aguarde! Não vai demorar muito amiguinho(a)...️`)
 link = await upload(base64)
-data = await fetchJson(`https://yurimodz-apis.xyz/api/ia/toanime?link=${link}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: {url: data.resultado.imagem}}, {quoted: selo}).catch(e => {
+data = await fetchJson(`https://yurimodz-apis.xyz/api/ia/toanime?link=${link}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: {url: data.resultado.imagem}}, {quoted: selo}).catch(e => {
 return reply(mess.error())
 })
 } else {
@@ -10168,7 +10168,7 @@ base64 = Buffer.from([])
 for await(const send of imagem) { base64 = Buffer.concat( [ base64, send ] ) }
 reply(enviar.espere)
 link = await upload(base64)
-data = await fetchJson(`https://yurimodz-apis.xyz/api/leitura/ocr?image=${link}&apikey=${SANDRO_MD_BOT}`)
+data = await fetchJson(`https://yurimodz-apis.xyz/api/leitura/ocr?image=${link}&apikey=${calo_MD_BOT}`)
 reply(data.resultado).catch(e => {
 return reply(mess.error())
 })
@@ -10201,15 +10201,15 @@ else if (partiuvencer >= 11 && partiuvencer <= 13) patente = `Primeiro Sargento 
 else if (partiuvencer >= 6 && partiuvencer <= 10) patente = `Segundo Sargento 🥈`
 else if (partiuvencer >= 3 && partiuvencer <= 5) patente = `Terceiro Sargento 🥉`
 else if (partiuvencer === 2) patente = `Cabo 🎗️`
-sandro.sendMessage(from, {text: `*_Se você não se masturbou e nem acessou conteúdo 18+ desde 1 de setembro, sua patente agora é:_* \n\n *Patente:* *${patente}*`},{quoted: info})
+calo.sendMessage(from, {text: `*_Se você não se masturbou e nem acessou conteúdo 18+ desde 1 de setembro, sua patente agora é:_* \n\n *Patente:* *${patente}*`},{quoted: info})
 break
 
 case 'deezer':
 if(!q) return reply(`Exemplo: ${prefix+command} Ela não é santa`)
 musicFind = (await axios.get(`https://api.deezer.com/search?q=${encodeURIComponent(q)}`)).data;
 if (musicFind.length == 0) return reply(mess.noresult())
-sandro.sendMessage(from, { text: mess.deezerMusic(musicFind.data[0], prefix)})
-sandro.sendMessage(from, {audio: {url: musicFind.data[0].preview}, mimetype: 'audio/mpeg'}, {quoted: selo}).catch(e => {
+calo.sendMessage(from, { text: mess.deezerMusic(musicFind.data[0], prefix)})
+calo.sendMessage(from, {audio: {url: musicFind.data[0].preview}, mimetype: 'audio/mpeg'}, {quoted: selo}).catch(e => {
 return reply(mess.error())
 })
 break
@@ -10220,7 +10220,7 @@ movieInfo = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=d
 if (movieInfo.data.total_results == 0) return reply(mess.noresult())
 var ImageMovieLink = `https://image.tmdb.org/t/p/original${movieInfo.data.results[0].backdrop_path}`;
 var fotoFilme = await getBuffer(ImageMovieLink)
-sandro.sendMessage(from, {image: fotoFilme, caption: mess.movies(movieInfo)}, {quoted: selo})
+calo.sendMessage(from, {image: fotoFilme, caption: mess.movies(movieInfo)}, {quoted: selo})
 .catch(e => {
 return reply(mess.error())
 })
@@ -10232,7 +10232,7 @@ if(!isGroup) return reply(enviar.msg.grupo);
 var [repplace, tarrget, bott] = q.split("|")
 var m_ = info.message.extendedTextMessage && info.message.extendedTextMessage.contextInfo && info.message.extendedTextMessage.contextInfo.mentionedJid ? info.message.extendedTextMessage.contextInfo.mentionedJid[0] : null
 if (m_ && tarrget && bott) {
-sandro.sendMessage(from, {text: bott}, {quoted: {key: {fromMe: false, participant: m_}, message: {conversation: tarrget}}});
+calo.sendMessage(from, {text: bott}, {quoted: {key: {fromMe: false, participant: m_}, message: {conversation: tarrget}}});
 } else {
 reply(`Crie mensagens fakes com qualquer uma pessoa! Explicando abaixo:\n—\n• Você precisaria mencionar a pessoa e adicionar a mensagem que ele supostamente iria enviar e que você responderia a seguinte mensagem, todos usando a *|* para separar o que foi pedido dito nesse textinho...\n• *Ex:* ${prefix+command} @vitima|msg1|msg2`);
 }
@@ -10252,19 +10252,19 @@ if(!q.includes("/")) return reply(`Ex.: *${prefix+command} peso/altura*`)
 var [peso, altura] = q.split("/");
 const resultado = obeso(peso, altura)
 if (resultado <= 17 || resultado <= 18.4) {
-await sandro.sendMessage(from, {react: {text: `😸`, key: info.key}})
+await calo.sendMessage(from, {react: {text: `😸`, key: info.key}})
 reply(`• Seu índice de massa corporal é de: *${resultado}* -> Você está abaixo do peso.`)
 } else if (resultado <= 18.5 || resultado <= 24.9) {
-await sandro.sendMessage(from, {react: {text: `👍`, key: info.key}})
+await calo.sendMessage(from, {react: {text: `👍`, key: info.key}})
 reply(`• Seu índice de massa corporal é: *${resultado}* -> Você está no peso ideal.`)
 } else if (resultado <= 25 || resultado <= 29.9) {
-await sandro.sendMessage(from, {react: {text: `🫤`, key: info.key}})
+await calo.sendMessage(from, {react: {text: `🫤`, key: info.key}})
 reply(`• Seu índice de massa corporal é: *${resultado}* -> Você está com sobrepeso.`);
 } else if (resultado <= 30 || resultado <= 39.9) {
-await sandro.sendMessage(from, {react: {text: `🤨`, key: info.key}})
+await calo.sendMessage(from, {react: {text: `🤨`, key: info.key}})
 reply(`• Seu índice de massa corporal é: *${resultado}* -> Obesidade.`);
 } else if (resultado > 40) {
-await sandro.sendMessage(from, {react: {text: `😵`, key: info.key}})
+await calo.sendMessage(from, {react: {text: `😵`, key: info.key}})
 reply(`• Seu índice de massa corporal é: *${resultado}* -> Obesidade mórbida!`);
 }
 break;
@@ -10288,7 +10288,7 @@ serieInfo = await axios.get(`https://api.themoviedb.org/3/search/tv?api_key=ddfc
 if (serieInfo.data.total_results == 0) return reply(mess.noresult())
 var ImageSerieLink = `https://image.tmdb.org/t/p/original${serieInfo.data.results[0].backdrop_path}`;
 var fotoSerie = await getBuffer(ImageSerieLink)
-sandro.sendMessage(from, {image: fotoSerie, caption: mess.series(serieInfo)}, {quoted: selo})
+calo.sendMessage(from, {image: fotoSerie, caption: mess.series(serieInfo)}, {quoted: selo})
 .catch(e => {
 return reply(mess.error())
 })
@@ -10296,10 +10296,10 @@ break
 
 case 'soundcloud': case 'scdl':
 if(!q) return reply(`Tá faltando aí! Cadê o link da música no SoundCloud hein?`)
-data = await fetchJson(`https://yurimodz-apis.xyz/api/soundcloud?url=${q}&apikey=${SANDRO_MD_BOT}`) 
+data = await fetchJson(`https://yurimodz-apis.xyz/api/soundcloud?url=${q}&apikey=${calo_MD_BOT}`) 
 tinyUrl = await axios.get(`https://tinyurl.com/api-create.php?url=${data.resultado.link_dl}`)
-sandro.sendMessage(from, {image: {url: data.resultado.capa}, caption: mess.soundcloud(data, tinyUrl)}, {quoted: selo})
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/scdl?url=${q}&apikey=${SANDRO_MD_BOT}` }, mimetype: 'audio/mpeg'}, {quoted: selo}).catch(e => {
+calo.sendMessage(from, {image: {url: data.resultado.capa}, caption: mess.soundcloud(data, tinyUrl)}, {quoted: selo})
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/scdl?url=${q}&apikey=${calo_MD_BOT}` }, mimetype: 'audio/mpeg'}, {quoted: selo}).catch(e => {
 return reply(mess.error())
 })
 break
@@ -10314,10 +10314,10 @@ case 'tiktok':
         if (!q.includes("tiktok")) return reply(`${prefix + command} link do Tiktok`);
 
         const texto = `Aqui está o seu vídeo ${pushname}`; // Texto que será enviado junto com o vídeo
-        sandro.sendMessage(
+        calo.sendMessage(
             from, 
             { 
-                video: { url: `https://api.bronxyshost.com.br/api-bronxys/tiktok?url=${q}&apikey=${API_SANDRO_MD}` }, 
+                video: { url: `https://api.bronxyshost.com.br/api-bronxys/tiktok?url=${q}&apikey=${API_calo_MD}` }, 
                 mimetype: "video/mp4", 
                 caption: texto // Adiciona o texto junto com o vídeo
             }, 
@@ -10339,7 +10339,7 @@ await carregamento()
 await sleep(3000)
 reply(`ᴇɴᴠɪᴀɴᴅᴏ.. ᴄᴀꜱᴏ ᴅᴇᴍᴏʀᴇ ᴅᴇ ᴍᴀɪꜱ ɴᴀᴏ ᴄᴏɴꜱᴇɢᴜɪ ᴛᴇ ᴇɴᴠɪᴀʀ`)
 if(!q.includes("tiktok")) return reply(`${prefix+command} link do Tiktok`);
-sandro.sendMessage(from, {audio: {url:`https://api.bronxyshost.com.br/api-bronxys/tiktok?url=${q}&apikey=${API_SANDRO_MD}`}, mimetype: "audio/mpeg"}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {audio: {url:`https://api.bronxyshost.com.br/api-bronxys/tiktok?url=${q}&apikey=${API_calo_MD}`}, mimetype: "audio/mpeg"}, {quoted: info}).catch(e => {
 console.log(e)
 return reply("Erro..")
 })
@@ -10353,7 +10353,7 @@ case 'kwai': {
 if(!q.trim().includes("kwai")) return reply(`Exemplo: ${prefix+command} LINK DO KWAI`);
 reply(enviar.aguarde);
 try {
-sandro.sendMessage(from, {video: {url: `https://api.bronxyshost.com.br/api-bronxys/kwai?url=${q.trim()}&apikey=${API_SANDRO_MD}`}, mimetype: "video/mp4"}, {quoted: info})
+calo.sendMessage(from, {video: {url: `https://api.bronxyshost.com.br/api-bronxys/kwai?url=${q.trim()}&apikey=${API_calo_MD}`}, mimetype: "video/mp4"}, {quoted: info})
 } catch (e) {
 console.log(e);
 return reply("Erro...");
@@ -10365,7 +10365,7 @@ case 'spotify': {
 if(!q.trim().includes("spotify")) return reply(`Cadê a url do spotiy? exemplo: ${prefix+command} https://open.spotify.com/intl-pt/track/4m3mrHuttXhK58f6Tenai1\nNão baixo playlist, quiser pegar o link da música, acessa o site: https://open.spotify.com/search e pesquisa lá.`)
 reply(`Enviando.. caso demore de mais nao consegui te enviar `)
 try {
-sandro.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/spotify?url=${q.trim()}&apikey=${API_SANDRO_MD}`}, mimetype: "audio/mpeg"}, {quoted: info}).catch(() => reply("Erro!"))
+calo.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/spotify?url=${q.trim()}&apikey=${API_calo_MD}`}, mimetype: "audio/mpeg"}, {quoted: info}).catch(() => reply("Erro!"))
 } catch (e) {
 console.log(e);
 return reply("Erro...");
@@ -10379,13 +10379,13 @@ await sleep(3000)
 if(!q) return reply('Por favor, adicione um link do tiktok (imagens).')
 reagir(from, "😉")
 try {
-data = await fetchJson(`https://yurimodz-apis.xyz/download/tiktok?url=${q}&apikey=${SANDRO_MD_BOT}`) 
+data = await fetchJson(`https://yurimodz-apis.xyz/download/tiktok?url=${q}&apikey=${calo_MD_BOT}`) 
 if(data.resultado.photo.length === 0) return reply(`Ocorreu um erro ao abrir o link, por favor tente novamente mais tarde.`)
 audioDl = await getBuffer(data.resultado.audio)
-sandro.sendMessage(from, {audio: audioDl, mimetype: 'audio/mpeg'}, {quoted: selo})
+calo.sendMessage(from, {audio: audioDl, mimetype: 'audio/mpeg'}, {quoted: selo})
 for (let i = 0; i < data.resultado.photo.length; i++) {
 photos = await fetch(data.resultado.photo[i].url).then(v => v.buffer())
-sandro.sendMessage(from, {image: photos})
+calo.sendMessage(from, {image: photos})
 } 
 } catch(e) {
 reagir(from, "❌️")
@@ -10397,9 +10397,9 @@ case 'capcut': case 'capcutmodel':
 if(!q) return reply('Por favor, adicione um link de um modelo do CapCut.')
 reagir(from, "😼")
 try {
-data = await fetchJson(`https://yurimodz-apis.xyz/api/dl/capcut?url=${q}&apikey=${SANDRO_MD_BOT}`) 
+data = await fetchJson(`https://yurimodz-apis.xyz/api/dl/capcut?url=${q}&apikey=${calo_MD_BOT}`) 
 c = await getBuffer(data.resultado.videoOriginal)
-sandro.sendMessage(from, {video: c, caption: `• *${data.resultado.title} | ${data.resultado.fullUse}*\n• *Desc:* ${data.resultado.description}`}, {quoted: selo})
+calo.sendMessage(from, {video: c, caption: `• *${data.resultado.title} | ${data.resultado.fullUse}*\n• *Desc:* ${data.resultado.description}`}, {quoted: selo})
 } catch(e) {
 reply(mess.error())
 }
@@ -10407,12 +10407,12 @@ break
 
 //━━COMANDOS +18━━━
 
-case 'aqua': { // Sandro bot
+case 'aqua': { // calo bot
     try {
     if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`)
         reply(`Enviando a imagem no pv...`);
         
-        const response = await fetch(`https://sandroapi.shop/nsfw/aqua?apikey=${SANDRO_MD}`);
+        const response = await fetch(`https://caloapi.shop/nsfw/aqua?apikey=${calo_MD}`);
         const imageBuffer = await response.buffer();
         
         if (!imageBuffer) {
@@ -10422,13 +10422,13 @@ case 'aqua': { // Sandro bot
         // Gera informações aleatórias
         const randomName = `Nome_${Math.floor(Math.random() * 100)}`;
         const randomLikes = Math.floor(Math.random() * 1000);
-        const randomEmail = `sandromd${Math.floor(Math.random() * 100)}@exemplo.com`;
+        const randomEmail = `calomd${Math.floor(Math.random() * 100)}@exemplo.com`;
 
         // Monta o texto com as informações
-        const infoText = `Nome: Sandro\nLikes: ${randomLikes}\nEmail: ${randomEmail}`;
+        const infoText = `Nome: calo\nLikes: ${randomLikes}\nEmail: ${randomEmail}`;
 
         // Envia a imagem com o texto
-        await sandro.sendMessage(sender, { 
+        await calo.sendMessage(sender, { 
             image: imageBuffer, 
             caption: `${infoText}\n\nAqui está a sua imagem.` 
         }, { quoted: info });
@@ -10440,56 +10440,56 @@ case 'aqua': { // Sandro bot
 }
 break;
 
-case 'ass': //sandro api
+case 'ass': //calo api
 if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`)
 reply(`Enviando.. No privado caso demore de mais nao consegui te enviar`)
-const ass = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/ahegao?apikey=${SANDRO_MD}`);
-sandro.sendMessage(sender, {image: ass}, {quoted: info});
+const ass = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/ahegao?apikey=${calo_MD}`);
+calo.sendMessage(sender, {image: ass}, {quoted: info});
 break;
 
-case 'bdsm': //sandro api
+case 'bdsm': //calo api
 if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`)
 reply(`Enviando.. No privado caso demore de mais nao consegui te enviar`)
-const bdsm = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/ahegao?apikey=${SANDRO_MD}`);
-sandro.sendMessage(sender, {image: bdsm}, {quoted: info});
+const bdsm = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/ahegao?apikey=${calo_MD}`);
+calo.sendMessage(sender, {image: bdsm}, {quoted: info});
 break;
 
-case 'cuckold': //sandro api
+case 'cuckold': //calo api
 if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`)
 reply(`Enviando.. No privado caso demore de mais nao consegui te enviar`)
-const cuckold = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/ahegao?apikey=${SANDRO_MD}`);
-sandro.sendMessage(sender, {image: cuckold}, {quoted: info});
+const cuckold = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/ahegao?apikey=${calo_MD}`);
+calo.sendMessage(sender, {image: cuckold}, {quoted: info});
 break;
 
-case 'blowjob': //sandro api
+case 'blowjob': //calo api
 if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`)
 reply(`Enviando.. No privado caso demore de mais nao consegui te enviar`)
-const blowjob = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/ahegao?apikey=${SANDRO_MD}`);
-sandro.sendMessage(sender, {image: blowjob}, {quoted: info});
+const blowjob = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/ahegao?apikey=${calo_MD}`);
+calo.sendMessage(sender, {image: blowjob}, {quoted: info});
 break;
 
-case 'cum': //sandro api
+case 'cum': //calo api
 if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`)
 reply(`Enviando.. No privado caso demore de mais nao consegui te enviar`)
-const cum = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/cum?apikey=${SANDRO_MD}`);
-sandro.sendMessage(sender, {image: cum}, {quoted: info});
+const cum = await getBuffer(`http://br1.bronxyshost.com:4360/nsfw/cum?apikey=${calo_MD}`);
+calo.sendMessage(sender, {image: cum}, {quoted: info});
 break;
 
-case 'gangbang': //sandro api
+case 'gangbang': //calo api
 if(!isNsfw && isGroup) return reply(`É necessário que o comando seja ativado por um adm\nExemplo: ${prefix}modonsfw 1`)
 reply(`Enviando.. No privado caso demore de mais nao consegui te enviar`)
-const gangbang = await getBuffer(`https://sandroapi.shop/nsfw/gangbang?apikey=${SANDRO_MD}`);
-sandro.sendMessage(sender, {image: gangbang}, {quoted: info});
+const gangbang = await getBuffer(`https://caloapi.shop/nsfw/gangbang?apikey=${calo_MD}`);
+calo.sendMessage(sender, {image: gangbang}, {quoted: info});
 break;
 
 case 'insta_audio': case 'instaaudio':
 try {
 if(!q.trim()) return reply(`Exemplo: ${prefix+command} o link`);
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/instagram?url=${q.trim()}&apikey=${API_SANDRO_MD}`)
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/instagram?url=${q.trim()}&apikey=${API_calo_MD}`)
 reply(`Enviando.. caso demore de mais nao consegui te enviar `)
 let DM_T = ABC.msg[0].type
 var A_T = DM_T === "webp" ? "image/webp" : DM_T === "jpg" ? "image/jpeg" : DM_T === "mp3" ? "audio/mpeg" : "audio/mpeg"
-sandro.sendMessage(from, {[A_T.split("/")[0]]: {url: ABC.msg[0].url}, mimetype: A_T}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {[A_T.split("/")[0]]: {url: ABC.msg[0].url}, mimetype: A_T}, {quoted: info}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -10505,7 +10505,7 @@ data = await MultiDownload(q)
 for (let i = 0; i < data.medias.length; i++) {
 let dmt = data.medias[i].extension
 mimety = dmt === "mp4" ? "video/mp4" : dmt === "webp" ? "image/webp" : dmt === "jpg" ? "image/jpeg" : dmt === "mp3" ? "audio/mpeg" : "video/mp4"
-sandro.sendMessage(from, {[mimety.split("/")[0]]: {url: data.medias[i].url}, mimetype: mimety}, {quoted: info})
+calo.sendMessage(from, {[mimety.split("/")[0]]: {url: data.medias[i].url}, mimetype: mimety}, {quoted: info})
 }
 } catch(e) {
 return reply(mess.error())
@@ -10514,7 +10514,7 @@ break
 
 case 'menuadmb0':
 if (isBotao) {
-await sandro.relayMessage(from,
+await calo.relayMessage(from,
 {interactiveMessage: {
 body: { text: `*COMANDOS ADM*
 
@@ -10613,7 +10613,7 @@ break
 
 case 'menuadmb':
 if (isBotao) {
-await sandro.relayMessage(from,
+await calo.relayMessage(from,
 {interactiveMessage: {
 body: { text: `*COMANDOS ADM*
 
@@ -10718,11 +10718,11 @@ if (!q.includes("@")) return reply(`Coloque o *@* na frente do usuário para obt
 await reagir(from, "😸");
 try {
 reply(`Buscando stories do usuário: *${q}*, aguarde o retorno...`)
-data = await fetchJson(`https://yurimodz-apis.xyz/api/dl/igstory?usuario=${q.replace("@", "")}&apikey=${SANDRO_MD_BOT}`)
+data = await fetchJson(`https://yurimodz-apis.xyz/api/dl/igstory?usuario=${q.replace("@", "")}&apikey=${calo_MD_BOT}`)
 for (let i = 0; i < data.resultado.length; i++) {
 let dmt = data.resultado[i].extension
 mimety = dmt === ".mp4" ? "video/mp4" : dmt === ".webp" ? "image/webp" : dmt === ".jpg" ? "image/jpeg" : dmt === ".mp3" ? "audio/mpeg" : "video/mp4"
-sandro.sendMessage(from, {[mimety.split("/")[0]]: {url: data.resultado[i].url}, mimetype: mimety}, {quoted: info})
+calo.sendMessage(from, {[mimety.split("/")[0]]: {url: data.resultado[i].url}, mimetype: mimety}, {quoted: info})
 }
 } catch (e) {
 return reply(mess.error())
@@ -10733,7 +10733,7 @@ case 'twitter_video': case 'twittervideo':
 try {
 if(!q.includes("twitter")) return reply(`Exemplo: ${prefix+command} o link do Twitter`);
 reply(`Enviando.. caso demore de mais nao consegui te enviar `)
-sandro.sendMessage(from, {video: {url: `https://api.bronxyshost.com.br/api-bronxys/${command}?url=${q}&apikey=${API_SANDRO_MD}`}, mimetype: "video/mp4"}).catch(e => {
+calo.sendMessage(from, {video: {url: `https://api.bronxyshost.com.br/api-bronxys/${command}?url=${q}&apikey=${API_calo_MD}`}, mimetype: "video/mp4"}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -10745,7 +10745,7 @@ case 'twitter_audio': case 'twitteraudio':
 try {
 if(!q.includes("twitter")) return reply(`Exemplo: ${prefix+command} o link do Twitter`);
 reply(`Enviando.. caso demore de mais nao consegui te enviar `)
-sandro.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/${command}?url=${q}&apikey=${API_SANDRO_MD}`}, mimetype: "audio/mpeg"}).catch(e => {
+calo.sendMessage(from, {audio: {url: `https://api.bronxyshost.com.br/api-bronxys/${command}?url=${q}&apikey=${API_calo_MD}`}, mimetype: "audio/mpeg"}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -10759,8 +10759,8 @@ if (!q.includes("@")) return reply(`Coloque o *@* na frente do usuário para obt
 try {
 reagir(from, "😸")
 reply(`Buscando informações sobre o usuário: *${q}* no Instagram.`)
-data = await fetchJson(`https://yurimodz-apis.xyz/api/igstalk?usuario=${q.replace("@", "")}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {text: mess.igstalk(data), contextInfo: {externalAdReply: {title: "Dê um clique aqui e visualize o perfil stalkeado.", thumbnail: await getBuffer(data.resultado.profile_photo), mediaType: 1, sourceUrl: "http://instagram.com/"+data.resultado.username}}}) 
+data = await fetchJson(`https://yurimodz-apis.xyz/api/igstalk?usuario=${q.replace("@", "")}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {text: mess.igstalk(data), contextInfo: {externalAdReply: {title: "Dê um clique aqui e visualize o perfil stalkeado.", thumbnail: await getBuffer(data.resultado.profile_photo), mediaType: 1, sourceUrl: "http://instagram.com/"+data.resultado.username}}}) 
 } catch(e) {
 return console.log(e)
 }
@@ -10771,9 +10771,9 @@ if(q.length < 5) return reply('Por favor, forneça o link de um *reels/video* do
 reply(enviar.espere)
 try {
 setTimeout(() => {reagir(from, "😉")}, 100)
-data = await fetchJson(`https://yurimodz-apis.xyz/api/instagram?url=${q}&apikey=${SANDRO_MD_BOT}`) 
+data = await fetchJson(`https://yurimodz-apis.xyz/api/instagram?url=${q}&apikey=${calo_MD_BOT}`) 
 audioInsta = await fetch(data.resultado[0]).then(v => v.buffer())
-sandro.sendMessage(from, {audio: audioInsta, mimetype: 'audio/mpeg'}, {quoted: selo})
+calo.sendMessage(from, {audio: audioInsta, mimetype: 'audio/mpeg'}, {quoted: selo})
 } catch(e) {
 reply(mess.error())
 }
@@ -10784,8 +10784,8 @@ if (!q) return reply('Por favor, forneça o link do vídeo de um *reels do Insta
 reply(enviar.espere);
 try {
 setTimeout(() => {reagir(from, "😸")}, 100)
-result = await fetchJson(`https://yurimodz-apis.xyz/api/instareels?url=${q}&apikey=${SANDRO_MD_BOT}`);
-sandro.sendMessage(from, {video: {url: result.url}}, {quoted: selo})
+result = await fetchJson(`https://yurimodz-apis.xyz/api/instareels?url=${q}&apikey=${calo_MD_BOT}`);
+calo.sendMessage(from, {video: {url: result.url}}, {quoted: selo})
 } catch(e) {
 reply(mess.error())
 }
@@ -10795,8 +10795,8 @@ case 'operadora':
 if(!q) return reply(mess.syntaxOperadora(prefix))
 reagir(from, "🔍")
 try {
-data = await fetchJson(`https://yurimodz-apis.xyz/api/operadora?numero=55${q}&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {text: mess.qualOperadora(data), contextInfo: {externalAdReply: {title: "Qual Operadora - Descubra qual é a operadora antes de ligar.", thumbnail: await getBuffer("https://telegra.ph/file/d22b8f916d880564f26ed.jpg"), mediaType: 1, sourceUrl: `https://www.qualoperadora.net`}}}) 
+data = await fetchJson(`https://yurimodz-apis.xyz/api/operadora?numero=55${q}&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {text: mess.qualOperadora(data), contextInfo: {externalAdReply: {title: "Qual Operadora - Descubra qual é a operadora antes de ligar.", thumbnail: await getBuffer("https://telegra.ph/file/d22b8f916d880564f26ed.jpg"), mediaType: 1, sourceUrl: `https://www.qualoperadora.net`}}}) 
 } catch(e) {
 return console.log(e)
 }
@@ -10806,9 +10806,9 @@ case 'mediafire2':
 if(!isVip) return reply(enviar.msg.vip)
 try {
 if(!q.includes("mediafire.com")) return reply("Faltando o link do mediafire para download do arquivo, cade?");
-ABC = await fetchJson(`${API_URL}/api/dl/mediafire?url=${q}&apikey=${SANDRO_MD_BOT}`)
+ABC = await fetchJson(`${API_URL}/api/dl/mediafire?url=${q}&apikey=${calo_MD_BOT}`)
 reply(`📂 *Nome:* ${ABC.resultado.filename}\n🧮 *Tamanho:* ${ABC.resultado.size}\n_Criado em ${ABC.resultado.uploadDate}_`)
-sandro.sendMessage(from, {document: {url: ABC.resultado.url}, mimetype: "application/"+ABC.resultado.filetype, fileName: ABC.resultado.filename}).catch(e => {
+calo.sendMessage(from, {document: {url: ABC.resultado.url}, mimetype: "application/"+ABC.resultado.filetype, fileName: ABC.resultado.filename}).catch(e => {
 return reply("Erro..");
 })
 } catch (e) {
@@ -10819,9 +10819,9 @@ break
 case 'mediafire':
 try {
 if(!q.includes("mediafire.com")) return reply("Faltando o link do mediafire para download do arquivo, cade?");
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/mediafire?url=${q}&apikey=${API_SANDRO_MD}`)
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/mediafire?url=${q}&apikey=${API_calo_MD}`)
 reply(`Enviando: ${ABC.resultado[0].nama}\n\nPeso: ${ABC.resultado[0].size}`)
-sandro.sendMessage(from, {document: {url: ABC.resultado[0].link}, mimetype: "application/"+ABC.resultado[0].mime, fileName: ABC.resultado[0].nama}).catch(e => {
+calo.sendMessage(from, {document: {url: ABC.resultado[0].link}, mimetype: "application/"+ABC.resultado[0].mime, fileName: ABC.resultado[0].nama}).catch(e => {
 return reply("Erro..");
 })
 } catch (e) {
@@ -10832,9 +10832,9 @@ break;
 
 case 'gdrive': case 'googledrive':
 if(!q.includes("drive.google.com")) return reply("Faltando o link do google drive para download do arquivo, cade?");
-ABC = await fetchJson(`https://yurimodz-apis.xyz/api/dl/gdrive?url=${q}&apikey=${SANDRO_MD_BOT}`)
+ABC = await fetchJson(`https://yurimodz-apis.xyz/api/dl/gdrive?url=${q}&apikey=${calo_MD_BOT}`)
 reply("Aguarde, estou encaminhando o arquivo. Pode demorar até *2min* para enviar!")
-sandro.sendMessage(from, {document: {url: ABC.resultado.downloadUrl}, mimetype: ABC.resultado.mimetype, fileName: ABC.resultado.fileName}).catch(e => {
+calo.sendMessage(from, {document: {url: ABC.resultado.downloadUrl}, mimetype: ABC.resultado.mimetype, fileName: ABC.resultado.fileName}).catch(e => {
 return reply(mess.error())  
 })
 break;
@@ -10849,7 +10849,7 @@ let [, user, repo] = args[0].match(regex1) || []
 repo = repo.replace(/.git$/, '')
 let url = `https://api.github.com/repos/${user}/${repo}/zipball`
 let filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1]
-sandro.sendMessage(from, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: selo }).catch(e => {
+calo.sendMessage(from, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: selo }).catch(e => {
 return reply(mess.error())  
 })
 break
@@ -10858,37 +10858,37 @@ case 'editanime':
 if(!q) return reply(mess.exeAnimeEdit(prefix))
 if (args[0] === 'random') {
 reply(enviar.aguarde)
-sandro.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=aleatorios&apikey=${SANDRO_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
+calo.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=aleatorios&apikey=${calo_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'bleach') {
 reply(enviar.aguarde)
-sandro.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=bleach&apikey=${SANDRO_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
+calo.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=bleach&apikey=${calo_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'chainsaw') {
 reply(enviar.aguarde)
-sandro.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=chainsaw&apikey=${SANDRO_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
+calo.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=chainsaw&apikey=${calo_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'kimetsu') {
 reply(enviar.aguarde)
-sandro.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=demon_slayer&apikey=${SANDRO_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
+calo.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=demon_slayer&apikey=${calo_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'dragonball') {
 reply(enviar.aguarde)
-sandro.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=dragonball&apikey=${SANDRO_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
+calo.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=dragonball&apikey=${calo_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'jujutsu') {
 reply(enviar.aguarde)
-sandro.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=jujutsu_kaisen&apikey=${SANDRO_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
+calo.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=jujutsu_kaisen&apikey=${calo_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'naruto') {
 reply(enviar.aguarde)
-sandro.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=naruto&apikey=${SANDRO_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
+calo.sendMessage(from, {video: {url:`https://yurimodz-apis.xyz/api/editsvideo?categoria=naruto&apikey=${calo_MD_BOT}`}, mimetype: "video/mp4"}).catch(e => {
 return reply(mess.error())
 })
 }
@@ -10900,302 +10900,302 @@ case 'animeimage':
 if(!q) return reply(mess.exeAnimeImage(prefix))
 if (args[0] === 'cosplay') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/cosplay?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/cosplay?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'waifu') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/waifu?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/waifu?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'loli') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/loli?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/loli?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'shota') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/shota?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/shota?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'yotsuba') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/yotsuba?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/yotsuba?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'shinomiya') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/shinomiya?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/shinomiya?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'yumeko') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/yumeko?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/yumeko?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'tejina') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/tejina?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/tejina?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'chiho') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/chiho?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/chiho?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'boruto') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/boruto?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/boruto?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'kaori') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/kaori?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/kaori?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'shizuka') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/shizuka?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/shizuka?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'kaga') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/kaga?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/kaga?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'kotori') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/kotori?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/kotori?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'mikasa') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/mikasa?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/mikasa?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'akiyama') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/akiyama?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/akiyama?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'gremory') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/gremory?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/gremory?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'izuku') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/izuku?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/izuku?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'shina') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/shina?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/shina?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'kagura') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/kagura?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/kagura?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'shinka') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/shinka?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/shinka?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'eba') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/eba?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/eba?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'yuri') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/yuri?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/yuri?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'erza') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/erza?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/erza?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'elaina') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/elaina?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/elaina?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'hinata') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/hinata?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/hinata?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'naruto') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/naruto?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/naruto?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'minato') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/minato?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/minato?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'sagari') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/sagari?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/sagari?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'nezuko') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/nezuko?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/nezuko?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'rize') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/rize?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/rize?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'anna') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/anna?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/anna?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'deidara') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/deidara?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/deidara?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'asuna') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/asuna?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/asuna?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'ayuzawa') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/ayuzawa?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/ayuzawa?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'emilia') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/emilia?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/emilia?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'chitoge') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/chitoge?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/chitoge?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'hestia') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/hestia?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/hestia?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'inori') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/inori?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/inori?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'itachi') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/itachi?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/itachi?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'madara') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/madara?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/madara?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'sakura') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/sakura?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/sakura?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'sasuke') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/sasuke?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/sasuke?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'tsunade') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/tsunade?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/tsunade?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'onepiece') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/onepiece?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/onepiece?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'mobil') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/mobil?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/mobil?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'montor') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/montor?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/montor?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'keneki') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/keneki?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/keneki?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'megumin') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/megumin?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/megumin?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 } else if (args[0] === 'toukachan') {
 reply(enviar.aguarde)
-photos = await getBuffer(`https://yurimodz-apis.xyz/random/toukachan?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: photos}).catch(e => {
+photos = await getBuffer(`https://yurimodz-apis.xyz/random/toukachan?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: photos}).catch(e => {
 return reply(mess.error())
 })
 }
@@ -11207,13 +11207,13 @@ case 'transmitir':
 case 'transmissão': {
 if(!SoDono && !isnit && !issupre && !ischyt && !info.key.fromMe) return reply(enviar.msg.donosmt)
 if(!q) return reply( `Texto onde? Exemplo : ${prefix + command} Hasta la vista baby`)
-let getGroups = await sandro.groupFetchAllParticipating()
+let getGroups = await calo.groupFetchAllParticipating()
 let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
 let anu = groups.map(v => v.id)
 for (i = 0; i < anu.length; i++) {
 await sleep(1500)
 let txt = `「TRANSMISSÃO DO BOT」\n\n ${q}`
-sandro.sendMessage(anu[i], {text: txt})
+calo.sendMessage(anu[i], {text: txt})
 }
 reply(`Enviado com sucesso...`)
 }
@@ -11230,7 +11230,7 @@ let buffer = Buffer.from(base64String, 'base64');
 let formData = new FormData();
 formData.append('file', buffer, {filename: isQuotedAudio ? 'audiofile': 'videofile', contentType: muk.mimetype });
 
-fetch(`https://api.bronxyshost.com.br/transcrever?apikey=${API_SANDRO_MD}`, {
+fetch(`https://api.bronxyshost.com.br/transcrever?apikey=${API_calo_MD}`, {
 method: 'POST',
 body: formData
 }).then(response => response.json())
@@ -11253,7 +11253,7 @@ if(!string) return reply('Insira um link de convite ao lado do comando.')
 if(string.includes('chat.whatsapp.com/') || reply('Ops, verifique o link que você inseriu.') ) {
 link = string.split('app.com/')[1]
 try {
-sandro.groupAcceptInvite(`${link}`)
+calo.groupAcceptInvite(`${link}`)
 } catch(erro) {
 if(String(erro).includes('resource-limit') ) {
 reply('O grupo já está com o alcance de 257 membros.')
@@ -11322,7 +11322,7 @@ break
                 caption: `${command}`,
                 footer: `${botName}`,
               }
-              sandro.sendMessage(from, templateMassage)
+              calo.sendMessage(from, templateMassage)
             }
             break
 
@@ -11337,12 +11337,12 @@ reply('olha o pv 😏')
     // Texto personalizado com nome diferente
     const textoPersonalizadoLoli = `
 Fonte: *${NomeDoBot}*
-Coleção: SANDRO-MD Oficial 
+Coleção: calo-MD Oficial 
 Curtidas: ${Math.floor(Math.random() * 1000)}
 Categoria: 😈`;
 
     // Envia a imagem com a legenda
-    await sandro.sendMessage(sender, {
+    await calo.sendMessage(sender, {
         image: { url: imageLoli },
         caption: textoPersonalizadoLoli,
         footer: `${NomeDoBot}`,
@@ -11357,12 +11357,12 @@ const video101 = videos101[Math.floor(Math.random() * videos101.length)];
 const votos = Math.floor(Math.random() * 1000);
 const textoPersonalizado = `
 Fonte: Instagram 
-Coleção: SANDRO-MD Oficial 
+Coleção: calo-MD Oficial 
 Curtidas: ${votos}
 Vategoria: 😈`;
-const video = await prepareWAMessageMedia({ video: { url: video101, gifPlayback: true } }, { upload: sandro.waUploadToServer });
+const video = await prepareWAMessageMedia({ video: { url: video101, gifPlayback: true } }, { upload: calo.waUploadToServer });
 
-sandro.relayMessage(
+calo.relayMessage(
 sender,
 {
 interactiveMessage: {
@@ -11372,7 +11372,7 @@ videoMessage: { ...video.videoMessage, gifPlayback: true }
 },
 headerType: 'VIDEO',
 body: { text: textoPersonalizado },
-footer: { text: "SANDRO MD V11" },
+footer: { text: "calo MD V11" },
 contextInfo: { participant: sender, quotedMessage: info.message },
 nativeFlowMessage: {
 buttons: [
@@ -11667,8 +11667,8 @@ break
 case 'figaleatoria':
 reply("Estou gerando sua figurinha, aguarde um pouco amigo(a)...")
 try {
-bla = await getBuffer(`https://yurimodz-apis.xyz/api/stickera?apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {sticker: bla}, {quoted: selo})
+bla = await getBuffer(`https://yurimodz-apis.xyz/api/stickera?apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {sticker: bla}, {quoted: selo})
 } catch(e) {
 reply(mess.error())
 }
@@ -11722,13 +11722,13 @@ case 'msgtemp':
 if (!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if (!isBotGroupAdmins) return reply(enviar.msg.Badmin)
-getInfoG = await sandro.groupMetadata(from); /* Pegar as informações total do grupo! */
+getInfoG = await calo.groupMetadata(from); /* Pegar as informações total do grupo! */
 if (getInfoG.ephemeralDuration == undefined) {
 reply(`As mensagens temporárias no grupo foram ativadas com sucesso.`)
-await sandro.sendMessage(from, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL})
+await calo.sendMessage(from, { disappearingMessagesInChat: WA_DEFAULT_EPHEMERAL})
 } else if (getInfoG.ephemeralDuration > 1) {
 reply(`As mensagens temporárias no grupo foram desativadas com sucesso.`)
-await sandro.sendMessage(from, { disappearingMessagesInChat: false})
+await calo.sendMessage(from, { disappearingMessagesInChat: false})
 }
 break
 
@@ -11741,10 +11741,10 @@ if (!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 if (!q) return reply(`Insira all / adms para escolher quem pode atualizar os dados do grupo. A decisão é sua, adm! `)
 if (args[0] === 'adms') {
 reply(`🔐 Sucesso! - Agora somente os adm poderá editar os dados do grupo.`)
-await sandro.groupSettingUpdate(from, 'locked')
+await calo.groupSettingUpdate(from, 'locked')
 } else if (args[0] === 'all') {
 reply(`🔓 Sucesso! - Agora todos os participantes pode alterar os dados do grupo.`)
-await sandro.groupSettingUpdate(from, 'unlocked')
+await calo.groupSettingUpdate(from, 'unlocked')
 }
 }
 break
@@ -11754,7 +11754,7 @@ if (!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if (!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 reply(`A foto do grupo foi removida com sucesso.`)
-await sandro.removeProfilePicture(from)
+await calo.removeProfilePicture(from)
 }
 break
 
@@ -11987,7 +11987,7 @@ try {
 await carregamento()
 await sleep(3000)
 if(!q.trim()) return reply(`- Exemplo: ${prefix}play nome da música\na música será baixada, só basta escolher áudio ou vídeo, se não baixar, o YouTube privou de não baixarem, ou algo do tipo..`)
-data = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_SANDRO_MD}`)
+data = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/pesquisa_ytb?nome=${q}&apikey=${API_calo_MD}`)
 if(data[0]?.tempo?.length >= 7) return reply("Desculpe, este video ou audio é muito grande, não poderei realizar este pedido, peça outra música abaixo de uma hora.")
 var N_E = " Não encontrado."
 var bla = `🥂〔 𝗣𝗟𝗔𝗬 𝗩𝗜𝗗𝗘𝗢 〕🥂
@@ -11996,8 +11996,8 @@ var bla = `🥂〔 𝗣𝗟𝗔𝗬 𝗩𝗜𝗗𝗘𝗢 〕🥂
 > Tempo: ${data[0]?.tempo||N_E}
 > Postado: ${data[0]?.postado||N_E}
 > Descrição: ${data[0]?.desc||N_E}`
-sandro.sendMessage(from, {image: {url: data[0]?.thumb || logoslink?.logo}, caption: bla}, {quoted: info})
-sandro.sendMessage(from, {video: {url: `https://api.bronxyshost.com.br/api-bronxys/play_video?nome_url=${q}&apikey=${API_SANDRO_MD}`}, mimetype: "video/mp4", fileName: data[0]?.titulo || "play.mp4"}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {image: {url: data[0]?.thumb || logoslink?.logo}, caption: bla}, {quoted: info})
+calo.sendMessage(from, {video: {url: `https://api.bronxyshost.com.br/api-bronxys/play_video?nome_url=${q}&apikey=${API_calo_MD}`}, mimetype: "video/mp4", fileName: data[0]?.titulo || "play.mp4"}, {quoted: info}).catch(e => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -12113,7 +12113,7 @@ setTimeout(() => {
 mentions(`Que pena... você não sobreviveu ao meu jogo *@${C2.split('@')[0]}*, hora de enterrar o cadáver, infelizmente morreu com tiro ${TAMBOR[Math.floor(Math.random() * (TAMBOR.length))]}`, [C2], true) 
 }, 5000)	 
 setTimeout(() => {
-sandro.groupParticipantsUpdate(from, [C2], "remove")
+calo.groupParticipantsUpdate(from, [C2], "remove")
 }, 6000)
 break
 
@@ -12122,7 +12122,7 @@ if(!q) return reply(`O que você deseja criar amiguinho? Coloque após o comando
 try {
 await replyWithReaction('Olá, estou criando a imagem a partir de seu questionamento, aguarde senhor(a)...', {react: {text: '🎨', key: info.key}});
 dataResultAI = await fetchJson(`https://hercai.onrender.com/v3/text2image?prompt=${q}`);
-  await sandro.sendMessage(from, {image: {url: dataResultAI.url}}, {quoted: info});
+  await calo.sendMessage(from, {image: {url: dataResultAI.url}}, {quoted: info});
 } catch(error) {
 await replyWithReaction(mess.error(), {react: {text: '❌', key: info.key}});
 }
@@ -12131,7 +12131,7 @@ break
 case 'pergunta': case 'openai': case 'gpt': case 'chatgpt':
 try {
 reply("*🔍 BUSCANDO 🔍*");
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/PERGUNTE_E_EU_RESPONDO?q=${q.trim()}&apikey=${API_SANDRO_MD}`)
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/PERGUNTE_E_EU_RESPONDO?q=${q.trim()}&apikey=${API_calo_MD}`)
 reply(`( ${ABC.msg} )`)
 } catch { 
 reply("Erro..")
@@ -12144,7 +12144,7 @@ try {
 if (!q) return reply("O que você deseja criar através de seu questionamento?")
 reply("Criando uma imagem a partir de seu questionamento, aguarde...");
 data = await fetchJson(`https://vihangayt.me/tools/photoleap?q=${q}`)
-sandro.sendMessage(from, {image: {url: data.data}}, {quoted: selo}).catch(() => {
+calo.sendMessage(from, {image: {url: data.data}}, {quoted: selo}).catch(() => {
 return reply(mess.error())
 })
 } catch {
@@ -12192,9 +12192,9 @@ case 'gpt':
 case 'chatgpt':
 try {
 if(!q) return reply("Você esqueceu de perguntar ao lado do comando.")
-let { key } = await sandro.sendMessage(from, {text: `Estou processando sua pergunta, isso pode levar alguns segundos...`}, {quoted: info})
-anu1 = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gpt?query=${q}&apikey=${SANDRO_MD_BOT}`)
-await sandro.sendMessage(from, {text: mess.respostaChatGPT(anu1), edit: key});
+let { key } = await calo.sendMessage(from, {text: `Estou processando sua pergunta, isso pode levar alguns segundos...`}, {quoted: info})
+anu1 = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gpt?query=${q}&apikey=${calo_MD_BOT}`)
+await calo.sendMessage(from, {text: mess.respostaChatGPT(anu1), edit: key});
 } catch (e) {
 if(String(e).includes("invalid json response body at")) {
 console.log("A api caiu ou não foi possivel executar esta ação., espere retornar")   
@@ -12211,9 +12211,9 @@ case 'gpt':
 case 'chatgpt':
 try {
 if(!q) return reply("Você esqueceu de perguntar ao lado do comando.")
-let { key } = await sandro.sendMessage(from, {text: `Estou processando sua pergunta, isso pode levar alguns segundos...`}, {quoted: info})
+let { key } = await calo.sendMessage(from, {text: `Estou processando sua pergunta, isso pode levar alguns segundos...`}, {quoted: info})
 anu1 = await fetchJson(`https://aemt.me/gpt4?text=${q}`)
-await sandro.sendMessage(from, {text: anu1.result, edit: key});
+await calo.sendMessage(from, {text: anu1.result, edit: key});
 } catch (e) {
 if(String(e).includes("invalid json response body at")) {
 console.log("A api caiu ou não foi possivel executar esta ação., espere retornar")   
@@ -12234,7 +12234,7 @@ fs.writeFileSync(`./armor/src/totext-${sender}.mp3`, getBufferAudio)
 let client = new AssemblyAI({apiKey: "2bdbb9a9046a4a938677122e7cf2dbd2"}) 
 const dataTxt = await client.transcripts.create({audio_url: `./armor/src/totext-${sender}.mp3`, language_code: "pt"})
 if (dataTxt.words.length == 0) return reply(`*_Não foi possível transcrever seu áudio. Por favor, tente com outro._*`)
-sandro.sendMessage(from, {text: `> ${dataTxt.text}`}, {quoted: info});
+calo.sendMessage(from, {text: `> ${dataTxt.text}`}, {quoted: info});
 fs.unlinkSync(`./armor/src/totext-${sender}.mp3`)
 } catch(e) {
 console.log(e)
@@ -12244,9 +12244,9 @@ break
 case 'bard':
 try {
 if(!q) return reply("Você esqueceu de perguntar ao lado do comando.")
-let { key } = await sandro.sendMessage(from, {text: `Estou processando sua pergunta, isso pode levar alguns segundos...`}, {quoted: info})
-r = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gbard?query=${q}&apikey=${SANDRO_MD_BOT}`)
-await sandro.sendMessage(from, {text: mess.respostaBard(r), edit: key});
+let { key } = await calo.sendMessage(from, {text: `Estou processando sua pergunta, isso pode levar alguns segundos...`}, {quoted: info})
+r = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gbard?query=${q}&apikey=${calo_MD_BOT}`)
+await calo.sendMessage(from, {text: mess.respostaBard(r), edit: key});
 } catch (e) {
 if(String(e).includes("invalid json response body at")) {
 console.log("A api caiu ou não foi possivel executar esta ação., espere retornar")   
@@ -12277,13 +12277,13 @@ break
 case 'gptvoz':
 if(!q) return reply("Você esqueceu de perguntar ao lado do comando.")
 reply(`Estou processando sua pergunta. Isso pode levar alguns segundos...`)
-nznk = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gpt?query=${q}&apikey=${SANDRO_MD_BOT}`)
+nznk = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gpt?query=${q}&apikey=${calo_MD_BOT}`)
 const gpts = require('./arquivos/funcoes/gtts')('pt')
 ranm = getRandom('.mp3')
 rano = getRandom('.ogg')
 gpts.save(ranm, `${nznk.resultado}`, function() {
 exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
-sandro.sendMessage(from, {audio: fs.readFileSync(ranm), ptt:true, mimetype: "audio/mpeg"}, {quoted: selo})
+calo.sendMessage(from, {audio: fs.readFileSync(ranm), ptt:true, mimetype: "audio/mpeg"}, {quoted: selo})
 DLT_FL(ranm)
 DLT_FL(rano)
 })
@@ -12293,10 +12293,10 @@ break
 case 'corretor':
 if(!q) return reply(`Parece que você esqueceu de adicionar sua frase, *use-o de forma correta*, siga o exemplo:\n— ${prefix+command} `+"```Eu te mamo```")
 try {
-let { key } = await sandro.sendMessage(from, {text: `Verificando os erros ortográficos em seu texto ou palavra... *Aguarde!*`}, {quoted: info})
+let { key } = await calo.sendMessage(from, {text: `Verificando os erros ortográficos em seu texto ou palavra... *Aguarde!*`}, {quoted: info})
 promptUser = `Corrija gramaticalmente uma frase para o português brasileiro tradicional: ${q}`
-anu1 = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gpt?query=${promptUser}&apikey=${SANDRO_MD_BOT}`)
-await sandro.sendMessage(from, {text: mess.corretorOrtografico(anu1), edit: key});
+anu1 = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gpt?query=${promptUser}&apikey=${calo_MD_BOT}`)
+await calo.sendMessage(from, {text: mess.corretorOrtografico(anu1), edit: key});
 } catch(e) {
 return reply(mess.error())
 }
@@ -12305,10 +12305,10 @@ break
 case 'redacao':
 if(!q) return reply(`Você esqueceu de colocar o tema de sua redação ao lado do comando.`)
 try {
-let { key } = await sandro.sendMessage(from, {text: `Estou processando sua solicitação. Isso pode levar alguns segundos...`}, {quoted: info})
+let { key } = await calo.sendMessage(from, {text: `Estou processando sua solicitação. Isso pode levar alguns segundos...`}, {quoted: info})
 promptUser = `Crie um texto dissertativo-argumentativo com o tema: ${q}`
 anu1 = await fetchJson(`https://aemt.me/gpt4?text=${promptUser}`)
-await sandro.sendMessage(from, {text: mess.respostaRedacao(anu1), edit: key});
+await calo.sendMessage(from, {text: mess.respostaRedacao(anu1), edit: key});
 } catch(e) {
 return reply(mess.error())
 }
@@ -12317,10 +12317,10 @@ break
 case 'summerize':
 if(!q) return reply(`Você esqueceu de colocar o que você deseja resumir ao lado do comando.`)
 try {
-let { key } = await sandro.sendMessage(from, {text: `Estou resumindo o texto solicitado. Isso pode levar alguns segundos...`}, {quoted: info})
+let { key } = await calo.sendMessage(from, {text: `Estou resumindo o texto solicitado. Isso pode levar alguns segundos...`}, {quoted: info})
 promptUser = `Faça um resumo básico do texto apresentado: ${q}`
-anu1 = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gpt?query=${promptUser}&apikey=${SANDRO_MD_BOT}`)
-await sandro.sendMessage(from, {text: mess.respostaResumida(anu1), edit: key})
+anu1 = await fetchJson(`https://yurimodz-apis.xyz/api/ia/gpt?query=${promptUser}&apikey=${calo_MD_BOT}`)
+await calo.sendMessage(from, {text: mess.respostaResumida(anu1), edit: key})
 } catch(e) {
 return reply(mess.error())
 }
@@ -12329,9 +12329,9 @@ break
 case 'nasa':
 try {
 if (!q) return reply(`*Exemplo:* ${prefix}${command} 19-10-2007`)
-dataSab = await fetchJson(`https://yurimodz-apis.xyz/api/nasaphoto?data=${q}&apikey=${SANDRO_MD_BOT}`)
-resultExp = await fetchJson(`https://yurimodz-apis.xyz/api/info/translate?texto=${dataSab.nasa.explanation}&ling=pt&apikey=${SANDRO_MD_BOT}`)
-sandro.sendMessage(from, {image: {url: dataSab.nasa.hdurl }, caption: mess.result_APOD(dataSab, resultExp)})
+dataSab = await fetchJson(`https://yurimodz-apis.xyz/api/nasaphoto?data=${q}&apikey=${calo_MD_BOT}`)
+resultExp = await fetchJson(`https://yurimodz-apis.xyz/api/info/translate?texto=${dataSab.nasa.explanation}&ling=pt&apikey=${calo_MD_BOT}`)
+calo.sendMessage(from, {image: {url: dataSab.nasa.hdurl }, caption: mess.result_APOD(dataSab, resultExp)})
 } catch (e) {
 console.log("A api caiu ou não foi possivel executar esta ação., espere retornar")
 reply(mess.error());
@@ -12344,7 +12344,7 @@ try {
 const takeBook = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(q)}&langRestrict=pt`);
 const getBook = await axios.get(`${takeBook.data.items[0].selfLink}`);
 var bookImage = await getBuffer(getBook.data.volumeInfo.imageLinks.thumbnail)
-sandro.sendMessage(from, {image: bookImage, caption: mess.searchBooks(getBook)}).catch(e => {
+calo.sendMessage(from, {image: bookImage, caption: mess.searchBooks(getBook)}).catch(e => {
 reply(mess.error())
 })
 } catch (e) {
@@ -12407,7 +12407,7 @@ jr = `╭━『⛈️ 𝐓𝐄𝐌𝐏𝐎/𝐂𝐋𝐈𝐌𝐀 ⌛』━╮
 │ೋ❀💧 𝘜𝘮𝘪𝘥𝘢𝘥𝘦 𝘥𝘰 𝘈𝘳⧽ ${clima.data.main.humidity}%
 │ೋ❀🌬️ 𝘝𝘦𝘯𝘵𝘰𝘴⧽ ${clima.data.wind.speed}  
 ╰━━━━━━━━━━〔 ${hora1} 〕`
-await sandro.sendMessage(from, {text: jr}, {quoted:info, contextInfo: {"mentionedJid": jr}})	
+await calo.sendMessage(from, {text: jr}, {quoted:info, contextInfo: {"mentionedJid": jr}})	
 break
 
 case 'simi':
@@ -12530,7 +12530,7 @@ const _sticker = new Sticker()
 _sticker.addFile(zzbuffer); 
 _sticker.options.metadata = {pack: pack, author: autor, emojis: ['🤠', '🥶', '😻']};
 resultadoSt = await _sticker.start();
-await sandro.sendMessage(from, {sticker: fs.readFileSync(resultadoSt[0].value)}, {quoted: info})
+await calo.sendMessage(from, {sticker: fs.readFileSync(resultadoSt[0].value)}, {quoted: info})
 await fs.unlinkSync(resultadoSt[0].value)
 } catch(e) {
 console.log(e)
@@ -12570,7 +12570,7 @@ men.push(mem.id)
     }
 }
 if(teks.indexOf('➤') < 0) return reply(' 𝗡𝗲𝗻𝗵𝘂𝗺 𝗙𝗮𝗹𝘀𝗼 𝗗𝗲𝘁𝗲𝗰𝘁??𝗱𝗼')
-sandro.sendMessage(from, {text: teks, mentions: men})
+calo.sendMessage(from, {text: teks, mentions: men})
 break
 
 case 'tinder': {
@@ -12641,7 +12641,7 @@ case 'vertinder': {
 
     // Enviar todos os perfis com a foto padrão, apenas uma vez
     try {
-        sandro.sendMessage(from, {
+        calo.sendMessage(from, {
             image: { url: fotoPadrao },
             caption: allProfiles
         }, { quoted: info });
@@ -12666,7 +12666,7 @@ break;
 case 'infotinder':
 reply(`Para usar o Tinder de forma correta use o seguinte comando *Exemplo*
 
-${prefix}tinder Sandro/19/namorando/Sou sandro md/5531848××××
+${prefix}tinder calo/19/namorando/Sou calo md/5531848××××
 
 Já que aprendeu se registrar agora para usar o tinder e começar a conversar ou até mesmo achar o amor da sua vida 💘 use 
 
@@ -12882,14 +12882,14 @@ var pack = `↧ [🤖] Criada por:\n• ↳ ${NomeDoBot}\n—\n↧ [🕵🏻‍�
 var author2 = `↧ [👤] Feito por:\n• ↳ ${pushname}\n—\n• [⛄] A melhor bot do WhatsApp!`
 reply(enviar.espere)
 owgi = await getFileBuffer(boij, 'image')
-let encmediaa = await sendImageAsSticker(sandro, from, owgi, info, { packname:pack, author:author2})
+let encmediaa = await sendImageAsSticker(calo, from, owgi, info, { packname:pack, author:author2})
 await DLT_FL(encmediaa)
 } else if(boij2 && boij2?.seconds < 11) {
 var pack = `↧ [🤖] Criada por:\n• ↳ ${NomeDoBot}\n—\n↧ [🕵🏻‍♂️] Proprietário:\n• ↳ ${NickDono}`
 var author2 = `↧ [👤] Feito por:\n• ↳ ${pushname}\n—\n• [⛄] A melhor bot do WhatsApp!`
 reply(enviar.espere)
 owgi = await getFileBuffer(boij2, 'video')
-let encmedia = await sendVideoAsSticker(sandro, from, owgi, info, { packname:pack, author:author2})
+let encmedia = await sendVideoAsSticker(calo, from, owgi, info, { packname:pack, author:author2})
 await DLT_FL(encmedia)
 } else {
 reply(`Enviar imagem / vídeo / gif com legenda \n${prefix}sticker (duração do adesivo de vídeo de 1 a 10 segundos)`)
@@ -12937,7 +12937,7 @@ case 'figurinha': case 's': case 'stickergifp': case 'figura': case 'f': case 'f
                 fs.writeFileSync(`./${nomemeta}`, exif);
 
                 exec(`webpmux -set exif ${nomemeta} ${rano} -o ${rano}`, () => {
-                    sandro.sendMessage(from, { sticker: fs.readFileSync(rano) }, { quoted: info });
+                    calo.sendMessage(from, { sticker: fs.readFileSync(rano) }, { quoted: info });
                     fs.unlinkSync(nomemeta);
                     fs.unlinkSync(rano);
                 });
@@ -12977,7 +12977,7 @@ case 'figurinha': case 's': case 'stickergifp': case 'figura': case 'f': case 'f
                 fs.writeFileSync(`./${nomemeta}`, exif);
 
                 exec(`webpmux -set exif ${nomemeta} ${rano} -o ${rano}`, () => {
-                    sandro.sendMessage(from, { sticker: fs.readFileSync(rano) }, { quoted: info });
+                    calo.sendMessage(from, { sticker: fs.readFileSync(rano) }, { quoted: info });
                     fs.unlinkSync(nomemeta);
                     fs.unlinkSync(rano);
                 });
@@ -13004,14 +13004,14 @@ var authorSticker = `↧ ❪👤ฺ࣭࣪͘ꕸ▸ 𝐒𝐨𝐥𝐢𝐜𝐢𝐭�
 𝙎𝘼𝙉𝘿𝙍𝙊 𝙈𝘿`
 reply(enviar.espere)
 owgi = await getFileBuffer(boij, 'image')
-let ENC_MEDIA1 = await sendImageAsSticker(sandro, from, owgi, info, {packname: packnameStk, author: authorSticker})
+let ENC_MEDIA1 = await sendImageAsSticker(calo, from, owgi, info, {packname: packnameStk, author: authorSticker})
 await DLT_FL(ENC_MEDIA1)
 } else if(boij2 && boij2?.seconds < 11) {
 var packnameStk = `↧ ❪🤖ฺ࣭࣪͘ꕸ▸ 𝐂𝐫𝐢𝐚𝐝𝐚 𝐩𝐨𝐫:\n• ↳ ${NomeDoBot}\n—\n↧ ❪🕵🏻‍♂️ฺ࣭࣪͘ꕸ▸ 𝐏𝐫𝐨𝐩𝐫𝐢𝐞𝐭𝐚𝐫𝐢𝐨:\n• ↳ ${NickDono}`
 var authorSticker = `↧ ❪👤ฺ࣭࣪͘ꕸ▸ 𝐒𝐨𝐥𝐢𝐜𝐢𝐭𝐚𝐝𝐨 𝐩𝐨𝐫:\n• ↳ ${pushname}\n—\n↧ ❪⛄ฺ࣭࣪͘ꕸ▸ 𝐕𝐢𝐬𝐢𝐭𝐞 𝐧𝐨𝐬𝐬𝐨 𝐬𝐢𝐭𝐞:\n• ↳ https://yurimodz-apis.xyz`
 reply(enviar.espere)
 owgi = await getFileBuffer(boij2, 'video')
-let ENC_MEDIA2 = await sendVideoAsSticker(sandro, from, owgi, info, {packname: packnameStk, author: authorSticker})
+let ENC_MEDIA2 = await sendVideoAsSticker(calo, from, owgi, info, {packname: packnameStk, author: authorSticker})
 await DLT_FL(ENC_MEDIA2)
 } else {
 reply(`Envie uma imagem, vídeo ou gif com legenda: ${prefix}sticker (duração do adesivo de vídeo de 1 a 10 segundos)`)
@@ -13027,7 +13027,7 @@ getBufferWebP = await getFileBuffer(info.message.extendedTextMessage.contextInfo
 fs.writeFileSync("./database/data/media/sticker/convert.webp", getBufferWebP);
 outputFile = "./database/data/media/sticker/convert.webp";
 convertWebP = await FiguMp4OuGif(outputFile);
-await sandro.sendMessage(from, {video: {url: convertWebP}, gifPlayback: true, fileName: 'sticker-sb.gif'}, {quoted: info}).catch(async(error) => {
+await calo.sendMessage(from, {video: {url: convertWebP}, gifPlayback: true, fileName: 'sticker-sb.gif'}, {quoted: info}).catch(async(error) => {
     await reply(mess.error()); // Notificar ao usuário que ocorreu um erro ao enviar o resultado da conversão do WebP para MP4.
     await DLT_FL(outputFile); // Apagar o arquivo, caso ocorrer um erro na conversão entre eles.
     console.log(error)
@@ -13044,7 +13044,7 @@ if(!isQuotedSticker) return reply('Por favor, *mencione um sticker* para executa
 try {
 reply(enviar.espere)
 buff = await getFileBuffer(info.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage, 'sticker')
-sandro.sendMessage(from, {image: buff}, {quoted: selo}).catch(e => {
+calo.sendMessage(from, {image: buff}, {quoted: selo}).catch(e => {
 console.log(e);
 reply('Ocorreu um erro ao converter o *sticker para imagem.*')
 })
@@ -13058,9 +13058,9 @@ break
 case 'metadinha':
 reagir(from, "✅")
 try {
-MET = await fetchJson(`http://br1.bronxyshost.com:4360/random/metadinha?apikey=${SANDRO_MD}`);
-sandro.sendMessage(from, {image: {url: MET.masculina}, caption: `*HOMEM*`})
-sandro.sendMessage(from, {image: {url: MET.feminina}, caption: `*MULHER*`})
+MET = await fetchJson(`http://br1.bronxyshost.com:4360/random/metadinha?apikey=${calo_MD}`);
+calo.sendMessage(from, {image: {url: MET.masculina}, caption: `*HOMEM*`})
+calo.sendMessage(from, {image: {url: MET.feminina}, caption: `*MULHER*`})
 } catch (e) {
 return reply("Erro..")
 }
@@ -13096,14 +13096,14 @@ base64 = Buffer.from([])
 for await(const send of imagem) { base64 = Buffer.concat( [ base64, send ] ) }
 reply(enviar.espere)
 link = await upload(base64)
-sandro.sendMessage(from, {image: {url:`https://yurimodz-apis.xyz/api/canvas/${command}?link=${link}&apikey=${SANDRO_MD_BOT}`}}, {quoted: selo}).catch(e => {
+calo.sendMessage(from, {image: {url:`https://yurimodz-apis.xyz/api/canvas/${command}?link=${link}&apikey=${calo_MD_BOT}`}}, {quoted: selo}).catch(e => {
 return reply(mess.error())
 })
 } else {
 reply('Mencione uma imagem para atribuir o efeito a foto.')
 }
 } catch (e) {
-if(JSON.stringify(e).includes(API_KEY_sandro)) {
+if(JSON.stringify(e).includes(API_KEY_calo)) {
 console.log("A api caiu ou não foi possivel executar esta ação., espere retornar")   
 } else {
 reply("Ocorreu um erro ao adicionar o *efeito na imagem. Tente novamente!")  
@@ -13119,7 +13119,7 @@ media = isQuotedDocument ? info.message.extendedTextMessage.contextInfo.quotedMe
 rane = getRandom('.'+await getExtension(media.mimetype))
 doc = await getFileBuffer(media, 'document')
 fs.writeFileSync(q, doc)
-sandro.sendMessage(from, {text:'O arquivo foi substituído para outro local com sucesso.'},{quoted: selo})
+calo.sendMessage(from, {text:'O arquivo foi substituído para outro local com sucesso.'},{quoted: selo})
 } else {
 reply('Marque o documento ou arquivo..')
 }
@@ -13131,8 +13131,8 @@ if(isMedia && !info.message.videoMessage || isQuotedDocument) {
 media = isQuotedDocument ? info.message.extendedTextMessage.contextInfo.quotedMessage.documentMessage : info.message.documentMessage
 rane = getRandom('.'+await getExtension(media.mimetype))
 doc = await getFileBuffer(media, 'document')
-fs.writeFileSync('./sandro.js', doc)
-sandro.sendMessage(from, {text: "O arquivo './sandro.js' foi atualizado com sucesso."},{quoted: selo})
+fs.writeFileSync('./calo.js', doc)
+calo.sendMessage(from, {text: "O arquivo './calo.js' foi atualizado com sucesso."},{quoted: selo})
 } else {
 reply('Marque o documento ou o arquivo que deseja enviar pra determinar pasta ou substituir..')
 }
@@ -13144,7 +13144,7 @@ try{
 if (!SoDono) return reply(enviar.msg.donosmt)
 reply('Seu perdido é uma ordem! Aguarde um pouco mestre! <3')
 const getCase = (cases) => {
-return 'case '+`'${cases}'`+fs.readFileSync("./sandro.js").toString().split('case \''+cases+'\'')[1].split("break")[0]+"break"
+return 'case '+`'${cases}'`+fs.readFileSync("./calo.js").toString().split('case \''+cases+'\'')[1].split("break")[0]+"break"
 }
 await sleep(500)
 msgSemQuoted(`${getCase(q)}`)
@@ -13168,7 +13168,7 @@ var viewVideo = vio?.videoMessage || info.message?.videoMessage || vio?.viewOnce
 viewVideo.viewOnce = false
 viewVideo.video = {url: viewVideo.url}
 viewVideo.caption += "\n\n👁️ *REVELANDO ONE VISION* 👁️"
-sandro.sendMessage(from, viewVideo, {quoted: info})
+calo.sendMessage(from, viewVideo, {quoted: info})
 } else if(JSON.stringify(info).includes("imageMessage")) {
 var vio = info.message?.extendedTextMessage?.contextInfo?.quotedMessage
 var viewImage = vio?.imageMessage || info.message?.imageMessage || vio?.viewOnceMessageV2?.message?.imageMessage || info.message?.viewOnceMessageV2?.message?.imageMessage || info.message?.viewOnceMessage?.message?.imageMessage || vio?.viewOnceMessage?.message?.imageMessage
@@ -13176,13 +13176,13 @@ var viewVideo = vio?.videoMessage || info.message?.videoMessage || vio?.viewOnce
 viewImage.viewOnce = false
 viewImage.image = {url: viewImage.url}
 viewImage.caption += "\n\n👁️ *REVELANDO ONE VISION* 👁️"
-sandro.sendMessage(from, viewImage, {quoted: info})
+calo.sendMessage(from, viewImage, {quoted: info})
 } else if(info.message?.extendedTextMessage?.contextInfo?.quotedMessage?.viewOnceMessageV2Extension?.message?.audioMessage) {
 var viewAudio = info.message?.extendedTextMessage?.contextInfo?.quotedMessage?.viewOnceMessageV2Extension?.message?.audioMessage
 viewAudio.viewOnce = false
 viewAudio.ptt = true
 media = await getFileBuffer(viewAudio, `audio`)
-sandro.sendMessage(from, {audio: media}, {quoted: info})
+calo.sendMessage(from, {audio: media}, {quoted: info})
 }
 } catch(e){
 console.log(e)
@@ -13198,8 +13198,8 @@ if(premium.includes(menc_os2)) return mentions(`@${menc_os2.split("@")[0]} a(o) 
 if(groupAdmins.includes(menc_os2)) return mentions(`@${menc_os2.split("@")[0]} a(o) @${sender.split("@")[0]} está querendo banir você, visualiza esse problema ae 😶`, [menc_os2], true)
 if(botNumber.includes(menc_os2)) return reply('Não sou besta de remover eu mesmo né 🙁, mas estou decepcionado com você')
 if(numerodono.includes(menc_os2)) return reply('Não posso remover meu dono 🤧')
-sandro.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi [ REMOVIDO(A) COM SUCESSO ] - (Por motivos ainda não esclarecidos) -`, mentions: [menc_os2]})
-sandro.groupParticipantsUpdate(from, [menc_os2], "remove")  
+calo.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi [ REMOVIDO(A) COM SUCESSO ] - (Por motivos ainda não esclarecidos) -`, mentions: [menc_os2]})
+calo.groupParticipantsUpdate(from, [menc_os2], "remove")  
 break
 
 case 'band':
@@ -13209,14 +13209,14 @@ try {
 if(!menc_os2 || menc_jid2[1]) return reply("Marque a mensagem do usuário ou marque o @ dele.., lembre de só marcar um usuário...")
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify().includes(menc_os2)) return reply("Este usuário já foi removido do grupo.")
 if(botNumber.includes(menc_os2)) return reply('Não sou besta de remover eu mesmo né 🙁, mas estou decepcionado com você')
 if(numerodono.includes(menc_os2)) return reply('Não posso remover meu dono 🤧')
-sandro.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi [ REMOVIDO(A) COM SUCESSO ] - (Por motivos justos.) -`, mentions: [menc_os2]})
-sandro.groupParticipantsUpdate(from, [menc_os2], "remove")  
+calo.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi [ REMOVIDO(A) COM SUCESSO ] - (Por motivos justos.) -`, mentions: [menc_os2]})
+calo.groupParticipantsUpdate(from, [menc_os2], "remove")  
 } catch (e) {
 console.log(e)
 }
@@ -13232,19 +13232,19 @@ try {
 useradd = `${args.join(" ").replace(/\D/g,'')}` ? `${args.join(" ").replace(/\D/g,'')}` : info.message.extendedTextMessage.contextInfo.participant
 let id = `${useradd.replace(/\D/g,'')}`
 if(!id) return reply(`Número inválido.`)
-let [result] = await sandro.onWhatsApp(id)
+let [result] = await calo.onWhatsApp(id)
 if(!result) return reply(`Esse número não está registrado no WhatsApp.`)
-let response = await sandro.groupParticipantsUpdate(from, [result.jid], "add")
+let response = await calo.groupParticipantsUpdate(from, [result.jid], "add")
 if(response[0].status == "409") {
-sandro.sendMessage(from, {text: `Ele já está no grupo, como eu vou adicionar?`, mentions: [result.jid, sender]})
+calo.sendMessage(from, {text: `Ele já está no grupo, como eu vou adicionar?`, mentions: [result.jid, sender]})
 } else if(response[0].status == "403") {
-sandro.sendMessage(from, {text: `Não consegui adicionar o @${result.jid.split("@")[0]} porque ele privou a conta.`, mentions: [result.jid, sender]})
+calo.sendMessage(from, {text: `Não consegui adicionar o @${result.jid.split("@")[0]} porque ele privou a conta.`, mentions: [result.jid, sender]})
 } else if(response[0].status == "408") {
-sandro.sendMessage(from, {text: `Não consegui adicionar o @${result.jid.split("@")[0]} porque ele saiu recentemente do grupo.`, mentions: [result.jid, sender]})
+calo.sendMessage(from, {text: `Não consegui adicionar o @${result.jid.split("@")[0]} porque ele saiu recentemente do grupo.`, mentions: [result.jid, sender]})
 } else if(response[0].status == "401") {
-sandro.sendMessage(from, {text: `Não consegui adicionar o @${result.jid.split("@")[0]} porque ele bloqueou o bot.`, mentions: [result.jid, sender]})
+calo.sendMessage(from, {text: `Não consegui adicionar o @${result.jid.split("@")[0]} porque ele bloqueou o bot.`, mentions: [result.jid, sender]})
 } else if(response[0].status == "200") {
-sandro.sendMessage(from, {text: `Prontinho fiz o que você pediu.`, mentions: [result.jid, sender]})
+calo.sendMessage(from, {text: `Prontinho fiz o que você pediu.`, mentions: [result.jid, sender]})
 } else {
 reply("Vish acho que algo deu errado")
 }
@@ -13264,8 +13264,8 @@ if(!menc_os2 || menc_jid2[1]) return reply("Marque a mensagem do usuário ou mar
 if(!JSON.stringify(groupMembers).includes(menc_os2)) return reply("Este usuário já foi removido do grupo ou saiu.")
 if(botNumber.includes(menc_os2)) return reply('Não sou besta de remover eu mesmo né 🙁, mas estou decepcionado com você')
 if(JSON.stringify(numerodono).indexOf(menc_os2) >= 0) return reply('Não posso remover meu dono 🤧')
-sandro.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi [ REMOVIDO(A) COM SUCESSO ] - (Por motivos justos.) -`, mentions: [menc_os2]})
-sandro.groupParticipantsUpdate(from, [menc_os2], "remove")  
+calo.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi [ REMOVIDO(A) COM SUCESSO ] - (Por motivos justos.) -`, mentions: [menc_os2]})
+calo.groupParticipantsUpdate(from, [menc_os2], "remove")  
 } catch (e) {
 console.log(e)
 }
@@ -13280,8 +13280,8 @@ if(botNumber.includes(menc_os2)) return reply('Não sou besta de remover eu mesm
 if(JSON.stringify(numerodono).indexOf(menc_os2) >= 0) return reply('Não posso remover meu dono 🤧')
 reply("Elx tem 30s para falar suas últimas palavras!")
 await delay(30000)
-sandro.sendMessage(from, {text: `@${menc_os2.split("@")[0]} foi Removido (a) 👾`, mentions: [menc_os2]})
-sandro.groupParticipantsUpdate(from, [menc_os2], "remove")  
+calo.sendMessage(from, {text: `@${menc_os2.split("@")[0]} foi Removido (a) 👾`, mentions: [menc_os2]})
+calo.groupParticipantsUpdate(from, [menc_os2], "remove")  
 } catch (e) {
 console.log(e)
 }
@@ -13293,8 +13293,8 @@ if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 if(!menc_os2 || menc_jid2[1]) return reply("Marque a mensagem do usuário ou marque o @ dele.., lembre de só marcar um usuário...")
 if(!JSON.stringify(groupMembers).includes(menc_os2)) return reply("Este usuário foi removido do grupo ou saiu, não será possível promover..")
-sandro.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi promovido(a) para adm com sucesso.`, mentions: [menc_os2]})
-sandro.groupParticipantsUpdate(from, [menc_os2], "promote")  
+calo.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi promovido(a) para adm com sucesso.`, mentions: [menc_os2]})
+calo.groupParticipantsUpdate(from, [menc_os2], "promote")  
 break
 
 case 'rebaixar': 
@@ -13302,8 +13302,8 @@ if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
 if(!menc_os2 || menc_jid2[1]) return reply("Marque a mensagem do usuário ou marque o @ dele.., lembre de só marcar um usuário...")
 if(!JSON.stringify(groupMembers).includes(menc_os2)) return reply("Este usuário foi removido do grupo ou saiu, não será possível rebaixar..")
-sandro.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi rebaixado para [ MEMBRO COMUM ] com sucesso.`, mentions: [menc_os2]})
-sandro.groupParticipantsUpdate(from, [menc_os2], "demote")  
+calo.sendMessage(from, {text: `@${menc_os2.split("@")[0]} Foi rebaixado para [ MEMBRO COMUM ] com sucesso.`, mentions: [menc_os2]})
+calo.groupParticipantsUpdate(from, [menc_os2], "demote")  
 break
 
 case 'sorteio':
@@ -13337,7 +13337,7 @@ if(!numerodono.includes(i.id)) blup.push(i.id)
 blup.splice(blup.indexOf(botNumber), 1)
 for ( i = 0; i < blup.length; i++) {
 await sleep(500)
-sandro.groupParticipantsUpdate(from, [blup[i]], 'remove')
+calo.groupParticipantsUpdate(from, [blup[i]], 'remove')
 } 
 break
 
@@ -13362,12 +13362,12 @@ reply('Deu erro, tente novamente :/')
 break
 
 case 'ttp':
-if (!q) return reply(`*_❕Coloque o texto que você quiser!_*\n- *🧑‍🏫 Por exemplo:* ${prefix + command} sandro`)
+if (!q) return reply(`*_❕Coloque o texto que você quiser!_*\n- *🧑‍🏫 Por exemplo:* ${prefix + command} calo`)
 reagir(from, "👻")
 await sleep(1000)
 reply(enviar.espere)
 string = args.join(' ') || 'Texto indefinido'
-post = `http://br1.bronxyshost.com:4360/api/ttp?texto=${q}&apikey=${SANDRO_MD}`
+post = `http://br1.bronxyshost.com:4360/api/ttp?texto=${q}&apikey=${calo_MD}`
 sendStickerFromUrl(from, post, {quoted: info}).catch(e => {
 reply(mess.error())  
 })
@@ -13376,10 +13376,10 @@ break
 
 case 'attp9': 
 try {
-if(!q.trim()) return reply(`Exemplo: ${prefix+command} sandro-md`);
+if(!q.trim()) return reply(`Exemplo: ${prefix+command} calo-md`);
 reply(enviar.espere)
 var Fontes = command === "attp2" ? "Roboto" : "Noto Emoji, Noto Sans Mono"
-sandro.sendMessage(from, {sticker: {url: `https://yurimodz-apis.xyz/makerfig/rgb?fig=attp6&texto=${q}&apikey=${SANDRO_MD_BOT}`}}, {quoted: info}).catch(() => {
+calo.sendMessage(from, {sticker: {url: `https://yurimodz-apis.xyz/makerfig/rgb?fig=attp6&texto=${q}&apikey=${calo_MD_BOT}`}}, {quoted: info}).catch(() => {
 return reply("Erro..");
 })
 } catch (e) {
@@ -13389,10 +13389,10 @@ break;
 
 case 'attp8': 
 try {
-if(!q.trim()) return reply(`Exemplo: ${prefix+command} sandro-md`);
+if(!q.trim()) return reply(`Exemplo: ${prefix+command} calo-md`);
 reply(enviar.espere)
 var Fontes = command === "attp2" ? "Roboto" : "Noto Emoji, Noto Sans Mono"
-sandro.sendMessage(from, {sticker: {url: `https://yurimodz-apis.xyz/makerfig/rgb?fig=attp2&texto=${q}&apikey=${SANDRO_MD_BOT}`}}, {quoted: info}).catch(() => {
+calo.sendMessage(from, {sticker: {url: `https://yurimodz-apis.xyz/makerfig/rgb?fig=attp2&texto=${q}&apikey=${calo_MD_BOT}`}}, {quoted: info}).catch(() => {
 return reply("Erro..");
 })
 } catch (e) {
@@ -13410,10 +13410,10 @@ case 'attp5':
 case 'attp6': 
 case 'attp7': 
 try {
-if(!q.trim()) return reply(`Exemplo: ${prefix+command} sandro-md`);
+if(!q.trim()) return reply(`Exemplo: ${prefix+command} calo-md`);
 reply(enviar.espere)
 var Fontes = command === "attp2" ? "Roboto" : "Noto Emoji, Noto Sans Mono"
-sandro.sendMessage(from, {sticker: {url: `https://api.bronxyshost.com.br/api-bronxys/attp_edit?texto=${encodeURIComponent(q)}&fonte=${Fontes}&apikey=${API_SANDRO_MD}`}}, {quoted: info}).catch(() => {
+calo.sendMessage(from, {sticker: {url: `https://api.bronxyshost.com.br/api-bronxys/attp_edit?texto=${encodeURIComponent(q)}&fonte=${Fontes}&apikey=${API_calo_MD}`}}, {quoted: info}).catch(() => {
 return reply("Erro..");
 })
 } catch (e) {
@@ -13433,7 +13433,7 @@ try {
 nick = args.join(' ')
 if(ANT_LTR_MD_EMJ(q)) return reply("Ao realizar a solicita��o de cria��o foi detectada letras modificadas ou emojis, ou seja, n�o se pode conter emojis e letras modificadas.");
 if(!q) return reply(`Escreveva um nome para eu enviar ele com letras modificadas.\n*Exemplo:* ${prefix+command}LB Bot`);
-axios.get(`http://br1.bronxyshost.com:4360/api/fazernick?nome=${q}&apikey=${SANDRO_MD}`)
+axios.get(`http://br1.bronxyshost.com:4360/api/fazernick?nome=${q}&apikey=${calo_MD}`)
 .then(dados => {
 var emoji = `〽️`
 nicks = dados.data
@@ -13460,10 +13460,10 @@ case 'chance':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))  
 var avb = body.slice(7)
-if(args.length < 1) return sandro.sendMessage(from, {text: `Você precisa digitar da forma correta\nExemplo: ${prefix}chance do luuck ser gay`}, {quoted: selo})
+if(args.length < 1) return calo.sendMessage(from, {text: `Você precisa digitar da forma correta\nExemplo: ${prefix}chance do luuck ser gay`}, {quoted: selo})
 random = `${Math.floor(Math.random() * 100)}`
 hasil = `A chance ${body.slice(8)} é de... ${random}%`
-sandro.sendMessage(from, {text: hasil, mentions: [sender]}, {quoted: selo})
+calo.sendMessage(from, {text: hasil, mentions: [sender]}, {quoted: selo})
 break
 
 case 'namorar': 
@@ -13506,7 +13506,7 @@ D1 = namoro1.map(i => i.usu1).indexOf(sender)
 D2 = namoro1.map(a => a.usu1).indexOf(`${namoro1[D1].usu2}@s.whatsapp.net`)
 namoro1[D2].namorados = false
 reply(`Agora você está totalmente solteiro, notifiquei a(o) sua/seu parceiro sobre o término.`)
-sandro.sendMessage(`${namoro1[D1].usu2}@s.whatsapp.net`, {text: `Tenho uma notícia ruim sobre seu namoro, ele(a) acaba de terminar.\n–\n• Seja feliz e lembre dos todos os bons momentos que vocês tiveram juntos.`}, {quoted: info})
+calo.sendMessage(`${namoro1[D1].usu2}@s.whatsapp.net`, {text: `Tenho uma notícia ruim sobre seu namoro, ele(a) acaba de terminar.\n–\n• Seja feliz e lembre dos todos os bons momentos que vocês tiveram juntos.`}, {quoted: info})
 namoro1.splice(D2, 1)
 fs.writeFileSync("./database/func/namoro1.json", JSON.stringify(namoro1, null, 2))
 namoro1.splice(D1, 1)
@@ -13527,10 +13527,10 @@ break
 case 'nazista':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text: `Pesquisando a sua ficha de nazista: *@${sender_ou_n.split("@")[0]}* aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text: `Pesquisando a sua ficha de nazista: *@${sender_ou_n.split("@")[0]}* aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
 setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
-sandro.sendMessage(from, {image: {url: imgnazista}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa nazista?\n• Porcentagem de chance de ser uma pessoa nazista: *${random}%.* `, mentions: [sender_ou_n]}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imgnazista}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa nazista?\n• Porcentagem de chance de ser uma pessoa nazista: *${random}%.* `, mentions: [sender_ou_n]}, {quoted: selo})
 }, 7000)
 break 
 
@@ -13538,76 +13538,76 @@ break
 case 'gay':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text: `Pesquisando a sua ficha de gay: @${sender_ou_n.split("@")[0]} aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text: `Pesquisando a sua ficha de gay: @${sender_ou_n.split("@")[0]} aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
  setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
 feio = random
 boiola = random
 if(boiola < 20 ) {var bo = 'hmm... você é hetero...'} else if(boiola == 21 ) {var bo = '+/- boiola'} else if(boiola == 23 ) {var bo = '+/- boiola'} else if(boiola == 24 ) {var bo = '+/- boiola'} else if(boiola == 25 ) {var bo = '+/- boiola'} else if(boiola == 26 ) {var bo = '+/- boiola'} else if(boiola == 27 ) {var bo = '+/- boiola'} else if(boiola == 2 ) {var bo = '+/- boiola'} else if(boiola == 29 ) {var bo = '+/- boiola'} else if(boiola == 30 ) {var bo = '+/- boiola'} else if(boiola == 31 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 32 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 33 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 34 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 35 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 36 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 37 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 3 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 39 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 40 ) {var bo = 'tenho minha desconfiança...'} else if(boiola == 41 ) {var bo = 'você é né?'} else if(boiola == 42 ) {var bo = 'você é né?'} else if(boiola == 43 ) {var bo = 'você é né?'} else if(boiola == 44 ) {var bo = 'você é né?'} else if(boiola == 45 ) {var bo = 'você é né?'} else if(boiola == 46 ) {var bo = 'você é né?'} else if(boiola == 47 ) {var bo = 'você é né?'} else if(boiola == 4 ) {var bo = 'você é né?'} else if(boiola == 49 ) {var bo = 'você é né?'} else if(boiola == 50 ) {var bo = 'você é ou não?'} else if(boiola > 51) {var bo = 'você é gay...'
 }
-sandro.sendMessage(from, {image: {url: imggay}, caption: `Qual é a porcentagem de chance do(a) *@${sender_ou_n.split("@")[0]}* ser gay?\n• *${random}% homossexual*, ${bo}`, mentions: [sender_ou_n], thumbnail:null}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imggay}, caption: `Qual é a porcentagem de chance do(a) *@${sender_ou_n.split("@")[0]}* ser gay?\n• *${random}% homossexual*, ${bo}`, mentions: [sender_ou_n], thumbnail:null}, {quoted: selo})
 }, 7000)
 break
 
 case 'feio':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text: `Pesquisando a sua ficha de feio: *@${sender_ou_n.split("@")[0]}* aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text: `Pesquisando a sua ficha de feio: *@${sender_ou_n.split("@")[0]}* aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
  setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
 feio = random
 if(feio < 20 ) {var bo = 'É não é feio'} else if(feio == 21 ) {var bo = '+/- feio'} else if(feio == 23 ) {var bo = '+/- feio'} else if(feio == 24 ) {var bo = '+/- feio'} else if(feio == 25 ) {var bo = '+/- feio'} else if(feio == 26 ) {var bo = '+/- feio'} else if(feio == 27 ) {var bo = '+/- feio'} else if(feio == 2 ) {var bo = '+/- feio'} else if(feio == 29 ) {var bo = '+/- feio'} else if(feio == 30 ) {var bo = '+/- feio'} else if(feio == 31 ) {var bo = 'ainda tá na média'} else if(feio == 32 ) {var bo = 'dá pra pegar umas(ns) novinha(o) ainda'} else if(feio == 33 ) {var bo = 'Da pra pegar umas(ns) novinha(o) ainda'} else if(feio == 34 ) {var bo = 'é fein, mas tem baum coração'} else if(feio == 35 ) {var bo = 'tá na média, mas não deixa de ser feii'} else if(feio == 36 ) {var bo = 'bonitin mas é feio com orgulho'} else if(feio == 37 ) {var bo = 'feio e preguiçoso(a), vai se arrumar praga feia'} else if(feio == 3 ) {var bo = 'tenho '} else if(feio == 39 ) {var bo = 'feio, mas um banho e se arrumar, deve resolver'} else if(feio == 40 ) {var bo = 'fein,  mas não existe gente feia, existe gente que não conhece os produtos jequity'} else if(feio == 41 ) {var bo = 'você é Feio, mas é legal, continue assim'} else if(feio == 42 ) {var bo = 'Nada que uma maquiagem e se arrumar, que não resolva.'} else if(feio == 43 ) {var bo = 'Feio que dói de ver, compra uma máscara que melhora'} else if(feio == 44 ) {var bo = 'Feio mas nada que um saco na cabeça não resolva né!?'} else if(feio == 45 ) {var bo = 'você é feio, mas tem bom gosto'} else if(feio == 46 ) {var bo = 'feio mas tem muitos amigos'} else if(feio == 47 ) {var bo = 'é feio mas tem lábia pra pegar várias novinha'} else if(feio == 4 ) {var bo = 'feio e ainda não sabe se vestir, vixi'} else if(feio == 49 ) {var bo = 'feiooo dms vey.'} else if(feio == 50 ) {var bo = 'você é feio, mas não se encherga.'} else if(feio > 51) {var bo = 'você é feio demais bixo.'}
-sandro.sendMessage(from, {image: {url: imgfeio}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa feia?\n• A porcentagem de chance é *${random}%*, ${bo}`, mentions: [sender_ou_n], thumbnail:null}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imgfeio}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa feia?\n• A porcentagem de chance é *${random}%*, ${bo}`, mentions: [sender_ou_n], thumbnail:null}, {quoted: selo})
 }, 7000)
 break 
 
 case 'corno':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text:`Pesquisando a ficha de corno @${sender_ou_n.split("@")[0]}, aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text:`Pesquisando a ficha de corno @${sender_ou_n.split("@")[0]}, aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
 setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
-sandro.sendMessage(from, {image: {url: imgcorno}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa chifruda?\n• A porcentagem de chance é *${random}%*`, mentions: [sender_ou_n]}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imgcorno}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa chifruda?\n• A porcentagem de chance é *${random}%*`, mentions: [sender_ou_n]}, {quoted: selo})
 }, 7000)
 break  
 
 case 'vesgo':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text:`Pesquisando a ficha de vesgo @${sender_ou_n.split("@")[0]}, aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text:`Pesquisando a ficha de vesgo @${sender_ou_n.split("@")[0]}, aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
  setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
-sandro.sendMessage(from, {image: {url: imgvesgo}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa vesga?\n• A porcentagem de chance é *${random}%*`, mentions: [sender_ou_n]}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imgvesgo}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa vesga?\n• A porcentagem de chance é *${random}%*`, mentions: [sender_ou_n]}, {quoted: selo})
 }, 7000)
 break 
 
 case 'bebado':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text:`Pesquisando a ficha de bebado(a) @${sender_ou_n.split("@")[0]}, aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text:`Pesquisando a ficha de bebado(a) @${sender_ou_n.split("@")[0]}, aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
  setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
-sandro.sendMessage(from, {image: {url: imgbebado}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa bêbada?\n• A porcentagem de chance é *${random}%*`, mentions: [sender_ou_n]}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imgbebado}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa bêbada?\n• A porcentagem de chance é *${random}%*`, mentions: [sender_ou_n]}, {quoted: selo})
 }, 7000)
 break 
 
 case 'gado':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text:`Pesquisando a ficha de gado @${sender_ou_n.split("@")[0]}, aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text:`Pesquisando a ficha de gado @${sender_ou_n.split("@")[0]}, aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
  setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
-sandro.sendMessage(from, {image: {url: imggado}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser um gado?\n• A porcentagem de chance é *${random}%*`, mentions: [sender_ou_n]}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imggado}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser um gado?\n• A porcentagem de chance é *${random}%*`, mentions: [sender_ou_n]}, {quoted: selo})
 }, 7000)
 break 
 
 case 'gostoso':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text:`Pesquisando a sua ficha de gostoso @${sender_ou_n.split("@")[0]} aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text:`Pesquisando a sua ficha de gostoso @${sender_ou_n.split("@")[0]} aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
  setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
-sandro.sendMessage(from, {image: {url: imggostoso}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa gostosa?\n• A porcentagem de chance é *${random}%*`, gifPlayback: true, mentions: [sender_ou_n]}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imggostoso}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa gostosa?\n• A porcentagem de chance é *${random}%*`, gifPlayback: true, mentions: [sender_ou_n]}, {quoted: selo})
 }, 7000)
 break 
 
@@ -13615,10 +13615,10 @@ break
 case 'gostosa':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
-sandro.sendMessage(from, {text:`Pesquisando a sua ficha de gostosa @${sender_ou_n.split("@")[0]} aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
+calo.sendMessage(from, {text:`Pesquisando a sua ficha de gostosa @${sender_ou_n.split("@")[0]} aguarde...`, mentions: [sender_ou_n]}, {quoted: info})
  setTimeout(async() => {
 random = `${Math.floor(Math.random() * 110)}`
-sandro.sendMessage(from, {image: {url: imggostosa}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa gostosa?\n• A porcentagem de chance é *${random}%*`, gifPlayback: true, mentions: [sender_ou_n]}, {quoted: selo})
+calo.sendMessage(from, {image: {url: imggostosa}, caption: `O quanto *@${sender_ou_n.split("@")[0]}* pode ser uma pessoa gostosa?\n• A porcentagem de chance é *${random}%*`, gifPlayback: true, mentions: [sender_ou_n]}, {quoted: selo})
 }, 7000)
 break 
 
@@ -13629,21 +13629,21 @@ if (args.length == 0) return await reply(`Está faltando o nome da pessoa! Por e
 const predea = await axios.get(`https://api.agify.io/?name=${encodeURIComponent(args[0])}`);
 if (predea.data.age == null) return await reply(`Você inseriu um nome invalido, certifique-se de inserir um sem acentos, emojis, números e outros.`);
 death = `@${sender.split('@')[0]} — Pessoas com este nome citado “${predea.data.name}” tendem a morrer aos ${predea.data.age} anos de idade.`;
-sandro.sendMessage(from, {video: {url: deathcmd}, gifPlayback: true, caption: death, mentions: [sender]}, {quoted: selo})
+calo.sendMessage(from, {video: {url: deathcmd}, gifPlayback: true, caption: death, mentions: [sender]}, {quoted: selo})
 break;				
 				
 case 'matar': case 'mata':  
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer matar, a mensagem ou o @')
-sandro.sendMessage(from, {video: {url: matarcmd}, gifPlayback: true, caption: `Você Acabou de matar o(a) @${menc_os2.split('@')[0]} 😈👹`, mentions: [menc_os2]}, {quoted: selo})
+calo.sendMessage(from, {video: {url: matarcmd}, gifPlayback: true, caption: `Você Acabou de matar o(a) @${menc_os2.split('@')[0]} 😈👹`, mentions: [menc_os2]}, {quoted: selo})
 break 
 
 case 'beijo': case 'beijar':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
 if(!menc_os2 || menc_jid2[1]) return reply('marque a pessoa que você quer beijar, a mensagem ou o @')
-sandro.sendMessage(from, {video: {url: beijocmd}, gifPlayback: true, caption: `Você deu um beijo gostoso na(o) @${menc_os2.split('@')[0]} 😁👉👈❤` , mentions: [menc_os2]}, {quoted: selo})
+calo.sendMessage(from, {video: {url: beijocmd}, gifPlayback: true, caption: `Você deu um beijo gostoso na(o) @${menc_os2.split('@')[0]} 😁👉👈❤` , mentions: [menc_os2]}, {quoted: selo})
 break
 
 case 'vab':
@@ -13652,7 +13652,7 @@ if(!isModobn) return reply(mess.warningMB(prefix))
 psycatgames().then(async (array) => {
 const { nsfw, questions } = array[Math.floor(Math.random() * array.length)]
 const { pergunta1, pergunta2 } = questions[Math.floor(Math.random() * questions.length)]
-sendPoll(sandro, from, "Você prefere..", [pergunta1, pergunta2])
+sendPoll(calo, from, "Você prefere..", [pergunta1, pergunta2])
 }).catch(console.error);
 break
 
@@ -13662,7 +13662,7 @@ if(!isModobn) return reply(mess.warningMB(prefix))
 setTimeout(() => {reagir(from, "🙈")}, 100)
 const pergunta_ = JSON.parse(fs.readFileSync('./arquivos/json/eununca.json'));
 const getRandomINever = pergunta_[Math.floor(Math.random() * pergunta_.length)]
-sendPoll(sandro, from, getRandomINever, ["Eu nunca", "Eu já"]).catch(console.error);
+sendPoll(calo, from, getRandomINever, ["Eu nunca", "Eu já"]).catch(console.error);
 break
 
 case 'conselhobiblico':
@@ -13671,33 +13671,33 @@ case 'conselhosb':
 case 'conselhob':  
 reagir(from, "⛪️")
 var conselhosb = conselhob[Math.floor(Math.random() * conselhob.length)]
-sandro.sendMessage(from, {text: mess.conselhoBiblico(tempo, pushname, conselhosb, NomeDoBot, groupName)}, {quoted: selo, contextInfo: {"mentionedJid": mess.conselhoBiblico(tempo, pushname, conselhosb, NomeDoBot, groupName)}})
+calo.sendMessage(from, {text: mess.conselhoBiblico(tempo, pushname, conselhosb, NomeDoBot, groupName)}, {quoted: selo, contextInfo: {"mentionedJid": mess.conselhoBiblico(tempo, pushname, conselhosb, NomeDoBot, groupName)}})
 break
 
 case 'cantadas': case 'cantada':  
 reagir(from, "😼️")
 cantadasbb = randomCantadas[Math.floor(Math.random() * randomCantadas.length)]   
 let cantadasText = `*${cantadasbb}*`
-sandro.sendMessage(from, {text: cantadasText}, {quoted: selo})
+calo.sendMessage(from, {text: cantadasText}, {quoted: selo})
 break
 
 case 'fatos': case 'curiosidades':  
 fatoskk = fatos[Math.floor(Math.random() * fatos.length)]   
 let fatosText = `*${fatoskk}*`
-sandro.sendMessage(from, {text: fatosText}, {quoted: selo})
+calo.sendMessage(from, {text: fatosText}, {quoted: selo})
 break
 
 case 'teste':
-await sandro.sendMessage(from, {
+await calo.sendMessage(from, {
 image: { url: fotobot,},
-caption: `SANDRO MD V11`,});
+caption: `calo MD V11`,});
 break;
 
 case 'tapa':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
 if(!menc_os2 || menc_jid2[1]) return reply('Marque o alvo que você quer da um tapa, a mensagem ou o @')
-sandro.sendMessage(from, {video: {url: tapacmd}, gifPlayback: true, caption: `Você acabou de da um tapa na raba da *@${menc_os2.split('@')[0]}*. 😼`, mentions: [menc_os2]}, {quoted: selo})
+calo.sendMessage(from, {video: {url: tapacmd}, gifPlayback: true, caption: `Você acabou de da um tapa na raba da *@${menc_os2.split('@')[0]}*. 😼`, mentions: [menc_os2]}, {quoted: selo})
 break
 
 case 'chute':
@@ -13705,7 +13705,7 @@ case 'chutar':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
 if(!menc_os2 || menc_jid2[1]) return reply('marque o alvo que você quer da um chute, a mensagem ou o @')
-sandro.sendMessage(from, {video: {url: chutecmd}, gifPlayback: true, caption: `Você acabou de dar um chute em *@${menc_os2.split('@')[0]}*.`, mentions: [menc_os2]}, {quoted: selo})
+calo.sendMessage(from, {video: {url: chutecmd}, gifPlayback: true, caption: `Você acabou de dar um chute em *@${menc_os2.split('@')[0]}*.`, mentions: [menc_os2]}, {quoted: selo})
 break 
 
 case 'dogolpe':
@@ -13713,7 +13713,7 @@ if(!isGroup) return reply(enviar.msg.grupo)
 if(!isModobn) return reply(mess.warningMB(prefix))
 if(!menc_os2 || menc_jid2[1]) return reply('Marque a mensagem com o comando ou marque o @ do usuário..')
 randomF = ["em iludir pessoas", "em ferir os sentimentos", "em dar chifre"]
-sandro.sendMessage(from, {text: `🌟☠️ *@${menc_os2.split("@")[0]}* é especialista *${randomF[Math.floor(Math.random() * randomF.length)]}*.`, mentions: [menc_os2]}, {quoted: selo})
+calo.sendMessage(from, {text: `🌟☠️ *@${menc_os2.split("@")[0]}* é especialista *${randomF[Math.floor(Math.random() * randomF.length)]}*.`, mentions: [menc_os2]}, {quoted: selo})
 break
 
 case 'shipo':
@@ -14247,7 +14247,7 @@ if(fs.existsSync(`./arquivos/tictactoe/db/${from}.json`)) {
 const boardnow = setGame(`${from}`);
 const matrix = boardnow._matrix;
 const chatMove = `『 *🎮 Ꮐ̸Ꭺ̸Ꮇ̸Ꭼ̸ Ꭰ̸Ꭺ̸ Ꮩ̸Ꭼ̸Ꮮ̸Ꮋ̸Ꭺ̸ 🕹️* 』\n—\n💢 Alguém está jogando o *jogo da velha* no momento! Por favor, aguarde o término da partida para iniciar a próxima.\n-\n• @${boardnow.X} VS @${boardnow.O}\n—\n• Sua vez: @${boardnow.turn == "X" ? boardnow.X : boardnow.O}\n-\n${matrix[0][0]}  ${matrix[0][1]}  ${matrix[0][2]}\n${matrix[1][0]}  ${matrix[1][1]}  ${matrix[1][2]}\n${matrix[2][0]}  ${matrix[2][1]}  ${matrix[2][2]}`;
-sandro.sendMessage(from, {text: chatMove}, {quoted: selo,
+calo.sendMessage(from, {text: chatMove}, {quoted: selo,
 mentions: [
 boardnow.X + "@s.whatsapp.net",
 boardnow.O + "@s.whatsapp.net",
@@ -14334,7 +14334,7 @@ an = JSON.parse(fs.readFileSync(`./database/grupos/games/anagrama/${from}.json`)
 reply(`• Já existe um registro da ativação do anagrama aqui no grupo, resolva abaixo, caso desejar resetar ou desativar, use: *${prefix}anagrama 1/0*\n—\n⭐️ Qual é a ordem correta da palavra? Resolva: *${an.embaralhada}*\n• Dica: ${an.dica}`)
 } else {
 fs.writeFileSync(`./database/grupos/games/anagrama/${from}.json`, `${JSON.stringify(palavrasANA[anaaleatorio])}`)
-sandro.sendMessage(from, {text: `🌟😲 Decifre a palavra embaralhada abaixo, qual será a ordem correta das letras?\n—\n• Palavra: *${shuffle(palavrasANA[anaaleatorio].palavraOriginal)}*\n• Dica: ${palavrasANA[anaaleatorio].dica}`}, {quoted: selo})
+calo.sendMessage(from, {text: `🌟😲 Decifre a palavra embaralhada abaixo, qual será a ordem correta das letras?\n—\n• Palavra: *${shuffle(palavrasANA[anaaleatorio].palavraOriginal)}*\n• Dica: ${palavrasANA[anaaleatorio].dica}`}, {quoted: selo})
 }
 } else if (args.join(' ') ==='0') {
 if(!fs.existsSync(`./database/grupos/games/anagrama/${from}.json`)) return reply('Não tem como desativar o jogo do anagrama pôs ele não foi ativado...')
@@ -14354,11 +14354,11 @@ if(fs.existsSync(`./database/grupos/games/quiz-animais/${from}.json`)) {
 superrttrr = JSON.parse(fs.readFileSync(`./database/grupos/games/quiz-animais/${from}.json`))
 imagemtexto = `• Existe um jogo existente, aqui no grupo! Resolva a pergunta abaixo:\n—\n🤔 Pergunta: ${superrttrr.question}`
 wew = await getBuffer(`${superrttrr.foto}`)   
-await sandro.sendMessage(from, {image: wew, caption: imagemtexto}, {quoted: selo})
+await calo.sendMessage(from, {image: wew, caption: imagemtexto}, {quoted: selo})
 } else {
 fs.writeFileSync(`./database/grupos/games/quiz-animais/${from}.json`, `${JSON.stringify(quizanimais[animaisquiz])}`)
 wew = await getBuffer(`${quizanimais[animaisquiz].foto}`)  
-await sandro.sendMessage(from, {image: wew, caption: `🤔 Pergunta: ${quizanimais[animaisquiz].question}`}, {quoted: selo})
+await calo.sendMessage(from, {image: wew, caption: `🤔 Pergunta: ${quizanimais[animaisquiz].question}`}, {quoted: selo})
 }
 } else if (args.join(' ') ==='0') {
 if(!fs.existsSync(`./database/grupos/games/quiz-animais/${from}.json`)) return reply('Não tem como desativar o jogo pôs ele não foi ativado')
@@ -14379,7 +14379,7 @@ dataW = JSON.parse(fs.readFileSync(`./database/grupos/games/wmusic/${from}.json`
 reply(`Já existe uma partida iniciada aqui no grupo, confira:\n–\n${dataW.trechoMusic}\n–\n🤔😱 Qual música pertence o trecho apresentado acima?\n• ${II}Dica:${II} ${dataW.dica}`)} else {
 fs.writeFileSync(`./database/grupos/games/wmusic/${from}.json`, `${JSON.stringify(whatMusicAr[whatMAle])}`)
 textW = `🎶🎧 𝐖𝐇𝐀𝐓 𝐌𝐔𝐒𝐈𝐂? 😱💡\n–\n${whatMusicAr[whatMAle].trechoMusic}\n–\n🤔😱 Qual música pertence o trecho apresentado acima?\n• ${II}Dica:${II} ${whatMusicAr[whatMAle].dica}`
-sandro.sendMessage(from, {text: textW}, {quoted: selo})
+calo.sendMessage(from, {text: textW}, {quoted: selo})
 }
 } else if (args.join(' ') ==='0') {
 if(!fs.existsSync(`./database/grupos/games/wmusic/${from}.json`)) return reply('Não tem como desativar o jogo, pois ele não foi ativado')
@@ -14403,7 +14403,7 @@ imagemtexto = `👩🏼‍🏫 - A resposta é representada por um(a): ${dataGar
 –
 ❓️ - *Não sabe a resposta?* _Peça ao adm do grupo para usar o comando *${prefix}revelargartic* para revelar a resposta correta da afirmação._`
 wew = await getBuffer(`${dataGartic2.imagem}`)  
-await sandro.sendMessage(from, {image: wew, caption: imagemtexto, thumbnail: wew}, {quoted: selo})
+await calo.sendMessage(from, {image: wew, caption: imagemtexto, thumbnail: wew}, {quoted: selo})
 } else {
 fs.writeFileSync(`./database/grupos/games/gartic/${from}.json`, `${JSON.stringify(garticArchives[garticquiz])}`)
 imagemtexto = `👩🏼‍🏫 - A resposta é representada por um(a): ${garticArchives[garticquiz].pergunta}
@@ -14412,7 +14412,7 @@ imagemtexto = `👩🏼‍🏫 - A resposta é representada por um(a): ${garticA
 –
 ❓️ - *Não sabe a resposta?* _Peça ao adm do grupo para usar o comando *${prefix}revelargartic* para revelar a resposta correta da afirmação._`
 wew = await getBuffer(`${garticArchives[garticquiz].imagem}`)  
-await sandro.sendMessage(from, {image: wew, caption: imagemtexto, thumbnail: wew}, {quoted: selo})
+await calo.sendMessage(from, {image: wew, caption: imagemtexto, thumbnail: wew}, {quoted: selo})
 }
 } else if (args.join(' ') ==='0') {
 if(!fs.existsSync(`./database/grupos/games/gartic/${from}.json`)) return reply('Não tem como desativar o gartic pôs ele não foi ativado.')
@@ -14436,7 +14436,7 @@ ${SAB_SAB_ENI.charada}
 
 ❓️ - *Não sabe a resposta?* _Peça ao adm do grupo para usar o comando *${prefix}revelarenigma* para revelar a resposta correta da enigma._`
 wew = await getBuffer(`https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg`)  
-await sandro.sendMessage(from, {image: wew, caption: imagemtexto, thumbnail: wew}, {quoted: selo})
+await calo.sendMessage(from, {image: wew, caption: imagemtexto, thumbnail: wew}, {quoted: selo})
 } else {
 fs.writeFileSync(`./database/grupos/games/enigma/${from}.json`, `${JSON.stringify(enigmaArchive[engimaSolu])}`)
 imagemtexto = `📜 - Resolva o seguinte enigma abaixo:
@@ -14445,7 +14445,7 @@ ${enigmaArchive[engimaSolu].charada}
 
 ❓️ - *Não sabe a resposta?* _Peça ao adm do grupo para usar o comando *${prefix}revelarenigma* para revelar a resposta correta da enigma._`
 wew = await getBuffer(`https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg`)  
-await sandro.sendMessage(from, {image: wew, caption: imagemtexto, thumbnail: wew}, {quoted: selo})
+await calo.sendMessage(from, {image: wew, caption: imagemtexto, thumbnail: wew}, {quoted: selo})
 }
 } else if (args.join(' ') ==='0') {
 if(!fs.existsSync(`./database/grupos/games/enigma/${from}.json`)) return reply('Não tem como desativar o enigma pôs ele não foi ativado.')
@@ -14474,8 +14474,8 @@ case 'icms':
 txt = q.replace(" |", "|").replace("| ", "|").replace(" | ", "|")
 var [result1, result2] = txt.split("|")
 if(!q.includes("|")) return reply(mess.syntaxIcms(prefix))
-await fetchJson(`https://yurimodz-apis.xyz/api/icms?valor=${encodeURIComponent(result1)}&ddd=${encodeURIComponent(result2)}&apikey=${SANDRO_MD_BOT}`).then(data => {
-sandro.sendMessage(from, {text: mess.icmsResult(data)}, {quoted: selo})
+await fetchJson(`https://yurimodz-apis.xyz/api/icms?valor=${encodeURIComponent(result1)}&ddd=${encodeURIComponent(result2)}&apikey=${calo_MD_BOT}`).then(data => {
+calo.sendMessage(from, {text: mess.icmsResult(data)}, {quoted: selo})
 }).catch(e => {
 return reply(mess.error())
 })
@@ -14510,7 +14510,7 @@ if (!SoDono) return reply(enviar.msg.donosmt)
 ABC = await fetchJson(`https://yurimodz-apis.xyz/db/lista-apikeys?senha=Yurizinn`)
 RST = `• Total de apikeys armazenadas na dabatase: *${ABC.length}*\n• Aqui está a lista detalhadas sobre as apikey criadas pelo meu proprietário.\n—\n`
 RST += `${ABC.map(v => `• Apikey: *${v?.apikey}*\n• Limite de Requisições: *${v?.request}*`).join('\n—\n')}`
-await sandro.sendMessage(sender, {text: RST}, {quoted: selo})
+await calo.sendMessage(sender, {text: RST}, {quoted: selo})
 break
 
 case 'list_ip':
@@ -14518,14 +14518,14 @@ if (!SoDono) return reply(enviar.msg.donosmt)
 ABC = await fetchJson(`https://yurimodz-apis.xyz/db/lista-ip?senha=R23`)
 RST = `• Total de apikeys armazenadas na dabatase de ip(s): *${ABC.length}*\n• Aqui está a lista detalhadas sobre os ip acessado(s) pelo usuários destinados de cada apikey.\n—\n`
 RST += `${ABC.map(v => `• Apikey: *${v?.key}*\n• Endereço(s) IP: *${v.IP}*`).join('\n—\n')}`
-await sandro.sendMessage(sender, {text: RST}, {quoted: selo})
+await calo.sendMessage(sender, {text: RST}, {quoted: selo})
 break
 
 //==(AUDIOS/DE-MUSICA/ZOUEIRA/ETC..)===\\
 
 case 'bot':
 const soundft = await fetch(qviado).then(v => v.buffer())
-sandro.sendMessage(from, {audio: soundft, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: soundft, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 break
 
 //=======================================\\
@@ -14546,7 +14546,7 @@ exec(`ffmpeg -i ${media} -vf reverse -af areverse ${ran}`, (err) => {
 DLT_FL(media)
 if(err) return reply(`Err: ${err}`)
 buffer453 = fs.readFileSync(ran)
-sandro.sendMessage(from, {video: buffer453, mimetype: 'video/mp4'}, {quoted: selo})
+calo.sendMessage(from, {video: buffer453, mimetype: 'video/mp4'}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14568,7 +14568,7 @@ exec(`ffmpeg -i ${media} -filter_complex "[0:v]setpts=2*PTS[v];[0:a]atempo=0.5[a
 DLT_FL(media)
 if(err) return reply(`Err: ${err}`)
 buffer453 = fs.readFileSync(ran)
-sandro.sendMessage(from, {video: buffer453, mimetype: 'video/mp4'}, {quoted: selo })
+calo.sendMessage(from, {video: buffer453, mimetype: 'video/mp4'}, {quoted: selo })
 DLT_FL(ran)
 })
 } else {
@@ -14590,7 +14590,7 @@ exec(`ffmpeg -i ${media} -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2[a
 DLT_FL(media)
 if(err) return reply(`Err: ${err}`)
 buffer453 = fs.readFileSync(ran)
-sandro.sendMessage(from, {video: buffer453, mimetype: 'video/mp4'}, {quoted: selo })
+calo.sendMessage(from, {video: buffer453, mimetype: 'video/mp4'}, {quoted: selo })
 DLT_FL(ran)
 })	
 } else {
@@ -14611,7 +14611,7 @@ exec(`ffmpeg -i ${gem} -filter:a "atempo=1.6,asetrate=22100" ${ran}`, (err, stde
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14632,7 +14632,7 @@ exec(`ffmpeg -i ${gem} -filter:a "atempo=0.9,asetrate=44100" ${ran}`, (err, stde
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14654,7 +14654,7 @@ exec(`ffmpeg -i ${gem} -filter:a atempo=1.06,asetrate=44100*1.25 ${ran}`, (err, 
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14676,7 +14676,7 @@ exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 DLT_FL(media)
 if(err) return reply('Ocorreu uma falha ao fazer a conversão do vídeo para mp3.')
 buffer = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: buffer, mimetype: 'audio/mpeg'}, {quoted: selo})
+calo.sendMessage(from, {audio: buffer, mimetype: 'audio/mpeg'}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14697,7 +14697,7 @@ exec(`ffmpeg -i ${gem} -af equalizer=f=20:width_type=o:width=2:g=15 ${ran}`, (er
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14718,7 +14718,7 @@ exec(`ffmpeg -i ${gem} -af equalizer=f=20:width_type=o:width=2:g=15 ${ran}`, (er
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14739,7 +14739,7 @@ exec(`ffmpeg -i ${gem} -af equalizer=f=94:width_type=o:width=2:g=30 ${ran}`, (er
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14760,7 +14760,7 @@ exec(`ffmpeg -i ${gem} -af equalizer=f=90:width_type=o:width=2:g=30 ${ran}`, (er
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14782,7 +14782,7 @@ exec(`ffmpeg -i ${gem} -filter:a "atempo=0.9,asetrate=95100" ${ran}`, (err, stde
 DLT_FL(gem)
 if(err) return reply('Erro')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14803,7 +14803,7 @@ exec(`ffmpeg -i ${gem} -filter:a "atempo=0.7,asetrate=65100" ${ran}`, (err, stde
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14825,7 +14825,7 @@ exec(`ffmpeg -i ${gem} -filter:a "atempo=0.9,asetrate=44100" ${ran}`, (err, stde
 DLT_FL(gem)
 if(err) return reply('Ocorreu um erro ao adicionar o *efeito sonoro* no áudio.')
 hah = fs.readFileSync(ran)
-sandro.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: hah, mimetype: 'audio/mpeg', ptt:true}, {quoted: selo})
 DLT_FL(ran)
 })
 } else {
@@ -14844,7 +14844,7 @@ if((isMedia && !info.message.videoMessage || isQuotedSticker) && !q.length <= 1)
 buff = await getFileBuffer(info.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage, 'sticker')
 reply('Aguarde, estou convertendo a figurinha para o formato gif.')
 a = await webp_mp4(buff)
-sandro.sendMessage(from, {video: {url: a}, gifPlayback: true, fileName: `stick.gif`}, {quoted: selo}).catch(e => {
+calo.sendMessage(from, {video: {url: a}, gifPlayback: true, fileName: `stick.gif`}, {quoted: selo}).catch(e => {
 reply("Erro ao realizar o envio do sticker!") 
 })
 DLT_FL(buff)
@@ -14858,12 +14858,12 @@ case 'convite':
 if(!budy.includes("chat.whatsapp.com")) return reply("Cadê o link do grupo que você deseja que eu entre?")  
 cnvt = args.join(" ")
 reply(`O convite para o bot entrar em seu grupo, foi enviado, espere o dono aceitar..`)
-sandro.sendMessage(nmrdn, {text: mess.groupInvitation(sender, cnvt, prefix)}, {quoted: info})
+calo.sendMessage(nmrdn, {text: mess.groupInvitation(sender, cnvt, prefix)}, {quoted: info})
 break
 
 case 'recusar':
 if(!SoDono) return reply(enviar.msg.donosmt)
-sandro.sendMessage(`${q}@s.whatsapp.net`, {text: `Olá amigo(a), sinto muito dizer, mas seu convite foi recusado.`})
+calo.sendMessage(`${q}@s.whatsapp.net`, {text: `Olá amigo(a), sinto muito dizer, mas seu convite foi recusado.`})
 break;
 
 case 'join': case 'entrar':
@@ -14873,7 +14873,7 @@ if(!string) return reply('Insira um link de convite ao lado do comando.')
 if(string.includes('chat.whatsapp.com/') || reply('Ops, verifique o link que você inseriu.') ) {
 link = string.split('app.com/')[1]
 try {
-sandro.groupAcceptInvite(`${link}`)
+calo.groupAcceptInvite(`${link}`)
 } catch(erro) {
 if(String(erro).includes('resource-limit') ) {
 reply('O grupo já está com o alcance de 257 membros.')
@@ -14889,8 +14889,8 @@ case 'sip': case 'ip':
 if (!q) return reply(`Informe o ip que você deseja! *Exemplo:* ${prefix+command} 8.8.8.8`)
 try {
 ip = await axios.get(`https://ipwhois.app/json/${encodeURIComponent(q)}`);
-sandro.sendMessage(from, {image: {url: `https://maps.googleapis.com/maps/api/streetview?size=1400x1400&location=${ip.data.latitude},%20${ip.data.longitude}&sensor=false&key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg`}, caption: mess.searchIpAdress(ip)})
-sandro.sendMessage(from, {location: {degreesLatitude: ip.data.latitude,degreesLongitude: ip.data.longitude, addrees: ''}})
+calo.sendMessage(from, {image: {url: `https://maps.googleapis.com/maps/api/streetview?size=1400x1400&location=${ip.data.latitude},%20${ip.data.longitude}&sensor=false&key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg`}, caption: mess.searchIpAdress(ip)})
+calo.sendMessage(from, {location: {degreesLatitude: ip.data.latitude,degreesLongitude: ip.data.longitude, addrees: ''}})
 } catch {
 reply(mess.error())
 }
@@ -14899,7 +14899,7 @@ break
 case 'cep':
 try {
 if(!q.trim()) return reply("digite o CEP que deseja buscar informações..");
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/consultacep?cep=51240230&apikey=${API_SANDRO_MD}`)
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/consultacep?cep=51240230&apikey=${API_calo_MD}`)
 reply(`Cep: ${ABC.cep}\nRua: ${ABC.rua}\nComplemento: ${ABC.complemento}\nBairro: ${ABC.vizinhança}\nCidade: ${ABC.cidade}\nEstado: ${ABC.estado}\nGia: ${ABC.gia}\nIbge: ${ABC.ibge}\nddd: ${ABC.ddd}\nSiafi: ${ABC.siafi}`)
 } catch (e) {
 return reply("Erro..")
@@ -14916,7 +14916,7 @@ if(!JSON.stringify(sabrpg).includes(sender)) return reply(`${tempo} usuário(a),
 try {
 const imagemUrl = fotobot; 
 const menuTexto = rpgmenu(prefix, pushname, NickDono, NomeDoBot, isChVip, sender);
-sandro.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
+calo.sendMessage(from, { image: { url: imagemUrl }, caption: menuTexto }, { quoted: info });
 } catch (e) {
 console.log("Erro no comando 'menu':", e);
 }
@@ -14970,7 +14970,7 @@ sabrpg.push({id: sender, gpid: from, hrg: horarg, drg: datarg, nome: q, namebank
 fs.writeFileSync("./database/usuarios/SystemRPG/sabrpg.json", JSON.stringify(sabrpg))
 reply(`Registro efetuado e concluído com êxito! Seja bem vindo(a) à City, ${q}`)
 setTimeout(() => {
-sandro.sendMessage(from, {text: `Agora você pode trabalhar e ganhar muito dinheiro jogando e apostando em nossos jogos. Para consultar seu saldo atual, use: *${prefix}minhacarteira*`})
+calo.sendMessage(from, {text: `Agora você pode trabalhar e ganhar muito dinheiro jogando e apostando em nossos jogos. Para consultar seu saldo atual, use: *${prefix}minhacarteira*`})
 }, 1100)
 break
 
@@ -15140,8 +15140,8 @@ case 'rankc':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isSabCityOFF) return reply(`É nescessário a ativação do *MODO RPG* no grupo! Use *${prefix}Modorpg*.`)
 setTimeout(() => {reagir(from, "🤑")}, 300)
-sandrobot = sabrpg.map(i => i)
-rank = sandrobot.sort((a, b) => (a.money < b.money) ? 0 : -1)
+calobot = sabrpg.map(i => i)
+rank = calobot.sort((a, b) => (a.money < b.money) ? 0 : -1)
 if(sabrpg.length > 5) {
 var totalR = 5
 } else {
@@ -15241,7 +15241,7 @@ coderpg.push({codeid: codegf, valor: value,quantmax: Number(quant).toFixed(0), u
 fs.writeFileSync("./database/usuarios/SystemRPG/coderpg.json", JSON.stringify(coderpg))
 reply(`Código de *R$ ${Number(value).toFixed(2)}* gerado, válido para ${Number(quant) <= 1 ? `um usuário apenas...` : `os ${quant} primeiros...`}\n• Para resgatar o benefício, use o comando: *${prefix}resgatargf*`)
 setTimeout(() => {
-sandro.sendMessage(from, {text: codegf})
+calo.sendMessage(from, {text: codegf})
 }, 1000)
 break
 
@@ -15355,7 +15355,7 @@ case 'chavepix':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isSabCityOFF) return reply(`É nescessário a ativação do *MODO RPG* no grupo! Use *${prefix}Modorpg*.`)
 if(!JSON.stringify(sabrpg).includes(sender)) return reply(`${tempo} usuário(a), novo(a) por aqui? Use *${prefix}Rgcity* para se registrar na City.`)
-if(!JSON.stringify(sabrpg).includes(menc_os2)) return sandro.sendMessage(from, {text: `Usuário (a) @${menc_os2.split('@')[0]} não consta em nosso banco...`, mentions: [menc_os2]}, {quoted: selo})
+if(!JSON.stringify(sabrpg).includes(menc_os2)) return calo.sendMessage(from, {text: `Usuário (a) @${menc_os2.split('@')[0]} não consta em nosso banco...`, mentions: [menc_os2]}, {quoted: selo})
 AB = sabrpg.map(i => i.id).indexOf(sender_ou_n)
 reply(`Chave encontrada/localizada! 🌟🧾\n• Nome: *${sabrpg[AB].nome}*\n• Chave: *${sabrpg[AB].id.split('@')[0]}*`)
 break
@@ -15379,21 +15379,21 @@ MD = Number(sabrpg[AB].money) - Number(2500)
 sabrpg[AB].money = MD
 sabrpg[AB].namebank = bankDD
 fs.writeFileSync("./database/usuarios/SystemRPG/sabrpg.json", JSON.stringify(sabrpg))
-sandro.sendMessage(from, {text: `Troca efetuada com sucesso *@${sender.split('@')[0]}*, seu banco agora é o(a) ${bankDD}.`, mentions: [sender]})
+calo.sendMessage(from, {text: `Troca efetuada com sucesso *@${sender.split('@')[0]}*, seu banco agora é o(a) ${bankDD}.`, mentions: [sender]})
 break
 
 case 'trocarnome':
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isSabCityOFF) return reply(`É nescessário a ativação do *MODO RPG* no grupo! Use *${prefix}Modorpg*.`)
 if(!JSON.stringify(sabrpg).includes(sender)) return reply(`${tempo} usuário(a), novo(a) por aqui? Use *${prefix}Rgcity* para se registrar na City.`)
-if(!q) return reply(`Digite o novo nome junto ao comando... Lembre-se que essa ação custará R$ 1200.00\nEx: ${prefix+command} sandro`)
+if(!q) return reply(`Digite o novo nome junto ao comando... Lembre-se que essa ação custará R$ 1200.00\nEx: ${prefix+command} calo`)
 AB = sabrpg.map(i => i.id).indexOf(sender)
 if(Number(sabrpg[AB].money) < 1200) return reply(` Você não tem saldo suficiente pra realizar esta ação... São necessários R$ 1200.00 para alterar seu nome`)
 MD = Number(sabrpg[AB].money) - Number(1200)
 sabrpg[AB].money = MD
 sabrpg[AB].nome = q
 fs.writeFileSync("./database/usuarios/SystemRPG/sabrpg.json", JSON.stringify(sabrpg))
-sandro.sendMessage(from, {text: `Troca efetuada com sucesso @${sender.split('@')[0]}, seu nome foi alterado para ${q}.`, mentions: [sender]})
+calo.sendMessage(from, {text: `Troca efetuada com sucesso @${sender.split('@')[0]}, seu nome foi alterado para ${q}.`, mentions: [sender]})
 break
 
 case 'trabalhar':
@@ -15469,7 +15469,7 @@ return !p_mines.includes(el)
 var minframes = JSON.parse(fs.readFileSync('./database/grupos/games/minesframe.json'))
 mines.push({id: from, jogador: sender, pos_mines: p_mines, qnt_mines: q_mines, selected_cord: [], cord_to_win: ctw, attempts: atp, tips_d: 0, hits: 0, minesp: minframes})
 fs.writeFileSync('./database/grupos/games/mines.json', JSON.stringify(mines, null, 2))
-sandro.sendMessage(from, {image: {url: minado_bomb}, caption: `💣 *Campo Minado:*\n\t• Não sabe como jogar? Use o comando: *${prefix}mineshelp*\n\t• Caso desejar encerrar ou resetar a partida, use: *${prefix}minareset*\n-\n• *Números:* 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣\n• *Coluna A:* 🟦 🟦 🟦 🟦 🟦\n• *Coluna B:* 🟦 🟦 🟦 🟦 🟦\n• *Coluna C:* 🟦 🟦 🟦 🟦 🟦\n• *Coluna D:* 🟦 🟦 🟦 🟦 🟦\n• *Coluna E:* 🟦 🟦 🟦 🟦 🟦\n—\n• Mina(s): *${q_mines}*\n• Dificuldade: *${teks}*\n• Tentativa(s): *${atp}*`})
+calo.sendMessage(from, {image: {url: minado_bomb}, caption: `💣 *Campo Minado:*\n\t• Não sabe como jogar? Use o comando: *${prefix}mineshelp*\n\t• Caso desejar encerrar ou resetar a partida, use: *${prefix}minareset*\n-\n• *Números:* 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣\n• *Coluna A:* 🟦 🟦 🟦 🟦 🟦\n• *Coluna B:* 🟦 🟦 🟦 🟦 🟦\n• *Coluna C:* 🟦 🟦 🟦 🟦 🟦\n• *Coluna D:* 🟦 🟦 🟦 🟦 🟦\n• *Coluna E:* 🟦 🟦 🟦 🟦 🟦\n—\n• Mina(s): *${q_mines}*\n• Dificuldade: *${teks}*\n• Tentativa(s): *${atp}*`})
 break
 
 case 'mina': 
@@ -15499,7 +15499,7 @@ if (mines[play_i].attempts <= 0) {
 res_teks += `\n——\n😿💔 Nossa que pena, suas chances esgotaram! Você acaba de perder e a chance de receber *R$ ${Number(RAN_VALOR).toFixed(2)}* em sua carteira.`
 await mines.splice(play_i, 1)
 fs.writeFileSync('./database/grupos/games/mines.json', JSON.stringify(mines, null, 2))
-sandro.sendMessage(from, {image: {url: minado_bomb}, caption: res_teks})
+calo.sendMessage(from, {image: {url: minado_bomb}, caption: res_teks})
 } else {
 if (mines[play_i].selected_cord.length >= mines[play_i].cord_to_win.length) {
 containAll = mines[play_i].cord_to_win.every(e => {
@@ -15512,16 +15512,16 @@ MONEYATUAL = sabrpg[AB].money
 sabrpg[USER].money = Number(MONEYATUAL) + Number(RAN_VALOR);
 await mines.splice(play_i, 1)
 fs.writeFileSync('./database/grupos/games/mines.json', JSON.stringify(mines, null, 2))
-sandro.sendMessage(from, {image: {url: minado_bomb}, caption: res_teks})
+calo.sendMessage(from, {image: {url: minado_bomb}, caption: res_teks})
 }
 } else {
 if (mines[play_i].tips_d >= 3) {
 res_teks += `\n—\nVocê tem direito a *${parseInt(mines[play_i].tips_d/3)}* Dica(s).`
 fs.writeFileSync('./database/grupos/games/mines.json', JSON.stringify(mines, null, 2))
-sandro.sendMessage(from, {image: {url: minado_bomb}, caption: res_teks})
+calo.sendMessage(from, {image: {url: minado_bomb}, caption: res_teks})
 } else {
 fs.writeFileSync('./database/grupos/games/mines.json', JSON.stringify(mines, null, 2))
-sandro.sendMessage(from, {image: {url: minado_bomb}, caption: res_teks})
+calo.sendMessage(from, {image: {url: minado_bomb}, caption: res_teks})
 }
 }
 }
@@ -15636,7 +15636,7 @@ pescarMessage = [
 ]
 txt = pescarMessage[Math.floor(Math.random() * pescarMessage.length)]
 }
-setTimeout(() => {sandro.sendMessage(from, {text: txt}, {quoted: info})}, 5000)
+setTimeout(() => {calo.sendMessage(from, {text: txt}, {quoted: info})}, 5000)
 } else {
 reply(`Por favor, aguarde *${60 - Number(moment.tz('America/Sao_Paulo').format('ss'))}s* para realizar uma nova pescagem...`)
 }
@@ -15680,7 +15680,7 @@ mineMessage = [
 ]
 txt = mineMessage[Math.floor(Math.random() * mineMessage.length)]
 }
-setTimeout(() => {sandro.sendMessage(from, {text: txt}, {quoted: info})}, 5000)
+setTimeout(() => {calo.sendMessage(from, {text: txt}, {quoted: info})}, 5000)
 } else {
 reply(`Por favor, aguarde *${60 - Number(moment.tz('America/Sao_Paulo').format('ss'))}s* para realizar uma nova mineração...`)
 }
@@ -15734,7 +15734,7 @@ if(!JSON.stringify(roubosrpg).includes(sender)) return reply(`Você precisa trei
 if(!menc_os2) return reply("Marque a pessoa quem você quer assaltar...")
 if(sender.includes(menc_os2)) return reply(`Não é possível assaltar você mesmo...`)
 if(!JSON.stringify(sabrpg).includes(menc_os2)) return reply(`ID do usuário não encontrado ou inexistente...`)
-sandrobot = Math.floor(Math.random()*100)
+calobot = Math.floor(Math.random()*100)
 AB = sabrpg.map(i => i.id).indexOf(sender)
 AD = roubosrpg.map(i => i.id).indexOf(sender)
 hora3 = moment.tz('America/Sao_Paulo').format('HH')
@@ -15757,14 +15757,14 @@ if(roubosrpg[AD].limite <= 0 && Number(roubosrpg[AD].dia) !== Number(data3)) {
 if(roubosrpg[AD].limite > 0 && roubosrpg[AD].preso == false) {
   roubosrpg[AD].limite -= 1
   fs.writeFileSync("./database/usuarios/SystemRPG/roubosrpg.json", JSON.stringify(roubosrpg))
-  if(sandrobot > 5) {
-    sandrobot2 = Math.floor(Math.random()*100)
+  if(calobot > 5) {
+    calobot2 = Math.floor(Math.random()*100)
     lvx = Number(Math.floor(Math.random()*39)+1)
     totalM = lvx * 100
     totalU = sabrpg[sabrpg.map(i => i.id).indexOf(menc_os2)].money - 1
     ganho = totalM > Number(sabrpg[sabrpg.map(i => i.id).indexOf(menc_os2)].money) ? Math.floor(Math.random()*totalU) + 1 : Math.floor(Math.random()*100) * lvx
     algo = JSON.stringify(roubosrpg).includes(menc_os2) ? roubosrpg[roubosrpg.map(b => b.id).indexOf(menc_os2)].segurança : 20
-    if(sandrobot2 > algo) {
+    if(calobot2 > algo) {
       sabrpg[AB].money += ganho
       fs.writeFileSync("./database/usuarios/SystemRPG/sabrpg.json", JSON.stringify(sabrpg))
       sabrpg[sabrpg.map(i => i.id).indexOf(menc_os2)].money -= ganho
@@ -15778,8 +15778,8 @@ if(roubosrpg[AD].limite > 0 && roubosrpg[AD].preso == false) {
       reply(`🚓 Ops, você foi pego pela polícia e pagou ${perda1 >= sabrpg[AB].money ? `todo o seu dinheiro` : `R$ ${Number(perda2).toFixed(2)}`} para sair da cadeia... Kkkk sinto muito 😔🤙🏽`)
     }
   } else {
-    sandrobot3 = Math.floor(Math.random()*100)
-    if(sandrobot3 > 10) {
+    calobot3 = Math.floor(Math.random()*100)
+    if(calobot3 > 10) {
       roubosrpg[AD].dinheiro += sabrpg[AB].money
       roubosrpg[AD].preso = true
       fs.writeFileSync("./database/usuarios/SystemRPG/roubosrpg.json", JSON.stringify(roubosrpg))
@@ -15939,7 +15939,7 @@ countcav += `\n» ${Number(c)+1} « Nome Do Cavalo: *${cavalosrpg[AC].cavalos[c]
 }
 }
 txt = `👤 Nome: *${sabrpg[AB].nome}*\n💯 Level do Estábulo: *${cavalosrpg[AC].level}*\n📐 Tamanho Do Estábulo: ${Number(cavalosrpg[AC].level)*5} m²*\n🧮 Quantidade De Cavalos: *${cavalosrpg[AC].cavalos.length}*\n🔔 Cavalo Selecionado: *${cavalosrpg[AC].setcav}*\n${countcav}`
-sandro.sendMessage(from, {image: {url: `https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg`}, caption: txt}, {quoted: selo})
+calo.sendMessage(from, {image: {url: `https://telegra.ph/file/cc1ea31504adec9ce4fa0.jpg`}, caption: txt}, {quoted: selo})
 break
 
 case 'setcavalo':
@@ -16089,14 +16089,14 @@ break
 
 case 'meme':
 reply(`Enviando.. caso demore de mais nao consegui te enviar `)
-const bufferImg = await getBuffer(`http://br1.bronxyshost.com:4360/random/loli?apikey=${SANDRO_MD}`);
-sandro.sendMessage(from, {image: bufferImg}, {quoted: info});
+const bufferImg = await getBuffer(`http://br1.bronxyshost.com:4360/random/loli?apikey=${calo_MD}`);
+calo.sendMessage(from, {image: bufferImg}, {quoted: info});
 break;
 //
 case 'memepv':
 reply(`Enviando no pv... caso demore de mais nao consegui te enviar `)
-const bufferImgo = await getBuffer(`http://br1.bronxyshost.com:4360/random/loli?apikey=${SANDRO_MD}`);
-sandro.sendMessage(sender, {image: bufferImgo}, {quoted: info});
+const bufferImgo = await getBuffer(`http://br1.bronxyshost.com:4360/random/loli?apikey=${calo_MD}`);
+calo.sendMessage(sender, {image: bufferImgo}, {quoted: info});
 break;
 
 case 'atadura':
@@ -16373,7 +16373,7 @@ sabrpg[AB].money = Number(MD) + Number(VL2)
 fs.writeFileSync("./database/usuarios/SystemRPG/sabrpg.json", JSON.stringify(sabrpg))
 }
 setTimeout(() => {
-sandro.sendMessage(from, {image: {url: img}, caption: txt}, {quoted: selo})
+calo.sendMessage(from, {image: {url: img}, caption: txt}, {quoted: selo})
 }, 2000)
 } else {
 reply(`Aguarde *${60 - Number(moment.tz('America/Sao_Paulo').format('ss'))} seg.* para fazer novas apostas novamente.`)
@@ -16528,8 +16528,8 @@ case 'girlmascote': case 'logogame':
 try {
 if(!q.trim()) return reply(`Digite algo, Exemplo: ${prefix+command} bronxys`);  
 reply("[❗] aguarde uns minutinho estou processado");
-ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/logos_EPH?texto=${q}&category=${command}&apikey=${API_SANDRO_MD}`);
-sandro.sendMessage(from, {image: {url: ABC.resultado}}, {quoted: info}).catch(() => {
+ABC = await fetchJson(`https://api.bronxyshost.com.br/api-bronxys/logos_EPH?texto=${q}&category=${command}&apikey=${API_calo_MD}`);
+calo.sendMessage(from, {image: {url: ABC.resultado}}, {quoted: info}).catch(() => {
 return reply("Erro..")
 })
 } catch (e) {
@@ -16700,8 +16700,8 @@ reply(`${tempo} usuário, vamos brigar?`)
 if(Number(galosrpg[AD].brigaD) == Number(galosD) && Number(galosrpg[AD].brigaM) == Number(galosM) && Number(galosrpg[AD].brigaL) > 0) {
 galosgeral = galosrpg[AD].galos
 alegalo = galosgeral[Math.floor(Math.random()*galosgeral.length)]
-sandrobot = Math.floor(Math.random()*100)
-if(Number(sandrobot) > 30) {
+calobot = Math.floor(Math.random()*100)
+if(Number(calobot) > 30) {
 if(Number(alegalo.vida) > 0) {
 VD = alegalo.vida
 CD = alegalo.degalo
@@ -16888,7 +16888,7 @@ mention(`😿 Infelizmente *@${sender.split("@")[0]}*, você perdeu *R$ ${Number
 }
 break
 
-case 'caracoroa': //BY : SANDRO MD V11 
+case 'caracoroa': //BY : calo MD V11 
 setTimeout(() => {reagir(from, "🪙")}, 300)
 if(!isModobn) return reply(mess.warningMB(prefix))
 if(!JSON.stringify(sabrpg).includes(sender)) return reply(`${tempo} usuário(a), novo(a) por aqui? Use *${prefix}Rgcity* para se registrar na City.`)
@@ -16961,19 +16961,19 @@ mention(txt)
 break
 
 case 'image_viewonce':
-sandro.sendMessage(from, {image: {url: fotobot}, viewOnce: true}, {quoted: info});
+calo.sendMessage(from, {image: {url: fotobot}, viewOnce: true}, {quoted: info});
 break;
 
 case 'audio_viewonce':
-sandro.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=https://youtu.be/o4lB81AnDSM?si=9zXDqAWwDNPDPkTU&apikey=${API_KEY_sandro}`}, mimetype: "audio/mpeg", viewOnce: true}, {quoted: info});
+calo.sendMessage(from, {audio: {url: `https://yurimodz-apis.xyz/api/dl/ytaudio?url=https://youtu.be/o4lB81AnDSM?si=9zXDqAWwDNPDPkTU&apikey=${API_KEY_calo}`}, mimetype: "audio/mpeg", viewOnce: true}, {quoted: info});
 break;
 
 case 'video_viewonce':
-sandro.sendMessage(from, {video: {url: `https://yurimodz-apis.xyz/api/dl/ytvideo?url=https://youtu.be/o4lB81AnDSM?si=9zXDqAWwDNPDPkTU&apikey=${API_KEY_sandro}`}, viewOnce: true}, {quoted: info});
+calo.sendMessage(from, {video: {url: `https://yurimodz-apis.xyz/api/dl/ytvideo?url=https://youtu.be/o4lB81AnDSM?si=9zXDqAWwDNPDPkTU&apikey=${API_KEY_calo}`}, viewOnce: true}, {quoted: info});
 break;
 
 case 'text_newsletter':
-sandro.sendMessage(from, {text: "Testando mensagem...", contextInfo: {forwardingScore: 1000000, isForwarded: true, forwardedNewsletterMessageInfo: {newsletterJid: "120363173003902460@newsletter"}}}, {quoted: info});
+calo.sendMessage(from, {text: "Testando mensagem...", contextInfo: {forwardingScore: 1000000, isForwarded: true, forwardedNewsletterMessageInfo: {newsletterJid: "120363173003902460@newsletter"}}}, {quoted: info});
 break;
 
 
@@ -16982,22 +16982,22 @@ break;
 
 default:
 
-//===(CRÉDITOS : SANDRO MD V11)==\\
+//===(CRÉDITOS : calo MD V11)==\\
 
 if(isGroup && isBotGroupAdmins && !isGroupAdmins) {
 if(isAntiCtt || Antiloc || isAnticatalogo) {
 if(type === 'contactMessage' || type === 'contactsArrayMessage' || type === 'locationMessage' || type === 'productMessage') {
-if(isGroupAdmins) return sandro.sendMessage(from, {text: mess.antisRandomMessage()}, {quoted: info})
+if(isGroupAdmins) return calo.sendMessage(from, {text: mess.antisRandomMessage()}, {quoted: info})
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify(groupMembers).includes(sender)) return
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 clear = `🗑${"\n".repeat(255)}🗑️\n❲❗❳ *Lɪᴍᴘᴇᴢᴀ ᴅᴇ Cʜᴀᴛ Cᴏɴᴄʟᴜɪᴅᴀ* ✅`
-sandro.sendMessage(from, {text: clear, contextInfo : { forwardingScore: 500, isForwarded:true}})
-sandro.sendMessage(from, {text: 'Reporte aos adminstradores do grupo sobre o ocorrido.', mentions: groupAdmins})
+calo.sendMessage(from, {text: clear, contextInfo : { forwardingScore: 500, isForwarded:true}})
+calo.sendMessage(from, {text: 'Reporte aos adminstradores do grupo sobre o ocorrido.', mentions: groupAdmins})
 }}}
 
 if(isGroup && isAntiFlood && !SoDono && !isPremium && !isnit && isBotGroupAdmins && !isGroupAdmins && !isBot) { 
@@ -17014,11 +17014,11 @@ console.log(colors.red('Deram spam de caracteres..'))
 setTimeout(async () => {
 if(IS_DELETE) {
 setTimeout(() => {
-sandro.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, { delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }
 if(!JSON.stringify(groupMembers).includes(sender)) return  
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 }, 1000)
 }
 }
@@ -17032,7 +17032,7 @@ bla = [nome1, nome2, nome3, nome4, nome5]
 for ( i of bla) {
 if(i == undefined) return  
 if(messagesC.includes(i)) {
-sandro.sendMessage(from, {audio: {url: direcao}, mimetype: "audio/mpeg", ptt:true})
+calo.sendMessage(from, {audio: {url: direcao}, mimetype: "audio/mpeg", ptt:true})
 }}}
 
 const EnvAudio2_SMP = async (direcao, nome1, nome2, nome3, nome4, nome5) => {
@@ -17040,7 +17040,7 @@ bla = [nome1, nome2, nome3, nome4, nome5]
 for ( i of bla) {
 if(i == undefined) return  
 if(messagesC.includes(i)) {
-sandro.sendMessage(from, {audio: {url: direcao}, mimetype: "audio/mpeg", ptt:true})
+calo.sendMessage(from, {audio: {url: direcao}, mimetype: "audio/mpeg", ptt:true})
 }}}
 
 const EnvTXT_SMP = async (texto, nome1, nome2, nome3, nome4, nome5) => {
@@ -17048,7 +17048,7 @@ bla = [nome1, nome2, nome3, nome4, nome5]
 for ( i of bla) {
 if(i == undefined) return  
 if(messagesC.includes(i)) {
-sandro.sendMessage(from, {text: texto})
+calo.sendMessage(from, {text: texto})
 }}}
 
 const EnvAudio2_GTTS = async (lingua, texto, txt1, txt2, txt3, txt4, txt5) => {
@@ -17063,7 +17063,7 @@ gtt.save(ranm, texto, function() {
 exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
 DLT_FL(ranm)
 buffer = fs.readFileSync(rano)
-sandro.sendMessage(from, {audio: buffer, ptt:true}, {quoted: selo})
+calo.sendMessage(from, {audio: buffer, ptt:true}, {quoted: selo})
 DLT_FL(rano)
 })
 })
@@ -17075,34 +17075,34 @@ if(JSON.stringify(music[AB].usus).includes(sender)) {
 BC = music[AB].usus.map(i => i.id).indexOf(sender)
 if(budy2.toLowerCase().replace("á", "a") === `audio` && isGroup) {
 reagir(from, "✅️")
-link = music[AB].usus[BC].urlAudio.replace("#sandroKey#", API_KEY_sandro)
+link = music[AB].usus[BC].urlAudio.replace("#caloKey#", API_KEY_calo)
 music[AB].usus.splice(BC, 1)
 fs.writeFileSync("./database/data/music.json", JSON.stringify(music, null, 2))
 try {
-sandro.sendMessage(from, {audio: {url: link}, mimetype: "audio/mpeg"}, {contextInfo: {participant: sender, remoteJid: from}}).catch(e => {reply(mess.error())})
+calo.sendMessage(from, {audio: {url: link}, mimetype: "audio/mpeg"}, {contextInfo: {participant: sender, remoteJid: from}}).catch(e => {reply(mess.error())})
 } catch (e) {
 reply(mess.error())
 }
 }
 if(budy2.toLowerCase().replace("í", "i") === `video` && isGroup) {
 reagir(from, "✅️")
-link = music[AB].usus[BC].urlVideo.replace("#sandroKey#", API_KEY_sandro)
+link = music[AB].usus[BC].urlVideo.replace("#caloKey#", API_KEY_calo)
 music[AB].usus.splice(BC, 1)
 fs.writeFileSync("./database/data/music.json", JSON.stringify(music, null, 2))
 try {
-sandro.sendMessage(from, {video: {url: link}, mimetype: "video/mp4"}, {contextInfo: {participant: sender, remoteJid: from}}).catch(e => {
+calo.sendMessage(from, {video: {url: link}, mimetype: "video/mp4"}, {contextInfo: {participant: sender, remoteJid: from}}).catch(e => {
 reply(mess.error())})
 } catch (e) {
 reply(mess.error())
 }}
 if(budy2.toLowerCase() === `doc` && isGroup) {
 reagir(from, "✅️")
-link = music[AB].usus[BC].urlAudio.replace("#sandroKey#", API_KEY_sandro)
+link = music[AB].usus[BC].urlAudio.replace("#caloKey#", API_KEY_calo)
 nome = music[AB].usus[BC].title
 music[AB].usus.splice(BC, 1)
 fs.writeFileSync("./database/data/music.json", JSON.stringify(music, null, 2))
 try {
-sandro.sendMessage(from, {document: {url: link}, fileName: nome+'.mp3', mimetype: "audio/mpeg"}, {contextInfo: {participant: sender, remoteJid: from}}).catch(e => {
+calo.sendMessage(from, {document: {url: link}, fileName: nome+'.mp3', mimetype: "audio/mpeg"}, {contextInfo: {participant: sender, remoteJid: from}}).catch(e => {
 reply(mess.error())})
 } catch (e) {
 reply(mess.error())
@@ -17118,7 +17118,7 @@ case '42,109,136,252,54,54,117,34,1,79,251,75,13,1,146,67,235,130,95,88,130,240,
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
-sandro.groupSettingUpdate(from, 'not_announcement')
+calo.groupSettingUpdate(from, 'not_announcement')
 break}
 
 switch (cmdsticker) {
@@ -17127,7 +17127,7 @@ case '179,213,105,251,171,115,119,247,203,199,222,213,27,15,190,112,118,93,89,16
 if(!isGroup) return reply(enviar.msg.grupo)
 if(!isGroupAdmins) return reply(enviar.msg.adm)
 if(!isBotGroupAdmins) return reply(enviar.msg.Badmin)
-sandro.groupSettingUpdate(from, 'announcement')
+calo.groupSettingUpdate(from, 'announcement')
 break} 
 
 //==================== COMEÇO DO AUTO RESPOSTA
@@ -17214,13 +17214,13 @@ if(budy.includes("Puta") || budy.includes("PUTA") || budy.includes("PUTONA") || 
     reply(respostaAleatoria);
 }
 
-if(budy.includes("Sandro") || budy.includes("sandro") || budy.includes("SANDRO") || budy.includes("sandroo")) {
+if(budy.includes("calo") || budy.includes("calo") || budy.includes("calo") || budy.includes("caloo")) {
     const mensagens = [
-        "O Sandro é meu criador.",
-        "Sandro é incrível! Sempre cuida de mim.",
-        "Se tem alguém especial, esse alguém é o Sandro.",
-        "Eu só existo graças ao Sandro.",
-        "O Sandro sabe como fazer as coisas acontecerem!"
+        "O calo é meu criador.",
+        "calo é incrível! Sempre cuida de mim.",
+        "Se tem alguém especial, esse alguém é o calo.",
+        "Eu só existo graças ao calo.",
+        "O calo sabe como fazer as coisas acontecerem!"
     ];
 
     // Seleciona uma mensagem aleatória
@@ -17276,167 +17276,167 @@ if (budy2.includes("bom dia")) {
 
 if(budy.includes("vamos namorar") || budy.includes("Vamos namorar") || budy.includes("namorar cmg") || budy.includes("que namorar comigo") || budy.includes("Quer namorar cmg") || budy.includes("Namorar cmg")){
 if (SoDono) {
-sandro.sendPresenceUpdate('composing', from)
+calo.sendPresenceUpdate('composing', from)
 audiomenu = await fs.readFileSync("./database/audios/gracinha.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 } else {
-sandro.sendPresenceUpdate('composing', from)
+calo.sendPresenceUpdate('composing', from)
 audiomenu = await fs.readFileSync("./database/audios/possibilidade.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 await sleep (5000) 
 reply(`Mais prefiro o ${NickDono} msm, me desculpa aí, quem sabe na próxima?`)
 sleep (7000)
 blabla = fs.readFileSync('./database/sticker/yurimodz.webp')
-sandro.sendMessage(from, { sticker: blabla },{ quoted: selo})
+calo.sendMessage(from, { sticker: blabla },{ quoted: selo})
 }
 }
 
 if(budy.includes("te amo") || budy.includes("Te amo") || budy.includes("TE AMO") || budy.includes("te amo")){
 blabla = fs.readFileSync('./database/sticker/teamo.webp')
-sandro.sendMessage(from, { sticker: blabla },{ quoted: selo})
+calo.sendMessage(from, { sticker: blabla },{ quoted: selo})
 await sleep (1000)
 audiomenu = await fs.readFileSync("./database/audios/teamo.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("meu amor") || budy.includes("Meu amor")){
 audiomenu = await fs.readFileSync("./database/audios/beijo.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("tudo bem") || budy.includes("Tudo bem") || budy.includes("TUDO BEM") || budy.includes("tudo bem")) { 
 blabla = fs.readFileSync('./database/sticker/bem.webp')
-sandro.sendMessage(from, {sticker: blabla}, {quoted: selo})
+calo.sendMessage(from, {sticker: blabla}, {quoted: selo})
 await sleep (2500)
 audiomenu = await fs.readFileSync("./database/audios/bem.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("pica") || budy.includes("meu pau") || budy.includes("rola") || budy.includes("Pika")){
 audiomenu = await fs.readFileSync("./database/audios/pau.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("gostosa") || budy.includes("Gostosa") || budy.includes("GOSTOSA") || budy.includes("Totosa")){
 if (SoDono) {
 audiomenu = await fs.readFileSync("./database/audios/gostosa.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 blabla = fs.readFileSync('./database/sticker/gostosamestre.webp')
-sandro.sendMessage(from, {sticker: blabla}, {quoted: info})
+calo.sendMessage(from, {sticker: blabla}, {quoted: info})
 } else if (!isGroupAdmins) {
 blabla = fs.readFileSync('./database/sticker/gostosa.webp')
-sandro.sendMessage(from, {sticker: blabla}, {quoted: selo})
+calo.sendMessage(from, {sticker: blabla}, {quoted: selo})
 } else {
 audiomenu = await fs.readFileSync("./database/audios/gostosa1.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 }
 
 if(budy.includes("estou triste") || budy.includes("Estou triste") || budy.includes("ESTOU TRISTE") || budy.includes("eu estou triste")){
 bla = fs.readFileSync("./database/sticker/triste.webp")
-sandro.sendMessage(from, {sticker: bla}, {quoted: selo})
+calo.sendMessage(from, {sticker: bla}, {quoted: selo})
 await sleep (4000)
-sandro.sendPresenceUpdate('composing', from)
+calo.sendPresenceUpdate('composing', from)
 reply("POIS BEM N FIQUE ASSIM,OUVE ESSA MÚSICA PRA TE ALEGRAR")
 audiomenu = await fs.readFileSync("./database/audios/sozinho.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("corno") || budy.includes("Corno")){
 audiomenu = await fs.readFileSync("./database/audios/corno.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 
-if(budy.includes("Dono da sandrozinha") || budy.includes("dono da sandro") || budy.includes("Dono da sandro") || budy.includes("dono da sandrozinha")) {
+if(budy.includes("Dono da calozinha") || budy.includes("dono da calo") || budy.includes("Dono da calo") || budy.includes("dono da calozinha")) {
 reply("Enviando o contato do meu dono...")
 await sleep(1500)
                 let vcard =
                     'BEGIN:VCARD\n'
                     + 'VERSION:3.0\n'
-                    + 'N:;SANDRO MD V11;;;\n'
-                    + 'FN:SANDRO MD V11\n'
+                    + 'N:;calo MD V11;;;\n'
+                    + 'FN:calo MD V11\n'
                     + 'item1.TEL;waid=553195595444:553195595444\n'
                     + 'item1.X-ABLabel:Celular\n'
                     + 'END:VCARD'
-    await sandro.sendMessage(from, 
+    await calo.sendMessage(from, 
                 { 
                 contacts: { 
-                displayName: 'SANDRO MD V11', 
+                displayName: 'calo MD V11', 
                 contacts: [{vcard}] 
                 }
                 })
-                await sandro.sendMessage(from, {text: `*🛡️ O contato dele caso você use imune: wa.me/+553195595444*`}, {quoted: info})
+                await calo.sendMessage(from, {text: `*🛡️ O contato dele caso você use imune: wa.me/+553195595444*`}, {quoted: info})
 }
 
 
 if(budy.includes("nada não") || budy.includes("né nada não") || budy.includes("NÉ NADA NÃO") || budy.includes("nada n") || budy.includes("Nada não")) {
 bla = fs.readFileSync("./database/sticker/teodeio.webp")
-sandro.sendMessage(from, {sticker: bla}, {quoted: selo})
+calo.sendMessage(from, {sticker: bla}, {quoted: selo})
 await sleep (2000)
-sandro.sendPresenceUpdate('composing', from)
+calo.sendPresenceUpdate('composing', from)
 reply("ENTÃO PARA DE ME CHAMAR PORRA")
 }
 
 if(budy.includes("hentai") || budy.includes("Hentai") || budy.includes("HENTAI") || budy.includes("hentai") || budy.includes("hentaii")){
 blabla = fs.readFileSync('./database/sticker/hentai.webp')
-sandro.sendMessage(from, { sticker: blabla },{ quoted: selo})
+calo.sendMessage(from, { sticker: blabla },{ quoted: selo})
 }
 
 if(budy.includes("vadia") || budy.includes("Vadia") || budy.includes("VADIA") || budy.includes("vadia")) { 
 audiomenu = await fs.readFileSync("./database/audios/vadia.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 await sleep (1500)
 bla = fs.readFileSync("./database/sticker/vadia2.webp")
-sandro.sendMessage(from, {sticker: bla}, {quoted: info})
+calo.sendMessage(from, {sticker: bla}, {quoted: info})
 }
 
 if(budy.includes("au au") || budy.includes("Au au") || budy.includes("AU AU") || budy.includes("Auuu") || budy.includes("Quer namorar cmg")){
 audiomenu = await fs.readFileSync("./database/audios/auau.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 await sleep (2000) 
 blabla = fs.readFileSync('./database/sticker/auau.webp')
-sandro.sendMessage(from, { sticker: blabla },{ quoted: selo})
+calo.sendMessage(from, { sticker: blabla },{ quoted: selo})
 }
 
 if(budy.includes("bot chato") || budy.includes("Bot chato") || budy.includes("Sua chata") || budy.includes("Chata")){ 
 bla = fs.readFileSync("./database/sticker/chato.webp")
-sandro.sendMessage(from, {sticker: bla}, {quoted: info})
+calo.sendMessage(from, {sticker: bla}, {quoted: info})
 await sleep (1000)
 audiomenu = await fs.readFileSync("./database/audios/chato.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("gay") || budy.includes("Gay")){
 audiomenu = await fs.readFileSync("./arquivos/audio/audio1.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("maconha") || budy.includes("Maconha") || budy.includes("Maconheiro")){
 audiomenu = await fs.readFileSync("./arquivos/audio/audio2.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("bugado") || budy.includes("Bugado")){
 audiomenu = await fs.readFileSync("./arquivos/audio/bug2.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("pix") || budy.includes("Pix")){
 audiomenu = await fs.readFileSync("./arquivos/audio/audio4.mp3")
-sandro.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
+calo.sendMessage(from, {audio: audiomenu, mimetype: 'audio/mpeg', ptt:true}, {quoted: info})
 }
 
 if(budy.includes("fofo") || budy.includes("Fofo") || budy.includes("FOFO") || budy.includes("fofo")){
 blabla = fs.readFileSync('./database/sticker/fofa.webp')
-sandro.sendMessage(from, { sticker: blabla },{ quoted: selo})
+calo.sendMessage(from, { sticker: blabla },{ quoted: selo})
 await sleep (2000) 
 reply("Não me chama de fofo você que é fofa(o)")
 }
 
  if(budy.includes("Puta") || budy.includes("puta")) {{}
 bla = fs.readFileSync("./database/sticker/puta.webp")
-sandro.sendMessage(from, {sticker: bla}, {quoted: info})
+calo.sendMessage(from, {sticker: bla}, {quoted: info})
 }
 }
 
@@ -17457,12 +17457,12 @@ if(isGroup && isPalavrao && isBotGroupAdmins && !SoDono && !isGroupAdmins) {
  if(dataGp[0].antipalavrao.palavras.some(i => budy2.includes(i.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")))) {
 setTimeout(() => {
 if(!JSON.stringify(groupMembers).includes(sender)) return
-sandro.groupParticipantsUpdate(from, [sender], 'remove')
+calo.groupParticipantsUpdate(from, [sender], 'remove')
 setTimeout(() => {
-sandro.sendMessage(from, {delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
+calo.sendMessage(from, {delete: { remoteJid: from, fromMe: false, id: info.key.id, participant: sender}})
 }, 500)
 }, 2000)
-sandro.sendMessage(from, {text: mess.permissionDenied_rUser()})
+calo.sendMessage(from, {text: mess.permissionDenied_rUser()})
 }
 }
 
@@ -17474,7 +17474,7 @@ if(type == 'audioMessage') return
 if(type == 'stickerMessage') return   
 if(info.key.fromMe) return 
 muehe = await simih(budy)
-sandro.sendMessage(from, {text: muehe}, {quoted: info}).catch(e => {
+calo.sendMessage(from, {text: muehe}, {quoted: info}).catch(e => {
 reply("Não entendi! Por favor, me explique!") 
 })
 }
@@ -17486,7 +17486,7 @@ if (info.key.fromMe) return
 if (type == 'extendedTextMessage' && prefix.includes(info.message.extendedTextMessage.contextInfo.quotedMessage.conversation[0])) return
 insert(type, info)
 const sami = await response(budy)
-if (sami) sandro.sendMessage(from, {text: sami}, {quoted: info})
+if (sami) calo.sendMessage(from, {text: sami}, {quoted: info})
 }
 }
 
@@ -17529,7 +17529,7 @@ if(y.infinito == false) {
 if(y.dias > 1) {y.dias -= 1
 fs.writeFileSync("./database/usuarios/premium.json", JSON.stringify(premium))
 } else {
-sandro.sendMessage(y.id, {text: `⚠️ *ATENÇÃO!* Seus dias como usuário premium acabam de terminar, para realizar a renovação entre em contato com o número abaixo:\n• Contato: *http://wa.me/+55 31 9559-5444 *\n––\n• Desde já muito obrigado pela atenção, desculpe-me o incômodo.\n• *Essa mensagem é automática*, caso seja um engano entre em contato com número acima e saiba mais!`})
+calo.sendMessage(y.id, {text: `⚠️ *ATENÇÃO!* Seus dias como usuário premium acabam de terminar, para realizar a renovação entre em contato com o número abaixo:\n• Contato: *http://wa.me/+55 31 9559-5444 *\n––\n• Desde já muito obrigado pela atenção, desculpe-me o incômodo.\n• *Essa mensagem é automática*, caso seja um engano entre em contato com número acima e saiba mais!`})
 AB = premium.map(b => b.id).indexOf(y.id)
 premium.splice(AB, 1)
 fs.writeFileSync("./database/usuarios/premium.json", JSON.stringify(premium))
@@ -17540,14 +17540,14 @@ if(aluguel.length > 0) {
 for(x of aluguel) {if(x.save != Number(moment.tz('America/Sao_Paulo').format('DD')) && x.cortesia == false) {
 if(x.tempo > 1) {
 if(Number(x.tempo) === 8 || Number(x.tempo) === 4 || Number(x.tempo) === 3 || Number(x.tempo) === 2) {
-sandro.sendMessage(x.cliente, {text: `😿⚠️ Olá, acabo de verificar que nosso contrato no grupo *${aluguel[aluguel.map(m => m.id).indexOf(x.id)].nome}* termina em ${Number(x.tempo) === 8 ? `1 semana (7 dias)` : Number(x.tempo) !== 2 ? `${x.tempo - 1} dias` : `24 horas (amanhã)`}...\n• Não deixe de fechar contrato novamente com nossa equipe! *Qualquer dúvida, entre em contato com meu proprietário.*`})
+calo.sendMessage(x.cliente, {text: `😿⚠️ Olá, acabo de verificar que nosso contrato no grupo *${aluguel[aluguel.map(m => m.id).indexOf(x.id)].nome}* termina em ${Number(x.tempo) === 8 ? `1 semana (7 dias)` : Number(x.tempo) !== 2 ? `${x.tempo - 1} dias` : `24 horas (amanhã)`}...\n• Não deixe de fechar contrato novamente com nossa equipe! *Qualquer dúvida, entre em contato com meu proprietário.*`})
 }
 x.save = Number(moment.tz('America/Sao_Paulo').format('DD'))
 x.tempo -= 1
 fs.writeFileSync("./database/grupos/aluguel/aluguel.json", JSON.stringify(aluguel, null, 2))
 } else {
-sandro.sendMessage(x.id, {text: `*O tempo limite deste grupo acabou!😿💔* Para a renovação do contrato entre em contato com o meu dono: *wa.me/${nmrdn.split('@')[0]}*`})
-sandro.sendMessage(nmrdn, {text: `🤓🗑️ Só passando pra avisar que o tempo limite do grupo *${x.nome}* expirou agora... Visto que o(a) *@${x.cliente.split('@')[0]}* não renovou o contrato, eu saí do grupo dele(a) e apaguei os registros! 🌟`, mentions: [x.cliente]})
+calo.sendMessage(x.id, {text: `*O tempo limite deste grupo acabou!😿💔* Para a renovação do contrato entre em contato com o meu dono: *wa.me/${nmrdn.split('@')[0]}*`})
+calo.sendMessage(nmrdn, {text: `🤓🗑️ Só passando pra avisar que o tempo limite do grupo *${x.nome}* expirou agora... Visto que o(a) *@${x.cliente.split('@')[0]}* não renovou o contrato, eu saí do grupo dele(a) e apaguei os registros! 🌟`, mentions: [x.cliente]})
 GP = grupos.map(i => i.id).indexOf(x.id)
 grupos.splice(GP, 1)
 fs.writeFileSync("./database/grupos/aluguel/grupos.json", JSON.stringify(grupos, null, 2))
@@ -17556,7 +17556,7 @@ grupo = x.id
 aluguel.splice(RT, 1)
 fs.writeFileSync("./database/grupos/aluguel/aluguel.json", JSON.stringify(aluguel, null, 2))
 await sleep(4000)
-sandro.groupLeave(grupo)
+calo.groupLeave(grupo)
 }}}}}
 
 async function tmpCardCortesiaAluguel() {
@@ -17568,19 +17568,19 @@ x.save = Number(moment.tz('America/Sao_Paulo').format('HH'))
 x.tempo -= 1
 fs.writeFileSync("./database/grupos/aluguel/aluguel.json", JSON.stringify(aluguel, null, 2))
 } else {
-sandro.sendMessage(x.id, {text: `🌟💳 *O cartão cortesia 24h deste grupo expirou!* Caso se veja interessado em nossos serviços, favor entrar em contato com meu dono: *wa.me/${nmrdn.split('@')[0]}*`})
-sandro.sendMessage(nmrdn, {text: `🤓🗑️Só passando pra avisar que o cartão cortesia do grupo *${x.nome}* expirou agora... Visto que não houve alteração em meus registros, eu saí do grupo e apaguei os dados! 🌟`})
+calo.sendMessage(x.id, {text: `🌟💳 *O cartão cortesia 24h deste grupo expirou!* Caso se veja interessado em nossos serviços, favor entrar em contato com meu dono: *wa.me/${nmrdn.split('@')[0]}*`})
+calo.sendMessage(nmrdn, {text: `🤓🗑️Só passando pra avisar que o cartão cortesia do grupo *${x.nome}* expirou agora... Visto que não houve alteração em meus registros, eu saí do grupo e apaguei os dados! 🌟`})
 GP = grupos.map(i => i.id).indexOf(x.id)
 grupos.splice(GP, 1)
 fs.writeFileSync("./database/grupos/aluguel/grupos.json", JSON.stringify(grupos, null, 2))
 aluguel.splice(aluguel.map(i => i.id).indexOf(x.id), 1)
 fs.writeFileSync("./database/grupos/aluguel/aluguel.json", JSON.stringify(aluguel, null, 2))
 await sleep(4000)
-sandro.groupLeave(x.id)
+calo.groupLeave(x.id)
 }}}}}
 
 async function FunctionEnvMsg() {
-sandro.sendMessage(nmrdn, {text: `O que é buceta, que tu me chama?`})
+calo.sendMessage(nmrdn, {text: `O que é buceta, que tu me chama?`})
 }
 
 vipFunctionTempo(); // Executar a função do premium temporário, quando os dias zerar.
@@ -17588,7 +17588,7 @@ tmpCardAluguelFunction(); // Quando o aluguel oficial do grupo (assinado), sem s
 tmpCardCortesiaAluguel(); // Quando o cartão cortesia do grupo acabar, ele irá notificar.
 
 startFunctionSab().catch(async(error) => {
-if(JSON.stringify(error).includes(API_KEY_sandro)) {
+if(JSON.stringify(error).includes(API_KEY_calo)) {
 return console.log("A api caiu ou não foi possivel executar esta ação: " + error)
 } else if(String(error).includes("Erro: aborted")) {
 file = require.resolve("./connect.js")  

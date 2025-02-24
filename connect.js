@@ -97,7 +97,7 @@ code = code?.match(/.{1,4}/g)?.join("-") || code;
 console.log(`${colors.cyan("• Código para conectar o bot e desfrutar de suas imensas funcionalidades: ")}` + colors.white(code));
 rl.close();
 } catch(error) {
-console.error('Falha ao solicitar o código de registro. Por favor, tente novamente.\n', error)
+console.error('falha ao solicitar o código de registro. Por favor, tente novamente.\n', error)
 }
 }
 
